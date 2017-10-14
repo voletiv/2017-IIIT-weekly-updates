@@ -1,7 +1,111 @@
 ---
 
+## 2017-10-14
+
+### FAILURE MODES:
+
+- Setup all lipreader predictions, and binary value for correctness
+
+- Setup attributes - speaker identity, word durations, bilabials
+
+- Extracted head poses on GRIDcorpus using dlib
+	- Adjusting kinks...
+
+#### TO DO:
+
+- Setup range of head poses for each word as attribute
+
+- Setup audio features as attributes
+
+- Discriminative clustering a la Aayush Bansal et al.
+
+- Assess the assessor!
+
+
+### ZERO SHOT LEARNING:
+
+- Got SyncNet pre-trained weights from Joon Soon Chung
+
+- Figured out ACTUAL SyncNet architecture (set up in Keras)
+
+- Used SyncNet for ZSL - abysmal results
+
+- Maybe extract features in a better way?
+	- I resized 40x40 images to 112x112, and used 5 frames per word
+
+### RESULTS
+
+![alt text](20171014/LSTM64_syncnet_oov.png "Frame")
+
+**Figure 1: Comparison of ZSL with lipreader features vs with Syncnet features - Speaker-dependent, out-of-vocabulary**
+
+![alt text](20171014/LSTM64_syncnet_si.png "Frame")
+
+**Figure 2: Comparison of ZSL with lipreader features vs with Syncnet features - Speaker-INdependent**
+
+---
+
 ## 2017-10-06
 
+### DONE:
+
+- Analysis
+
+    - Read [Diagnosing Error in Object Detectors](http://dhoiem.cs.illinois.edu/publications/eccv2012_detanalysis_derek.pdf) - Derek Hoiem et al, ECCV 2012; [Towards Transparent Systems: Semantic Characterization of Failure Modes](http://www.cs.cmu.edu/~aayushb/pubs/characterizing_mistakes_eccv2014.pdf) - Aayush Bansal, Ali Farhadi, Devi Parekh, ECCV 2014; and other related ones
+
+        - Derek Hoiem et al. analyse distribution of output False Positives on full set of images, using better segregation in object attributes (provided)
+
+        - Aayush Bansal et al. cluster the attribute vectors (provided) of all mistake images, and disciminates between them and non-mistake using logistic regression
+
+- ZSL
+
+    - Input: Feature vector from LSTM Lipreader's encoding of video
+
+    - Tried with different word-embeddings: word2vec, fasttext, GloVe, Eigenwords with prior knowledge
+
+    - Abyssmal results for OOV, better-than-standard result for SI
+        - Synthetic experiments showed bigger input_dim is required
+
+    - Better results than standard for Speaker-Independent setting: 40%
+          - Same accuracy as [Wand and JS's Domain Adaptation paper](https://arxiv.org/pdf/1708.01565.pdf)
+          - They used unlabelled videos from non-training speakers to improve speaker-independence; we used ZSL
+
+#### ZSL - OOV
+
+![alt text](20171006/grid_zsl_acc_oov.png "Frame")
+
+**Figure 1: Accuracies of ZSL on out-of-vocabulary words vs number of words in the training vocabulary (out of 50), for different word embeddings. Mouth videos are embedded using an LSTM Lipreader trained on GRID.**
+
+
+#### ZSL - SI
+
+![alt text](20171006/grid_zsl_acc_si.png "Frame")
+
+**Figure 2: Accuracies of ZSL on Speaker-Independent data, for both in-volcabulary and out-of-vocabulary words, vs number of words in the training vocabulary (out of 50), for different word embeddings. Mouth videos are embedded using an LSTM Lipreader trained on GRID.**
+
+
+### TO DO:
+
+- Analysis
+
+    - To design attributes for GRID, LRW: face pose, face size, mouth-to-face ratio
+
+    - Analyse GRID, LRW failure modes
+
+    - Apply discriminative clustering on them?
+
+    - To read [Predicting Failures of Vision Systems](https://www.cc.gatech.edu/~parikh/Publications/predicting_failures_CVPR2014.pdf) - ..., Devi Parekh, CVPR 2014; Failures of Gradient-Based Deep Learnin - Shai Shalev-Shwartz et al. - [MLR](http://proceedings.mlr.press/v70/shalev-shwartz17a/shalev-shwartz17a.pdf), [arXiv](https://arxiv.org/pdf/1703.07950.pdf)
+
+
+- ZSL
+
+    - Increase size of video encoding of LSTM Lipreader from 64 to 256 (standard used by VGG)
+
+    - Implement SyncNet to use as video encoding (since better than even LRW Lipreader)
+
+    - Some other word embedding? Like visually semantic word embeddings?
+
+    - Adversarial - Gannin and Lempitsky; Zheng Li (Trevor Darrel's), Ming... (Michael Jordan's) - MMD (Max mean discrepancy) loss could be better
 
 ---
 
@@ -10,10 +114,10 @@
 ### TO DO:
 
 - Lipreader, Critic analysis
-  - [Towards Transparent Systems: Semantic Characterization of Failure Modes - Aayush Bansal, Ali Farhadi, Devi Parekh, ECCV 2014](http://www.cs.cmu.edu/~aayushb/pubs/characterizing_mistakes_eccv2014.pdf)
-  - [Predicting Failures of Vision Systems - ..., Devi Parekh, CVPR 2014](https://www.cc.gatech.edu/~parikh/Publications/predicting_failures_CVPR2014.pdf)
-  - [Diagnosing Error in Object Detectors - Derek Hoiem et al, ECCV 2012](http://dhoiem.cs.illinois.edu/publications/eccv2012_detanalysis_derek.pdf)
-  - Failures of Gradient-Based Deep Learnin - Shai Shalev-Shwartz et al. - [MLR](http://proceedings.mlr.press/v70/shalev-shwartz17a/shalev-shwartz17a.pdf), [arXiv](https://arxiv.org/pdf/1703.07950.pdf)
+    - [Towards Transparent Systems: Semantic Characterization of Failure Modes - Aayush Bansal, Ali Farhadi, Devi Parekh, ECCV 2014](http://www.cs.cmu.edu/~aayushb/pubs/characterizing_mistakes_eccv2014.pdf)
+    - [Predicting Failures of Vision Systems - ..., Devi Parekh, CVPR 2014](https://www.cc.gatech.edu/~parikh/Publications/predicting_failures_CVPR2014.pdf)
+    - [Diagnosing Error in Object Detectors - Derek Hoiem et al, ECCV 2012](http://dhoiem.cs.illinois.edu/publications/eccv2012_detanalysis_derek.pdf)
+    - Failures of Gradient-Based Deep Learnin - Shai Shalev-Shwartz et al. - [MLR](http://proceedings.mlr.press/v70/shalev-shwartz17a/shalev-shwartz17a.pdf), [arXiv](https://arxiv.org/pdf/1703.07950.pdf)
 
 - Zero Shot Learning formalization
 
@@ -110,27 +214,27 @@ Figure 2: Accuracy of Critic with different values of threshold over the critic'
 
 - On a very good lipreader (above - epoch 79):
 
-    - Train: Only LipReader - 91.51%, LipReader*Critic - 91.49%
+    - Train: Only LipReader - 91.51%, LipReader x Critic - 91.49%
 
-    - Val: Only LipReader - 91.8%, only critic - 50.6%, LipReader*Critic - 91.4%
+    - Val: Only LipReader - 91.8%, only critic - 50.6%, LipReader x Critic - 91.4%
 
-    - SI: Only LipReader - 24.3%, only critic - 20.5%, LipReader*Critic - 25.5%
+    - SI: Only LipReader - 24.3%, only critic - 20.5%, LipReader x Critic - 25.5%
 
 - On an average lipreader (epoch 35):
 
-    - Train: Only LipReader - 82.5%, only critic - 46.7%, LipReader*Critic - 81.3%
+    - Train: Only LipReader - 82.5%, only critic - 46.7%, LipReader x Critic - 81.3%
 
-    - Val: Only LipReader - 82.9%, only critic - 46.5%, LipReader*Critic - 81.4%
+    - Val: Only LipReader - 82.9%, only critic - 46.5%, LipReader x Critic - 81.4%
 
-    - SI: Only LipReader - 22.6%, only critic - 19.7%, LipReader*Critic - 23.9%
+    - SI: Only LipReader - 22.6%, only critic - 19.7%, LipReader x Critic - 23.9%
 
 - On a very bad lipreader (epoch 0):
 
-    - Train: Only LipReader - 13.4%, only critic - 22.8%, LipReader*Critic - 24.7%
+    - Train: Only LipReader - 13.4%, only critic - 22.8%, LipReader x Critic - 24.7%
 
-    - Val: Only LipReader - 13.7%, only critic - 22.2%, LipReader*Critic - 24.3%
+    - Val: Only LipReader - 13.7%, only critic - 22.2%, LipReader x Critic - 24.3%
 
-    - SI: Only LipReader - 9.7%, only critic - 13.3%, LipReader*Critic - 15.2%
+    - SI: Only LipReader - 9.7%, only critic - 13.3%, LipReader x Critic - 15.2%
 
 - CONCLUSION - critic doesn't offer much when the LR is awesome, but when the LR is bad the critic can improve accuracy
 
@@ -162,7 +266,7 @@ Figure 2: Loss and accuracy for training data, validation data and speaker-indep
 
 - Use case: self-learning?
 
-- Use LR*Critic on very few data
+- Use LR x Critic on very few data
 
 - Train fusion
 
