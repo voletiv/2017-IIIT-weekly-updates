@@ -1,0 +1,104 @@
+<link rel="stylesheet" href="../css/weeklyUpdates.css">
+
+<h2 id="20170902">2017-09-02</h2>
+
+<h3 id="lipreader">Lip Reader</h3>
+
+<ul>
+<li>Lip Reader with Masking and Reverse-Sequence of frames input to LSTM: Train - 92%, Val - 85%, SI - 24%</li>
+</ul>
+
+<h3 id="critic">Critic</h3>
+
+<ul>
+<li><p>Critic - taking only video input and a predicted word</p></li>
+
+<li><p>Training with top-3 predicted words from best lip reader</p></li>
+
+<li><p>Accuracies: Train - 64.4%, Val - 64.5%, SI - 66.7%</p></li>
+
+<li><p>ROC curve and Precision-Recall curve:</p></li>
+</ul>
+
+<p><img src="20170902/C3DCritic-l1f4-l2f4-l3f4-fc1n4-vid16-OHWord51-OHWordFc16-out64-Adam-1e-03-GRIDcorpus-s0107-09-ROC-PR-epoch016.png" alt="alt text" title="Frame" /></p>
+
+<p>Figure 1: ROC curve and precision-recall curve for one set of weights of critic (at epoch number 16). The 'X' marks are at the values for threshold=0.5.</p>
+
+<ul>
+<li>Accuracies vs Threshold:</li>
+</ul>
+
+<p><img src="20170902/C3DCritic-l1f4-l2f4-l3f4-fc1n4-vid16-OHWord51-OHWordFc16-out64-Adam-1e-03-GRIDcorpus-s0107-09-ROC-PR-acc-epoch016.png" alt="alt text" title="Frame" /></p>
+
+<p>Figure 2: Accuracy of Critic with different values of threshold over the critic's scores.</p>
+
+<h3 id="combiningcriticandlipreader">Combining Critic and LipReader</h3>
+
+<ul>
+<li><p>Take Top-5 predictions of lipreader, find out critic's scores for them, multiply with lipreader's scores, find accuracy of lipreader (No. of correct predictions/total)</p></li>
+
+<li><p>On a very good lipreader (above - epoch 79):</p>
+
+<ul>
+<li><p>Train: Only LipReader - 91.51%, LipReader x Critic - 91.49%</p></li>
+
+<li><p>Val: Only LipReader - 91.8%, only critic - 50.6%, LipReader x Critic - 91.4%</p></li>
+
+<li><p>SI: Only LipReader - 24.3%, only critic - 20.5%, LipReader x Critic - 25.5%</p></li></ul></li>
+
+<li><p>On an average lipreader (epoch 35):</p>
+
+<ul>
+<li><p>Train: Only LipReader - 82.5%, only critic - 46.7%, LipReader x Critic - 81.3%</p></li>
+
+<li><p>Val: Only LipReader - 82.9%, only critic - 46.5%, LipReader x Critic - 81.4%</p></li>
+
+<li><p>SI: Only LipReader - 22.6%, only critic - 19.7%, LipReader x Critic - 23.9%</p></li></ul></li>
+
+<li><p>On a very bad lipreader (epoch 0):</p>
+
+<ul>
+<li><p>Train: Only LipReader - 13.4%, only critic - 22.8%, LipReader x Critic - 24.7%</p></li>
+
+<li><p>Val: Only LipReader - 13.7%, only critic - 22.2%, LipReader x Critic - 24.3%</p></li>
+
+<li><p>SI: Only LipReader - 9.7%, only critic - 13.3%, LipReader x Critic - 15.2%</p></li></ul></li>
+
+<li><p>CONCLUSION - critic doesn't offer much when the LR is awesome, but when the LR is bad the critic can improve accuracy</p></li>
+</ul>
+
+<h2 id="experimentalresults">EXPERIMENTAL RESULTS</h2>
+
+<h3 id="lipreader-1">Lip Reader</h3>
+
+<p><img src="20170902/LSTMLipReader-revSeq-Mask-LSTMh256-LSTMactivtanh-depth2-enc64-encodedActivrelu-Adam-1e-03-GRIDcorpus-s0107-09-tMouth-valMouth-NOmeanSub-plots.png" alt="alt text" title="Frame" /></p>
+
+<p>Figure 1: Loss and accuracy for training data, validation data and speaker-independent data, for Lip Reader using LSTM, with Masking at input and reverse sequence of frame input</p>
+
+<h3 id="critic-1">Critic</h3>
+
+<p><img src="20170902/C3DCritic-l1f4-l2f4-l3f4-fc1n4-vid16-OHWord51-OHWordFc16-out64-Adam-1e-03-GRIDcorpus-s0107-09-Plots.png" alt="alt text" title="Frame" /></p>
+
+<p>Figure 2: Loss and accuracy for training data, validation data and speaker-independent data, for Critic taking only video sequence and predicted word as input. Training data consisted of video input and top-3 predicted words by lipreader.</p>
+
+<ul>
+<li>I chose the weights at epoch 16 (val and speaker-independent loss almost equal).</li>
+</ul>
+
+<h2 id="discussion">DISCUSSION</h2>
+
+<ul>
+<li><p>Baseline Accuracy vs Threshold from softmax scores of LR</p></li>
+
+<li><p>Only use critic in a region - when LR is dicey. If LR is very sure, ignore critic.</p></li>
+
+<li><p>Additional information to Critic - fraction of scaling up or down the mouth image</p></li>
+
+<li><p>Use case: self-learning?</p></li>
+
+<li><p>Use LR x Critic on very few data</p></li>
+
+<li><p>Train fusion</p></li>
+</ul>
+
+<hr />

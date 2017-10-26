@@ -1,0 +1,52 @@
+<link rel="stylesheet" href="../css/weeklyUpdates.css">
+
+<h2 id="20170824">2017-08-24</h2>
+
+<ul>
+<li><p>Realized output having padding gives awesome accuracies but does not reflect actual word-classification accuracy</p>
+
+<ul>
+<li>Accuracies are for output with padding, so, cannot be trusted</li></ul></li>
+
+<li><p>Accuracies in paper: <a href="https://arxiv.org/pdf/1601.08188.pdf">LIPREADING WITH LONG SHORT-TERM MEMORY</a>:</p>
+
+<ul>
+<li>Speaker-dependent accuracy - 79.4%</li>
+
+<li>Speaker-independent accuracy - 79.6%</li></ul></li>
+
+<li><p>Using LipReader "LSTM-h256-depth2-LSTMactivtanh-enc64-encodedActivsigmoid-Adam-1e-03-GRIDcorpus-s0107-s0909-tMouth-vMouth-NOmeanSub-epoch099-tl0.3307-ta0.8417-vl0.3782-va0.8304.hdf5"</p>
+
+<p><ul>
+<li>Speaker-dependent: Training accuracy - 84.17%, Validation accuracy - 83.04%</li></p>
+
+<p><li>Speaker-independent accuracy - 73.86%</li></ul>
+
+<p></p></li>
+</ul></p>
+
+<h3 id="comparisonoflstmseq2seqlstmd2lstmd3lstmd2encwithpadding">Comparison of LSTMSeq2Seq, LSTMd2, LSTMd3, LSTMd2enc (with padding)</h3>
+
+<p><img src="20170824/20to23-acc-lipReader-Seq2Seq-d2-d3-d2enc.png" alt="alt text" title="Frame" /></p>
+
+<p>Figure 1a. Comparison of accuracies of LSTMSeq2Seq, LSTMd2, LSTMd3, LSTMd2enc (with padding in output)</p>
+
+<p><img src="20170824/20to23-losses-lipReader-Seq2Seq-d2-d3-d2enc.png" alt="alt text" title="Frame" /></p>
+
+<p>Figure 1b. Comparison of losses of LSTMSeq2Seq, LSTMd2, LSTMd3, LSTMd2enc (with padding in output)</p>
+
+<h3 id="comparisonofdifferentarchitectureswithpadding">Comparison of different architectures (with padding)</h3>
+
+<p><img src="20170824/35ato41a-acc-onlyLRPreds-word-enc-OHW-OHWhid-encOHW-encHidOHWHid-predWordDis.png" alt="alt text" title="Frame" /></p>
+
+<p>Figure 2a. Comparison of training, validation and speaker-independent accuracies for different architectures</p>
+
+<p><img src="20170824/35ato41a-losses-onlyLRPreds-word-enc-OHW-OHWhid-encOHW-encHidOHWHid-predWordDis.png" alt="alt text" title="Frame" /></p>
+
+<p>Figure 2b. Comparison of training, validation and speaker-independent losses for different architectures</p>
+
+<ul>
+<li>It can be seen that Enc-OHWord is the best architecture overall</li>
+</ul>
+
+<hr />

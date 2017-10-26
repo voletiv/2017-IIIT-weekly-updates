@@ -1,0 +1,80 @@
+<link rel="stylesheet" href="../css/weeklyUpdates.css">
+
+<h2 id="20171006">2017-10-06</h2>
+
+<h3 id="done">DONE:</h3>
+
+<ul>
+<li><p>Analysis</p>
+
+<ul>
+<li><p>Read <a href="http://dhoiem.cs.illinois.edu/publications/eccv2012_detanalysis_derek.pdf">Diagnosing Error in Object Detectors</a> - Derek Hoiem et al, ECCV 2012; <a href="http://www.cs.cmu.edu/~aayushb/pubs/characterizing_mistakes_eccv2014.pdf">Towards Transparent Systems: Semantic Characterization of Failure Modes</a> - Aayush Bansal, Ali Farhadi, Devi Parekh, ECCV 2014; and other related ones</p>
+
+<ul>
+<li><p>Derek Hoiem et al. analyse distribution of output False Positives on full set of images, using better segregation in object attributes (provided)</p></li>
+
+<li><p>Aayush Bansal et al. cluster the attribute vectors (provided) of all mistake images, and disciminates between them and non-mistake using logistic regression</p></li></ul></li></ul></li>
+
+<li><p>ZSL</p>
+
+<ul>
+<li><p>Input: Feature vector from LSTM Lipreader's encoding of video</p></li>
+
+<li><p>Tried with different word-embeddings: word2vec, fasttext, GloVe, Eigenwords with prior knowledge</p></li>
+
+<li><p>Abyssmal results for OOV, better-than-standard result for SI</p>
+
+<ul>
+<li>Synthetic experiments showed bigger input_dim is required</li></ul></li>
+
+<li><p>Better results than standard for Speaker-Independent setting: 40%</p>
+
+<p><ul>
+<li>Same accuracy as <a href="https://arxiv.org/pdf/1708.01565.pdf">Wand and JS's Domain Adaptation paper</a></li></p>
+
+<p><li>They used unlabelled videos from non-training speakers to improve speaker-independence; we used ZSL</li></ul>
+
+<p></p></li></ul>
+
+<p></p></li>
+</ul></p>
+
+<h4 id="zsloov">ZSL - OOV</h4>
+
+<p><img src="20171006/grid_zsl_acc_oov.png" alt="alt text" title="Frame" /></p>
+
+<p><strong>Figure 1: Accuracies of ZSL on out-of-vocabulary words vs number of words in the training vocabulary (out of 50), for different word embeddings. Mouth videos are embedded using an LSTM Lipreader trained on GRID.</strong></p>
+
+<h4 id="zslsi">ZSL - SI</h4>
+
+<p><img src="20171006/grid_zsl_acc_si.png" alt="alt text" title="Frame" /></p>
+
+<p><strong>Figure 2: Accuracies of ZSL on Speaker-Independent data, for both in-volcabulary and out-of-vocabulary words, vs number of words in the training vocabulary (out of 50), for different word embeddings. Mouth videos are embedded using an LSTM Lipreader trained on GRID.</strong></p>
+
+<h3 id="todo-1">TO DO:</h3>
+
+<ul>
+<li><p>Analysis</p>
+
+<ul>
+<li><p>To design attributes for GRID, LRW: face pose, face size, mouth-to-face ratio</p></li>
+
+<li><p>Analyse GRID, LRW failure modes</p></li>
+
+<li><p>Apply discriminative clustering on them?</p></li>
+
+<li><p>To read <a href="https://www.cc.gatech.edu/~parikh/Publications/predicting_failures_CVPR2014.pdf">Predicting Failures of Vision Systems</a> - ..., Devi Parekh, CVPR 2014; Failures of Gradient-Based Deep Learnin - Shai Shalev-Shwartz et al. - <a href="http://proceedings.mlr.press/v70/shalev-shwartz17a/shalev-shwartz17a.pdf">MLR</a>, <a href="https://arxiv.org/pdf/1703.07950.pdf">arXiv</a></p></li></ul></li>
+
+<li><p>ZSL</p>
+
+<ul>
+<li><p>Increase size of video encoding of LSTM Lipreader from 64 to 256 (standard used by VGG)</p></li>
+
+<li><p>Implement SyncNet to use as video encoding (since better than even LRW Lipreader)</p></li>
+
+<li><p>Some other word embedding? Like visually semantic word embeddings?</p></li>
+
+<li><p>Adversarial - Gannin and Lempitsky; Zheng Li (Trevor Darrel's), Ming... (Michael Jordan's) - MMD (Max mean discrepancy) loss could be better</p></li></ul></li>
+</ul>
+
+<hr />

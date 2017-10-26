@@ -1,0 +1,98 @@
+<link rel="stylesheet" href="weeklyUpdates.css">
+
+<h2 id="20170708">2017-07-08</h2>
+
+<h3 id="discussion-2">Discussion</h3>
+
+<ul>
+<li><p>Check if pose is a good addition</p></li>
+
+<li><p>RNN-evaluator = actor-critic, RNN chooses, critic says if you chose wrong</p>
+
+<ul>
+<li>RNN with actor-critic: Towards diverse and natural image descriptions via conditional Gan - to evaluate captions - Raquel </li></ul></li>
+
+<li><p>RNN - beam search</p>
+
+<p><ul>
+<li>Dhruv - Diverse Beam Search (on arxiv, not published). But not with structured loss</li></ul>
+
+<p></p></li>
+</ul></p>
+
+<hr />
+
+<h2 id="20170701">2017-07-01</h2>
+
+<h3 id="completed-1">Completed</h3>
+
+<ul>
+<li><p>Got permission for LRW dataset</p></li>
+
+<li><p>Require ~2TB of storage for TV shows, etc.</p></li>
+
+<li><p>Theory of LSTMs</p></li>
+
+<li><p>Read <a href="https://arxiv.org/pdf/1601.08188.pdf">LIPREADING WITH LONG SHORT-TERM MEMORY</a> (Michael Wand)</p></li>
+
+<li><p>Coded preprocessing steps in full to extract 40x40 mouth</p>
+
+<p><ul>
+<li>Multiple (erroneous) faces detection (took the one with max width)</li></p>
+
+<p><li>Non-mouth area erroneously detected as mouth (constrained face area in which to detect mouth)</li></ul>
+
+<p></p></li>
+</ul></p>
+
+<p>Frame extracted from video:<img src="20170701/bbij1nFrame72.jpg" alt="alt text" title="Frame" /></p>
+
+<p>Face extracted from Frame:<img src="20170701/bbij1nFace72.jpg" alt="alt text" title="Face" /></p>
+
+<p>Mouth extracted from Face:<img src="20170701/bbij1nMouth72.jpg" alt="alt text" title="Mouth" /></p>
+
+<ul>
+<li>Computed face pose (yaw, pitch, roll) using <a href="https://github.com/severin-lemaignan/gazr">gazr</a></li>
+</ul>
+
+<p>Above Head pose: (0.018895, 0.0636381, 0.65107)</p>
+
+<ul>
+<li>Extracted Facial Landmarks and aligned face using <a href="https://github.com/jrosebr1/imutils">imutils</a> (python)</li>
+</ul>
+
+<p>Aligned Face extracted from Frame:<img src="20170701/bbij1nAlignedFace72.jpg" alt="alt text" title="Aligned Face" /></p>
+
+<p>Aligned Mouth extracted from Aligned Face:<img src="20170701/bbij1nAlignedMouth72.jpg" alt="alt text" title="Aligned Mouth" /></p>
+
+<h3 id="discussion-3">Discussion</h3>
+
+<ul>
+<li><p>Face Alignment?</p></li>
+
+<li><p>One-to-one LSTM?</p></li>
+</ul>
+
+<h3 id="todo-4">TO DO</h3>
+
+<ul>
+<li><p>Compare with Abhishek's face images</p></li>
+
+<li><p>Compare Pose estimation papers (talk to Isha)</p></li>
+
+<li><p>Read <a href="https://arxiv.org/pdf/1506.02025.pdf">Spatial Transformer Networks</a> (Zisserman)</p></li>
+
+<li><p>Run LSTM on GRIDcorpus (copying all files into Atom is time-consuming)</p></li>
+
+<li><p>Run network on LRW</p></li>
+</ul>
+
+<h3 id="misc">MISC</h3>
+
+<ul>
+<li><p>Nose/mouth fiducials</p></li>
+
+<li><p><a href="https://researchweb.iiit.ac.in/~pramod_sankar/papers/Pramod10Nearest.pdf">Nearest Neighbor based Collection OCR</a></p></li>
+</ul>
+
+<hr />

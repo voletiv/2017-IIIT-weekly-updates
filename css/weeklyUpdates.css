@@ -1,0 +1,20 @@
+body {
+    background-color: #fefefe;
+    margin:2em auto;
+    width: 100%;
+    max-width: auto;
+    font-family: Helvetica, sans-serif;
+    line-height: 300%;
+    font-size: 100%;
+}
+ul li {
+    line-height: 100%;
+    margin-top: 2em;
+    margin-bottom: 3em;
+}
+img {
+    max-width: 80%;
+    max-height: 100%;
+}
+hr {
+    margin: 2em auto;

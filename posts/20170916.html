@@ -1,0 +1,43 @@
+<link rel="stylesheet" href="../css/weeklyUpdates.css">
+
+<h2 id="20170916">2017-09-16</h2>
+
+<h3 id="selflearningongridcorpus">Self-Learning on GRIDcorpus</h3>
+
+<p><img src="20170916/SSL.png" alt="alt text" title="Frame" /></p>
+
+<p>Figure 1: Comparison of Apparent accuracy, True accuracy, Val accuracy, Speaker-independent accuracy among training with:</p>
+
+<ul>
+<li><p><blue> only lipreader at 99% confidence, with finetuning (and not remodelling)</p></li>
+
+<li><p><green> only lipreader at 99% confidence, with remodelling</p></li>
+
+<li><p><red> lipreader at 95% confidence + critic at 10% confidence, with finetuning (and not remodelling)</p></li>
+
+<li><p><black> lipreader at 95% confidence + critic at 10% confidence, with finetuning (and not remodelling)</p></li>
+</ul>
+
+<h4 id="conclusion">CONCLUSION</h4>
+
+<ul>
+<li><p>LR + Critic works marginally better/faster</p></li>
+
+<li><p>Finetuning works better/faster than remodelling</p></li>
+</ul>
+
+<p><img src="20170916/SSLPc.png" alt="alt text" title="Frame" /></p>
+
+<p>Figure 2: Comparison of Apparent accuracy, True accuracy, Val accuracy, Speaker-independent accuracy among training with:</p>
+
+<ul>
+<li><p><blue> starting at 10% of training data, only lipreader, at 95% confidence, with finetuning</p></li>
+
+<li><p><green> starting at 10% of training data, lipreader at 95% confidence + critic at 10% confidence, with finetuning</p></li>
+
+<li><p><red> starting at 20% of training data, only lipreader, at 99% confidence, with finetuning</p></li>
+
+<li><p><black> starting at 20% of training data, lipreader at 95% confidence + critic at 10% confidence, with finetuning</p></li>
+</ul>
+
+<hr />
