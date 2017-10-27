@@ -1,0 +1,41 @@
+<link rel="stylesheet" href="../css/weeklyUpdates.css">
+
+<title>20170916</title>
+
+<h2>20170916</h2>
+
+<h3 id="experimentalresults">TRAINING BEST LIPREADER, C3D CRITIC</h3>
+
+<hr/>
+
+<h3 id="lipreader-1">Lip Reader</h3>
+
+<!-- <a href="20170902/lipreader_arch.png"> -->
+<p><img src="20170902/lipreader_arch.png" alt="IMAGE NOT FOUND!!" title="Frame" /></p>
+<p class="fig">Figure 1: Lipreader architecture</p>
+<!-- </a> -->
+
+<h3 id="lipreader-training">Training</h3>
+
+<p><img src="20170902/LSTMLipReader-revSeq-Mask-LSTMh256-LSTMactivtanh-depth2-enc64-encodedActivrelu-Adam-1e-03-GRIDcorpus-s0107-09-tMouth-valMouth-NOmeanSub-plots.png" alt="alt text" title="Frame" /></p>
+
+<p class="fig">Figure 2: Loss and accuracy for training data, validation data and speaker-independent data, for Lip Reader using LSTM, with Masking at input and reverse sequence of frame input</p>
+
+<hr/>
+
+<h3 id="critic-1">Critic</h3>
+
+<a href="20170902/C3DCritic_arch.png">
+<p><img src="20170902/C3DCritic_arch.png" alt="IMAGE NOT FOUND!!" title="C3DCritic_arch" /></p>
+<p class="fig">Figure 3: Critic architecture</p>
+</a>
+
+<p><img src="20170902/C3DCritic-l1f4-l2f4-l3f4-fc1n4-vid16-OHWord51-OHWordFc16-out64-Adam-1e-03-GRIDcorpus-s0107-09-Plots.png" alt="alt text" title="Frame" /></p>
+
+<p class="fig">Figure 4: Loss and accuracy for training data, validation data and speaker-independent data, for Critic taking only video sequence and predicted word as input. Training data consisted of video input and top-3 predicted words by lipreader.</p>
+
+<ul>
+<li>I chose the weights at epoch 16 (val and speaker-independent loss almost equal).</li>
+</ul>
+
+<hr/>

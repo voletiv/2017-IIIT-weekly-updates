@@ -1,5 +1,7 @@
 <link rel="stylesheet" href="../css/weeklyUpdates.css">
 
+<title>20171014</title>
+
 <h2 id="20171014">2017-10-14</h2>
 
 <h3 id="failuremodes">FAILURE MODES:</h3>
@@ -24,38 +26,9 @@
 
 <li><p>Setup audio features as attributes</p></li>
 
-<li><p>Discriminative clustering a la Aayush Bansal et al.</p></li>
+<li><p>Use a simple assessor like SVM or Logistic Regressor a la <a href="www.cs.cmu.edu/~aayushb/pubs/characterizing_mistakes_eccv2014.pdf">Aayush Bansal et al.</a> on attributes</p></li>
 
 <li><p>Assess the assessor!</p></li>
 </ul>
-
-<hr />
-
-<h3 id="zeroshotlearning">ZERO SHOT LEARNING:</h3>
-
-<ul>
-<li><p>Got SyncNet pre-trained weights from Joon Soon Chung</p></li>
-
-<li><p>Figured out ACTUAL SyncNet architecture (set up in Keras)</p></li>
-
-<li><p>Used SyncNet for ZSL - abysmal results</p></li>
-
-<li><p>Maybe extract features in a better way?</p>
-
-<p><ul>
-<li>I resized 40x40 images to 112x112, and used 5 frames per word</li></ul>
-
-<p></p></li>
-</ul></p>
-
-<h3 id="results">RESULTS</h3>
-
-<p><img src="20171014/LSTM64_syncnet_oov.png" alt="alt text" title="Frame" /></p>
-
-<p><strong>Figure 1: Comparison of ZSL with lipreader features vs with Syncnet features - Speaker-dependent, out-of-vocabulary</strong></p>
-
-<p><img src="20171014/LSTM64_syncnet_si.png" alt="alt text" title="Frame" /></p>
-
-<p><strong>Figure 2: Comparison of ZSL with lipreader features vs with Syncnet features - Speaker-INdependent</strong></p>
 
 <hr />

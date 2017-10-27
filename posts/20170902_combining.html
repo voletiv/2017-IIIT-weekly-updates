@@ -1,0 +1,102 @@
+<link rel="stylesheet" href="../css/weeklyUpdates.css">
+
+<title>20170916</title>
+
+<h2>2017-09-16</h2>
+
+<h3 id="combiningcriticandlipreader">COMBINING Critic and LipReader</h3>
+
+<p>Take Top-5 predictions of lipreader, find out critic's scores for them, multiply with lipreader's scores, find accuracy of lipreader (No. of correct predictions/total)</p>
+
+<ul>
+<li><p>On a very good lipreader (epoch 79):</p></li>
+
+<table>
+  <tr style="font-weight: bold">
+    <th></th>
+    <th>Only LipReader</th>
+    <th>Only Critic</th>
+    <th>LipReader x Critic</th>
+  </tr>
+  <tr>
+    <td style="font-weight: bold">Train</td>
+    <td>91.51%</td>
+    <td>-</td>
+    <td>91.49%</td>
+  </tr>
+  <tr>
+    <td style="font-weight: bold">Test</td>
+    <td>91.8%</td>
+    <td>50.6%</td>
+    <td>91.4%</td>
+  </tr>
+  <tr>
+    <td style="font-weight: bold">Speaker-Independent</td>
+    <td>24.3%</td>
+    <td>20.5%</td>
+    <td>25.5%</td>
+  </tr>
+</table>
+
+<li><p>On an average lipreader (epoch 35):</p></li>
+
+<table>
+  <tr style="font-weight: bold">
+    <th></th>
+    <th>Only LipReader</th>
+    <th>Only Critic</th>
+    <th>LipReader x Critic</th>
+  </tr>
+  <tr>
+    <td style="font-weight: bold">Train</td>
+    <td>82.5%</td>
+    <td>46.7%</td>
+    <td>81.3%</td>
+  </tr>
+  <tr>
+    <td style="font-weight: bold">Test</td>
+    <td>82.9%</td>
+    <td>46.5%</td>
+    <td>81.4%</td>
+  </tr>
+  <tr>
+    <td style="font-weight: bold">Speaker-Independent</td>
+    <td>22.6%</td>
+    <td>19.7%</td>
+    <td>23.9%</td>
+  </tr>
+</table>
+
+<li><p>On a very bad lipreader (epoch 0):</p></li>
+
+<table>
+  <tr style="font-weight: bold">
+    <th></th>
+    <th>Only LipReader</th>
+    <th>Only Critic</th>
+    <th>LipReader x Critic</th>
+  </tr>
+  <tr>
+    <td style="font-weight: bold">Train</td>
+    <td>13.4%</td>
+    <td>22.8%</td>
+    <td>24.7%</td>
+  </tr>
+  <tr>
+    <td style="font-weight: bold">Test</td>
+    <td>13.7%</td>
+    <td>22.2%</td>
+    <td>24.3%</td>
+  </tr>
+  <tr>
+    <td style="font-weight: bold">Speaker-Independent</td>
+    <td>9.7%</td>
+    <td>13.3%</td>
+    <td>15.2%</td>
+  </tr>
+</table>
+
+<li><p>CONCLUSION - critic doesn't offer much when the LR is awesome, but when the LR is bad the critic can improve accuracy</p></li>
+</ul>
+
+<hr />
