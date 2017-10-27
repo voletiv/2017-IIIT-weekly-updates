@@ -1,6 +1,6 @@
 body {
     background-color: #fefefe;
-    margin:2em auto;
+    padding: 2em;
     width: 100%;
     max-width: auto;
     font-family: Helvetica, sans-serif;
@@ -9,8 +9,8 @@ body {
 }
 ul li {
     line-height: 100%;
-    margin-top: 2em;
-    margin-bottom: 3em;
+    margin-top: 0em;
+    margin-bottom: 2em;
 }
 img {
     max-width: 80%;
@@ -18,3 +18,8 @@ img {
 }
 hr {
     margin: 2em auto;
+}
+h3, h4, h5 {
+    font-weight: bold;
+    color: #0055ff;
+}
