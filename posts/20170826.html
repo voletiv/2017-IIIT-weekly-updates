@@ -3,22 +3,18 @@
 <h2 id="20170826">2017-08-26</h2>
 
 <ul>
+
 <li><p>Changed output to only softmax of words vocabulary</p>
+<ul><li>Accuracy is now calculated as word-accuracy</li></ul>
+</li>
 
+<li>
+<p>Accuracies in paper: <a href="https://arxiv.org/pdf/1601.08188.pdf">LIPREADING WITH LONG SHORT-TERM MEMORY</a>:</p>
 <ul>
-<li>Accuracy is now calculated as word-accuracy</li></ul></li>
-
-<li><p>Accuracies in paper: <a href="https://arxiv.org/pdf/1601.08188.pdf">LIPREADING WITH LONG SHORT-TERM MEMORY</a>:</p>
-
-<ul>
-<li>Speaker-dependent accuracy - 79.4%; Speaker-independent accuracy - 79.6%</li></ul></li>
-
-<li><p>Using LipReader "LSTM-noPadResults-h256-depth2-LSTMactivtanh-enc64-encodedActivsigmoid-Adam-1e-03-GRIDcorpus-s0107-s0909-tMouth-vMouth-NOmeanSub-epoch078-tl0.4438-ta0.8596-vl0.6344-va0.8103-sil3.2989-sia0.3186.hdf5"</p>
-
-<ul>
-<li>Speaker-dependent: Training accuracy - 86%, Validation accuracy - 81%; Speaker-independent accuracy - 32%</li></ul></li>
-
-<li><p>Using Critic "C3DCritic-LRnoPadResults-l1f8-l2f16-l3f32-fc1n64-vid64-enc64-oneHotWord52-out64-Adam-5e-04-GRIDcorpus-s0107-s0909-tMouth-vMouth-NOmeanSub-epoch002-tl0.2837-ta0.8783-vl0.4017-va0.8255-sil1.4835-sia0.3520.hdf5"</p>
+    <li>Speaker-dependent accuracy - 79.4%; Speaker-independent accuracy - 79.6%</li>
+</ul>
+</li>
+</ul>
 
 <ul>
 <li><p>Without taking critic into account, trainAccuracy = 87%, valAccuracy = 81%, speakerIndependentAccuracy = 32%</p></li>
@@ -27,53 +23,54 @@
 
 <li><p>Among those critic said wrong, % actually wrong: train 54% , val 68% , speakerIndependent 89%</p>
 
-<p>-Train: tP=36119, fP=837, fN=4309, tN=975</p>
-
-<pre><code>            Critic | Actually True | Actually False
-            ---------------------- | ------------- | -------------
-            Critic predicted True |     36119     | 837
-            Critic predicted False |     4309      | 975
-</code></pre>
-
 <ul>
+<li><p>Train: tP=36119, fP=837, fN=4309, tN=975</p>
+
+<table>
+  <tr style="font-weight: bold">
+    <th>CRITIC</th>
+    <th>Actually true</th>
+    <th>Actually false</th>
+  </tr>
+  <tr>
+    <td style="font-weight: bold">Critic predicted true</td>
+    <td>36119</td>
+    <td>837</td>
+  </tr>
+  <tr>
+    <td style="font-weight: bold">Critic predicted false</td>
+    <td>4309</td>
+    <td>975</td>
+  </tr>
+</table>
+
+</li>
 <li><p>Val: tP=3676, fP=61, fN=743, tN=128</p>
 
-<pre><code>        Critic | Actually True | Actually False
-</code></pre>
+<table>
+  <tr style="font-weight: bold">
+    <th>CRITIC</th>
+    <th>Actually true</th>
+    <th>Actually false</th>
+  </tr>
+  <tr>
+    <td style="font-weight: bold">Critic predicted true</td>
+    <td>3676</td>
+    <td>61</td>
+  </tr>
+  <tr>
+    <td style="font-weight: bold">Critic predicted false</td>
+    <td>743</td>
+    <td>1197</td>
+  </tr>
+</table>
 
-<p>---------------------- | ------------- | -------------
-Critic predicted True |      3676     | 61
-Critic predicted False |      743      | 128</p></li>
-
-<li><p>Speaker-independent: tP=13306, fP=150, fN=27587, tN=1197</p>
-
-<pre><code>        Critic | Actually True | Actually False
-</code></pre>
-
-<p>---------------------- | ------------- | -------------
-Critic predicted True |     13306     | 150
-Critic predicted False |     27587     | 1197</p></li></ul></li></ul></li>
+</li>
+</ul>
+</li>
 </ul>
 
-<h3 id="lipreadertraining">LipReader training</h3>
-
-<p>Figure 1a. Training, validation, and speaker-independent word-accuracies of lipReader while training</p>
-
-<p><img src="20170826/LSTM-noPadResults-h256-depth2-LSTMactivtanh-enc64-encodedActivsigmoid-Adam-1e-03-GRIDcorpus-s0107-s0909-tMouth-vMouth-NOmeanSub-plotAcc.png" alt="alt text" title="Frame" /></p>
-
-<p>Figure 1b. Training, validation, and speaker-independent losses of lipReader while training</p>
-
-<p><img src="20170826/LSTM-noPadResults-h256-depth2-LSTMactivtanh-enc64-encodedActivsigmoid-Adam-1e-03-GRIDcorpus-s0107-s0909-tMouth-vMouth-NOmeanSub-plotLosses.png" alt="alt text" title="Frame" /></p>
-
-<h3 id="critictraining">Critic Training</h3>
-
-<p>Figure 2a. Training, validation, and speaker-independent accuracies of critic while training</p>
-
-<p><img src="20170826/C3DCritic-LRnoPadResults-l1f8-l2f16-l3f32-fc1n64-vid64-enc64-oneHotWord52-out64-Adam-5e-04-GRIDcorpus-s0107-s0909-tMouth-vMouth-NOmeanSub-plotAcc.png" alt="alt text" title="Frame" /></p>
-
-<p>Figure 2b. Training, validation, and speaker-independent losses of critic while training</p>
-
-<p><img src="20170826/C3DCritic-LRnoPadResults-l1f8-l2f16-l3f32-fc1n64-vid64-enc64-oneHotWord52-out64-Adam-5e-04-GRIDcorpus-s0107-s0909-tMouth-vMouth-NOmeanSub-plotLosses.png" alt="alt text" title="Frame" /></p>
+<hr />
 
 <h3 id="discussion-1">Discussion</h3>
 

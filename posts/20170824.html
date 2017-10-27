@@ -2,6 +2,46 @@
 
 <h2 id="20170824">2017-08-24</h2>
 
+<hr />
+
+<h3 id="comparisonoflstmseq2seqlstmd2lstmd3lstmd2encwithpadding">Comparison of LSTMSeq2Seq, LSTMd2, LSTMd3, LSTMd2enc (with padding)</h3>
+
+<ul>
+    <li>LSTMSeq2Seq => Using <a href="https://github.com/farizrahman4u/seq2seq">Seq2Seq library</a></li>
+    <li>LSTMd2 => depth = 2</li>
+    <li>LSTMd3 => depth = 3</li>
+    <li>LSTMd2enc => depth = 2, additional fc layer after LSTMs</li>
+</ul>
+
+<p><img src="20170824/20to23-acc-lipReader-Seq2Seq-d2-d3-d2enc.png" alt="alt text" title="Frame" /><img src="20170824/20to23-losses-lipReader-Seq2Seq-d2-d3-d2enc.png" alt="alt text" title="Frame" /></p>
+
+<p class="fig">Figure 1a. Comparison of (a) accuracies, (b) losses of LSTMSeq2Seq, LSTMd2, LSTMd3, LSTMd2enc (with padding in output)</p>
+
+<hr />
+
+<h3 id="comparisonofdifferentarchitectureswithpadding">Comparison of different architectures (with padding)</h3>
+
+<ul>
+    <li>Word => word i as fraction i/51</a></li>
+    <li>encWord => word feature encoded by lipreader ater LSTM</li>
+    <li>OHWord => one-hot encoded word</li>
+    <li>OHWord-fc => one-hot encoded word, and then 1 fc layer</li>
+    <li>Enc-OHWord => encoded word feature + one-hot encoded word</li>
+    <li>Enc-Fc-OHWord-fc => (encoded word feature - fc layer) + (one-hot encoded word + fc layer)</li>
+</ul>
+
+<p><img src="20170824/35ato41a-acc-onlyLRPreds-word-enc-OHW-OHWhid-encOHW-encHidOHWHid-predWordDis.png" alt="alt text" title="Frame" /><img src="20170824/35ato41a-losses-onlyLRPreds-word-enc-OHW-OHWhid-encOHW-encHidOHWHid-predWordDis.png" alt="alt text" title="Frame" /></p>
+
+<p class="fig">Figure 2a. Comparison of training, validation and speaker-independent (a) accuracies, (b) losses for different architectures</p>
+
+<ul>
+<li>It can be seen that Enc-OHWord is the best architecture overall</li>
+</ul>
+
+<hr />
+
+<h3 id="summary">SUMMARY</h3>
+
 <ul>
 <li><p>Realized output having padding gives awesome accuracies but does not reflect actual word-classification accuracy</p>
 
@@ -25,28 +65,5 @@
 <p></p></li>
 </ul></p>
 
-<h3 id="comparisonoflstmseq2seqlstmd2lstmd3lstmd2encwithpadding">Comparison of LSTMSeq2Seq, LSTMd2, LSTMd3, LSTMd2enc (with padding)</h3>
-
-<p><img src="20170824/20to23-acc-lipReader-Seq2Seq-d2-d3-d2enc.png" alt="alt text" title="Frame" /></p>
-
-<p>Figure 1a. Comparison of accuracies of LSTMSeq2Seq, LSTMd2, LSTMd3, LSTMd2enc (with padding in output)</p>
-
-<p><img src="20170824/20to23-losses-lipReader-Seq2Seq-d2-d3-d2enc.png" alt="alt text" title="Frame" /></p>
-
-<p>Figure 1b. Comparison of losses of LSTMSeq2Seq, LSTMd2, LSTMd3, LSTMd2enc (with padding in output)</p>
-
-<h3 id="comparisonofdifferentarchitectureswithpadding">Comparison of different architectures (with padding)</h3>
-
-<p><img src="20170824/35ato41a-acc-onlyLRPreds-word-enc-OHW-OHWhid-encOHW-encHidOHWHid-predWordDis.png" alt="alt text" title="Frame" /></p>
-
-<p>Figure 2a. Comparison of training, validation and speaker-independent accuracies for different architectures</p>
-
-<p><img src="20170824/35ato41a-losses-onlyLRPreds-word-enc-OHW-OHWhid-encOHW-encHidOHWHid-predWordDis.png" alt="alt text" title="Frame" /></p>
-
-<p>Figure 2b. Comparison of training, validation and speaker-independent losses for different architectures</p>
-
-<ul>
-<li>It can be seen that Enc-OHWord is the best architecture overall</li>
-</ul>
 
 <hr />
