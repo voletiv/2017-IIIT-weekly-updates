@@ -1,11 +1,12 @@
 body {
     background-color: #fefefe;
+    font-family: "Ubuntu", sans-serif;
     padding: 2em;
     width: 80%;
+    margin: auto;
     max-width: auto;
-    font-family: Helvetica, sans-serif;
     line-height: 200%;
-    font-size: 100%;
+    font-size: 11pt;
 }
 ul li {
     line-height: 150%;

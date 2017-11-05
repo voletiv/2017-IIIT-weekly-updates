@@ -1,0 +1,112 @@
+<link rel="stylesheet" href="../css/weeklyUpdates.css">
+
+<title>20171104</title>
+
+<hr />
+
+<h2 id="20171104">2017-11-04</h2>
+
+<p>Using lipreader as an information retrieval system</p>
+
+<p><img src="20171104/lrw_wordDuration_dense_softmax_critic.png" alt="lrw_wordDuration_dense_softmax_critic" title="lrw_wordDuration_dense_softmax_critic" /></p>
+
+<hr />
+
+<h3 id="meanaverageprecisionsk">Average Precisions @ K - mean across words</h3>
+
+<p><img src="20171104/APs_at_K_vs_K_with_logReg_critic_test.png" alt="Lipreader vs <Lipreader minus critic_rejects>" title="APs_at_K_vs_K_with_logReg_critic_test" /></p>
+
+<p class='fig'>Figure 1: Average Precisions @ K, taking mean across words, vs K on LRW (test)</p>
+
+<hr />
+
+<h3 id="lipreadervslipreaderminuscritic_rejects">Lipreader vs "Lipreader minus critic_rejects"</h3>
+
+<p><img src="20171104/AP_at_K_vs_word_gray_test.gif" alt="Lipreader vs <Lipreader minus critic_rejects>" title="AP_at_K_vs_word_gray_test" /></p>
+
+<p class='fig'>Figure 2: Average Precision for every word (a) using lipreader, (b) using lipreader and rejecting those predicted by critic to be false</p>
+
+<hr />
+
+<h3 id="conclusions">DISCUSSION</h3>
+
+<ul>
+<li><p>AP mean across words: Better AP (m-a-w) for "Lipreader minus critic"</p></li>
+
+<li><p>AP vs word: better AP for most words, worse AP for some words</p></li>
+
+<li><p>WRONG: don't delete wrong lipreader preds (as told by critic) from the database! They are ground truth.</p></li>
+</ul>
+
+<h3 id="todo">TO DO</h3>
+
+<ul>
+<li><p>Extract head pose for LRW (need fusor!)</p></li>
+
+<li><p>Better critic with LSTM</p></li>
+
+<li><p>Precision @50</p></li>
+
+<li><p>mAP?</p></li>
+
+<li><p>Nearest neighbour OCR? Majority vote on top-K precisions for recognition</p></li>
+
+<li><p>Nearest neighbour OCR for OOV?</p></li>
+
+<li><p>ResNet for critic?</p></li>
+</ul>
+
+<hr />
+
+<h3 id="summary">SUMMARY</h3>
+
+<ul>
+<li><p>Read about Multi-class classification metrics [1-4]</p>
+
+<ul>
+<li>ROC AUC - not good, PR - better, ROC VUC - maybe</li></ul></li>
+
+<li><p>GRIDcorpus:</p>
+
+<ul>
+<li>Lipreader (mAP = 0.98), C3DCritic (mAP = 0.97)</li></ul></li>
+
+<li><p>LRW information retrieval</p>
+
+<ul>
+<li>mAP: 0.78; recall = 0.7</li></ul></li>
+
+<li><p>Updated website: http://preon.iiit.ac.in/~vikram<em>voleti/weekly</em>updates.html</p>
+
+<ul>
+<li>C3DCritic is overfit! - need to train an assessor</li></ul></li>
+
+<li><p>Average Precision @K [5]</p></li>
+
+<li><p>Visualized lipreader average precisions @K</p></li>
+
+<li><p>Trained Logistic Regression critic with word_durations, lipreader_dense, lipreader_softmax</p>
+
+<ul>
+<li><p>1) unoptimized, weight-unbalanced, threshold = 0.7 is closer to (0, 1) in ROC</p>
+
+<p><a href="20171104/logReg_critic_unbalanced.png">ROC - logReg_critic_unbalanced</a></p></li>
+
+<li><p>2) unoptimized, weight-balanced, threshold = 0.5 - not much change</p></li></ul></li>
+
+<li><p>Visualized average precisions @K after rejects by critic, compared with lipreader's</p></li>
+
+<li><p>Compared mAP@K</p></li>
+</ul>
+
+<p>[1] Song, Bowen et al. “ROC Operating Point Selection for Classification of Imbalanced Data with Application to Computer-Aided Polyp Detection in CT Colonography.” International journal of computer assisted radiology and surgery 9.1 (2014): 79–89. PMC. Web. 28 Oct. 2017. <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3835757">link</a></p>
+
+<p>[2] Vincent Van Asch. “Macro- and micro-averaged evaluation measures” <a href="http://www.cnts.ua.ac.be/%7Evincent/pdf/microaverage.pdf">link</a></p>
+
+<p>[3] D. Hand, R. Till. “A Simple Generalisation of the Area Under the ROC Curve for Multiple Class Classification Problems,” Machine Learning, 45, 171–186, 2001<a href="https://link.springer.com/content/pdf/10.1023%2FA%3A1010920819831.pdf">link</a></p>
+
+<p>[4] E. Fieldsend, R. Everson, “Visualisation of multi-class ROC surfaces” <a href="http://users.dsic.upv.es/~flip/ROCML2005/papers/fieldsend2CRC.pdf">link</a></p>
+
+<p>[5] Average Precision @K <a href="https://ils.unc.edu/courses/2013_spring/inls509_001/lectures/10-EvaluationMetrics.pdf">link</a></p>
+
+<hr />

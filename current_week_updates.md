@@ -1,60 +1,73 @@
 ---
 
-## 2017-10-23
+## 2017-11-04
 
-### DONE
+Using lipreader as an information retrieval system
 
-- Use ROC and Operating Point as metrics for comparison
+![lrw_wordDuration_dense_softmax_critic](20171104/lrw_wordDuration_dense_softmax_critic.png "lrw_wordDuration_dense_softmax_critic")
 
-- Made and compared assessors from Head Pose + Lipreader features, with Lipreader ROC
+### mean Average Precisions @ K
 
-[comp](20171023/COMPARISON_VAL.png "Frame")
+![Lipreader vs <Lipreader minus critic_rejects>](20171104/APs_at_K_vs_K_with_logReg_critic_test.png "APs_at_K_vs_K_with_logReg_critic_test")
 
-[baseline_lipreader](20171023/ROC_baseline_lipreader.png "Frame")
+Figure 1: mean Average Precisions @ K vs K, on LRW (test)
 
-- Done the same for lipreader trained on 10% Training Data
+### Lipreader vs "Lipreader minus critic_rejects"
 
-[logReg_10pc](20171023/ROC_10pc_logReg_unopt.png "Frame")
+![Lipreader vs <Lipreader minus critic_rejects>](20171104/AP_at_K_vs_word_gray_test.gif "AP_at_K_vs_word_gray_test")
 
-[baseline_lipreader_10pc](20171023/ROC_10pc_baseline_lipreader.png "Frame")
+Figure 2: Average Precision for every word (a) using lipreader, (b) using lipreader and rejecting those predicted by critic to be false
 
-### DISCUSSION
+### CONCLUSIONS
 
-- Better critic? Better features?
+- mAP: Better mAP for "Lipreader minus critic"
 
-- Assessor on the Retrieval
+- AP vs word: better AP for most words, worse AP for some words
 
-- Assessor - Lipreader LSTM output + Head pose -> LSTM
+### TO DO
+
+- Extract head pose for LRW (need fusor!)
+
+- Better critic with LSTM
+
 
 ### SUMMARY
 
-FAILURE MODES:
+- Read about Multi-class classification metrics [1-4]
+    - ROC AUC - not good, PR - better, ROC VUC - maybe
 
-- Extracted head poses on GRIDcorpus using dlib
+- GRIDcorpus:
+    - Lipreader (mAP = 0.98), C3DCritic (mAP = 0.97)
 
-- To compare assessors on Lipreader predictions, use:
-    - ROC AUC
-    - Operating point
+- LRW information retrieval
+    - mAP: 0.78; recall = 0.7
 
-- Using 1-dim Word Durations, 6-dim Head Poses (3 Means, 3 Ranges) , 64-dim Lipreader_Features as Attributes
+- Updated website: http://preon.iiit.ac.in/~vikram_voleti/weekly_updates.html
+    - C3DCritic is overfit! - need to train an assessor
 
-- Calculated ROC for 4 different assessors:
-    - C3D Critic (of old)
-    - Logistic regressor
-    - Linear SVM
-    - RBF SVM
+- Average Precision @K [5]
 
-- Changed Operating Point from default to that closest to (0, 1) [(fpr, tpr)]
+- Visualized lipreader average precisions @K
 
-![Full comparison](20171023/COMPARISON.png "Frame")
+- Trained Logistic Regression critic with word\_durations, lipreader\_dense, lipreader\_softmax
+    - 1) unoptimized, weight-unbalanced, threshold = 0.7 is closer to (0, 1) in ROC
 
-#### TO DO:
+        [ROC - logReg\_critic\_unbalanced](20170411/logReg_critic_unbalanced.png)
 
-- ROC AUC of lipreader trained on 50% and assessor on those predictions
-- Self-training?
+    - 2) unoptimized, weight-balanced, threshold = 0.5 - not much change
 
----
+- Visualized average precisions @K after rejects by critic, compared with lipreader's
 
-### ARCHIVES
+- Compared mAP@K
 
-[Archives](archives.html)
+
+[1] Song, Bowen et al. “ROC Operating Point Selection for Classification of Imbalanced Data with Application to Computer-Aided Polyp Detection in CT Colonography.” International journal of computer assisted radiology and surgery 9.1 (2014): 79–89. PMC. Web. 28 Oct. 2017. [link](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3835757)
+
+[2] Vincent Van Asch. “Macro- and micro-averaged evaluation measures” [link](http://www.cnts.ua.ac.be/%7Evincent/pdf/microaverage.pdf)
+
+[3] D. Hand, R. Till. “A Simple Generalisation of the Area Under the ROC Curve for Multiple Class Classification Problems,” Machine Learning, 45, 171–186, 2001[link](https://link.springer.com/content/pdf/10.1023%2FA%3A1010920819831.pdf)
+
+[4] E. Fieldsend, R. Everson, “Visualisation of multi-class ROC surfaces” [link](http://users.dsic.upv.es/~flip/ROCML2005/papers/fieldsend2CRC.pdf)
+
+[5] Average Precision @K [link](https://ils.unc.edu/courses/2013_spring/inls509_001/lectures/10-EvaluationMetrics.pdf)
+
