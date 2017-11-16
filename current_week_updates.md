@@ -1,34 +1,21 @@
 ---
 
-## 2017-11-11
+## 2017-11-17
 
-![NOT FOUND](20171111/PR_curve_LRW_test.png "Frame")
+### LSTM Assessor
 
-Figure 1: Precision @ K vs Recall @ K curve, averaged across words, till K=50 (max 50 documents per word)
+![NOT FOUND](20171117/LSTM_Assessor.png "Frame")
+
+Figure 1: Architecture of LSTM_Assessor, with inputs - mouth images, head pose, number of frames, lipreader dense output, lipreader softmax output
+
+---
 
 ### SUMMARY
 
-- Compared PR curves for lipreader results and critic-filtered results
-    - Compared precision @ K till 50 for every word, averaged across words
-    - Compared recall @ K till 50 for every word, averaged across words
-    - Clearly assessor is not good
+- Designed and setup LSTM assessor
+    - Incorporated inputs: mouth images, head pose, number of frames, lipreader dense output, lipreader softmax output
+    - Assessor: using CNN or resnet
+    - Set up generator for training
 
-- Head pose extraction from LRW using [https://github.com/voletiv/gazr](gazr)
-    - Uses dlib shape predictor
-    - Too slow - 1.5-2 hours per word set (1100*~9 images)
-    - Tried [https://github.com/guozhongluo/head-pose-estimation-and-face-landmark], requires caffe
-    - Installed caffe - didn't work
-
-- Using [https://github.com/voletiv/deepgaze](deepgaze)
-    - Uses CNN trained to detect pose
-    - Much faster - 30mins per word set
-    - Extracted head pose from LRW
-
-- Used Abhishek's lipreader for Dense and Softmax outputs
-    - Samples were not saved in order, not usable for critic
-    - Was saved in multi-GPU architecture, could not load model in single-GPU mode
-    - Saved and loaded model in single-GPU mode
-    - Extracting Dense and Softmax outputs
-
-- Training LSTM lipreader
+- Attended t-hub Hackathon - won SMS classification challenge with Tarun Kalluri
 
