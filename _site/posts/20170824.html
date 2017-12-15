@@ -1,0 +1,69 @@
+<link rel="stylesheet" href="../css/weeklyUpdates.css">
+
+<h2 id="20170824">2017-08-24</h2>
+
+<hr />
+
+<h3 id="comparisonoflstmseq2seqlstmd2lstmd3lstmd2encwithpadding">Comparison of LSTMSeq2Seq, LSTMd2, LSTMd3, LSTMd2enc (with padding)</h3>
+
+<ul>
+    <li>LSTMSeq2Seq => Using <a href="https://github.com/farizrahman4u/seq2seq">Seq2Seq library</a></li>
+    <li>LSTMd2 => depth = 2</li>
+    <li>LSTMd3 => depth = 3</li>
+    <li>LSTMd2enc => depth = 2, additional fc layer after LSTMs</li>
+</ul>
+
+<p><img src="20170824/20to23-acc-lipReader-Seq2Seq-d2-d3-d2enc.png" alt="alt text" title="Frame" /><img src="20170824/20to23-losses-lipReader-Seq2Seq-d2-d3-d2enc.png" alt="alt text" title="Frame" /></p>
+
+<p class="fig">Figure 1a. Comparison of (a) accuracies, (b) losses of LSTMSeq2Seq, LSTMd2, LSTMd3, LSTMd2enc (with padding in output)</p>
+
+<hr />
+
+<h3 id="comparisonofdifferentarchitectureswithpadding">Comparison of different architectures (with padding)</h3>
+
+<ul>
+    <li>Word => word i as fraction i/51</a></li>
+    <li>encWord => word feature encoded by lipreader ater LSTM</li>
+    <li>OHWord => one-hot encoded word</li>
+    <li>OHWord-fc => one-hot encoded word, and then 1 fc layer</li>
+    <li>Enc-OHWord => encoded word feature + one-hot encoded word</li>
+    <li>Enc-Fc-OHWord-fc => (encoded word feature - fc layer) + (one-hot encoded word + fc layer)</li>
+</ul>
+
+<p><img src="20170824/35ato41a-acc-onlyLRPreds-word-enc-OHW-OHWhid-encOHW-encHidOHWHid-predWordDis.png" alt="alt text" title="Frame" /><img src="20170824/35ato41a-losses-onlyLRPreds-word-enc-OHW-OHWhid-encOHW-encHidOHWHid-predWordDis.png" alt="alt text" title="Frame" /></p>
+
+<p class="fig">Figure 2a. Comparison of training, validation and speaker-independent (a) accuracies, (b) losses for different architectures</p>
+
+<ul>
+<li>It can be seen that Enc-OHWord is the best architecture overall</li>
+</ul>
+
+<hr />
+
+<h3 id="summary">SUMMARY</h3>
+
+<ul>
+<li><p>Realized output having padding gives awesome accuracies but does not reflect actual word-classification accuracy</p>
+
+<ul>
+<li>Accuracies are for output with padding, so, cannot be trusted</li></ul></li>
+
+<li><p>Accuracies in paper: <a href="https://arxiv.org/pdf/1601.08188.pdf">LIPREADING WITH LONG SHORT-TERM MEMORY</a>:</p>
+
+<ul>
+<li>Speaker-dependent accuracy - 79.4%</li>
+
+<li>Speaker-independent accuracy - 79.6%</li></ul></li>
+
+<li><p>Using LipReader "LSTM-h256-depth2-LSTMactivtanh-enc64-encodedActivsigmoid-Adam-1e-03-GRIDcorpus-s0107-s0909-tMouth-vMouth-NOmeanSub-epoch099-tl0.3307-ta0.8417-vl0.3782-va0.8304.hdf5"</p>
+
+<p><ul>
+<li>Speaker-dependent: Training accuracy - 84.17%, Validation accuracy - 83.04%</li></p>
+
+<p><li>Speaker-independent accuracy - 73.86%</li></ul>
+
+<p></p></li>
+</ul></p>
+
+
+<hr />

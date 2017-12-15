@@ -1,0 +1,59 @@
+<link rel="stylesheet" href="../css/weeklyUpdates.css">
+
+<hr />
+
+<h2 id="20171111">2017-11-11</h2>
+
+<p><img src="20171111/PR_curve_LRW_test.png" alt="NOT FOUND" title="Frame" /></p>
+
+<p>Figure 1: Lipreader Precision @ K vs Recall @ K curve, averaged across words, till K=50 (max 50 documents per word); compared with those of Logistic Regressor assessor</p>
+
+Clearly assessor is bad.
+
+<hr />
+
+<h3 id="summary">SUMMARY</h3>
+
+<ul>
+<li><p>Compared PR curves for lipreader results and critic-filtered results</p>
+
+<ul>
+<li>Compared precision @ K till 50 for every word, averaged across words</li>
+
+<li>Compared recall @ K till 50 for every word, averaged across words</li>
+
+<li>Clearly assessor is not good</li></ul></li>
+
+<li><p>Head pose extraction from LRW using <a href="gazr">https://github.com/voletiv/gazr</a></p>
+
+<ul>
+<li>Uses dlib shape predictor</li>
+
+<li>Too slow - 1.5-2 hours per word set (1100*~9 images)</li>
+
+<li>Tried [https://github.com/guozhongluo/head-pose-estimation-and-face-landmark], requires caffe</li>
+
+<li>Installed caffe - didn't work</li></ul></li>
+
+<li><p>Using <a href="deepgaze">https://github.com/voletiv/deepgaze</a></p>
+
+<ul>
+<li>Uses CNN trained to detect pose</li>
+
+<li>Much faster - 30mins per word set</li>
+
+<li>Extracted head pose from LRW</li></ul></li>
+
+<li><p>Used Abhishek's lipreader for Dense and Softmax outputs</p>
+
+<ul>
+<li>Samples were not saved in order, not usable for critic</li>
+
+<li>Was saved in multi-GPU architecture, could not load model in single-GPU mode</li>
+
+<li>Saved and loaded model in single-GPU mode</li>
+
+<li>Extracting Dense and Softmax outputs</li></ul></li>
+
+<li><p>Training LSTM lipreader</p></li>
+</ul>	

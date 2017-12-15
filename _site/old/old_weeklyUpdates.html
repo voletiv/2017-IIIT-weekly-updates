@@ -1,0 +1,74 @@
+<link rel="stylesheet" href="weeklyUpdates.css">
+
+<hr />
+
+<h2 id="20171023">2017-10-23</h2>
+
+<div style="background-color:#e0e0e0; text-align:left; vertical-align: middle; padding:20px 47px;">
+
+<h3 id="done">DONE</h3>
+<ul>
+<li><p>Use ROC and Operating Point as metrics for comparison</p></li>
+
+<li><p>Made and compared assessors from Head Pose + Lipreader features, with Lipreader ROC</p></li>
+</ul>
+
+<p><a href="20171023/COMPARISON_VAL.png" title="Frame">comp</a></p>
+
+<p><a href="20171023/ROC_baseline_lipreader.png" title="Frame">baseline_lipreader</a></p>
+
+<ul>
+<li>Done the same for lipreader trained on 10% Training Data</li>
+</ul>
+
+<p><a href="20171023/ROC_10pc_logReg_unopt.png" title="Frame">logReg_10pc</a></p>
+
+<p><a href="20171023/ROC_10pc_baseline_lipreader.png" title="Frame">baseline<em>lipreader</em>10pc</a></p>
+
+</div>
+
+<h3 id="summary">SUMMARY</h3>
+
+<p>FAILURE MODES:</p>
+
+<ul>
+<li><p>Extracted head poses on GRIDcorpus using dlib</p></li>
+
+<li><p>To compare assessors on Lipreader predictions, use:</p>
+
+<ul>
+<li>ROC AUC</li>
+
+<li>Operating point</li></ul></li>
+
+<li><p>Using 1-dim Word Durations, 6-dim Head Poses (3 Means, 3 Ranges) , 64-dim Lipreader_Features as Attributes    </p></li>
+
+<li><p>Calculated ROC for 4 different assessors:</p>
+
+<ul>
+<li>C3D Critic (of old)</li>
+
+<li>Logistic regressor</li>
+
+<li>Linear SVM</li>
+
+<li>RBF SVM</li></ul></li>
+
+<li><p>Changed Operating Point from default to that closest to (0, 1) [(fpr, tpr)]</p></li>
+</ul>
+
+<p><img src="20171023/COMPARISON.png" alt="alt text" title="Frame" /></p>
+
+<h4 id="todo">TO DO:</h4>
+
+<ul>
+<li>ROC AUC of lipreader trained on 50% and assessor on those predictions</li>
+
+<li>Self-training?</li>
+</ul>
+
+<hr />
+
+<h3 id="archives">ARCHIVES</h3>
+
+<p><a href="archives.html">Archives</a></p>

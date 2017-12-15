@@ -1,0 +1,1609 @@
+<h2 id="2017-10-06">2017-10-06</h2>
+
+<h3 id="done">DONE:</h3>
+
+<ul>
+  <li>
+    <p>Analysis</p>
+
+    <ul>
+      <li>
+        <p>Read <a href="http://dhoiem.cs.illinois.edu/publications/eccv2012_detanalysis_derek.pdf">Diagnosing Error in Object Detectors</a> - Derek Hoiem et al, ECCV 2012; <a href="http://www.cs.cmu.edu/~aayushb/pubs/characterizing_mistakes_eccv2014.pdf">Towards Transparent Systems: Semantic Characterization of Failure Modes</a> - Aayush Bansal, Ali Farhadi, Devi Parekh, ECCV 2014; and other related ones</p>
+
+        <ul>
+          <li>
+            <p>Derek Hoiem et al. analyse distribution of output False Positives on full set of images, using better segregation in object attributes (provided)</p>
+          </li>
+          <li>
+            <p>Aayush Bansal et al. cluster the attribute vectors (provided) of all mistake images, and disciminates between them and non-mistake using logistic regression</p>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>ZSL</p>
+
+    <ul>
+      <li>
+        <p>Input: Feature vector from LSTM Lipreader’s encoding of video</p>
+      </li>
+      <li>
+        <p>Tried with different word-embeddings: word2vec, fasttext, GloVe, Eigenwords with prior knowledge</p>
+      </li>
+      <li>Abyssmal results for OOV, better-than-standard result for SI
+        <ul>
+          <li>Synthetic experiments showed bigger input_dim is required</li>
+        </ul>
+      </li>
+      <li>Better results than standard for Speaker-Independent setting: 40%
+    - Same accuracy as <a href="https://arxiv.org/pdf/1708.01565.pdf">Wand and JS’s Domain Adaptation paper</a>
+    - They used unlabelled videos from non-training speakers to improve speaker-independence; we used ZSL</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="zsl---oov">ZSL - OOV</h4>
+
+<p><img src="20171006/grid_zsl_acc_oov.png" alt="alt text" title="Frame" /></p>
+
+<p><strong>Figure 1: Accuracies of ZSL on out-of-vocabulary words vs number of words in the training vocabulary (out of 50), for different word embeddings. Mouth videos are embedded using an LSTM Lipreader trained on GRID.</strong></p>
+
+<h4 id="zsl---si">ZSL - SI</h4>
+
+<p><img src="20171006/grid_zsl_acc_si.png" alt="alt text" title="Frame" /></p>
+
+<p><strong>Figure 2: Accuracies of ZSL on Speaker-Independent data, for both in-volcabulary and out-of-vocabulary words, vs number of words in the training vocabulary (out of 50), for different word embeddings. Mouth videos are embedded using an LSTM Lipreader trained on GRID.</strong></p>
+
+<h3 id="to-do">TO DO:</h3>
+
+<ul>
+  <li>
+    <p>Analysis</p>
+
+    <ul>
+      <li>
+        <p>To design attributes for GRID, LRW: face pose, face size, mouth-to-face ratio</p>
+      </li>
+      <li>
+        <p>Analyse GRID, LRW failure modes</p>
+      </li>
+      <li>
+        <p>Apply discriminative clustering on them?</p>
+      </li>
+      <li>
+        <p>To read <a href="https://www.cc.gatech.edu/~parikh/Publications/predicting_failures_CVPR2014.pdf">Predicting Failures of Vision Systems</a> - …, Devi Parekh, CVPR 2014; Failures of Gradient-Based Deep Learnin - Shai Shalev-Shwartz et al. - <a href="http://proceedings.mlr.press/v70/shalev-shwartz17a/shalev-shwartz17a.pdf">MLR</a>, <a href="https://arxiv.org/pdf/1703.07950.pdf">arXiv</a></p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>ZSL</p>
+
+    <ul>
+      <li>
+        <p>Increase size of video encoding of LSTM Lipreader from 64 to 256 (standard used by VGG)</p>
+      </li>
+      <li>
+        <p>Implement SyncNet to use as video encoding (since better than even LRW Lipreader)</p>
+      </li>
+      <li>
+        <p>Some other word embedding? Like visually semantic word embeddings?</p>
+      </li>
+      <li>
+        <p>Adversarial - Gannin and Lempitsky; Zheng Li (Trevor Darrel’s), Ming… (Michael Jordan’s) - MMD (Max mean discrepancy) loss could be better</p>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="2017-09-28">2017-09-28</h2>
+
+<h3 id="to-do-1">TO DO:</h3>
+
+<ul>
+  <li>Lipreader, Critic analysis
+    <ul>
+      <li><a href="http://www.cs.cmu.edu/~aayushb/pubs/characterizing_mistakes_eccv2014.pdf">Towards Transparent Systems: Semantic Characterization of Failure Modes - Aayush Bansal, Ali Farhadi, Devi Parekh, ECCV 2014</a></li>
+      <li><a href="https://www.cc.gatech.edu/~parikh/Publications/predicting_failures_CVPR2014.pdf">Predicting Failures of Vision Systems - …, Devi Parekh, CVPR 2014</a></li>
+      <li><a href="http://dhoiem.cs.illinois.edu/publications/eccv2012_detanalysis_derek.pdf">Diagnosing Error in Object Detectors - Derek Hoiem et al, ECCV 2012</a></li>
+      <li>Failures of Gradient-Based Deep Learnin - Shai Shalev-Shwartz et al. - <a href="http://proceedings.mlr.press/v70/shalev-shwartz17a/shalev-shwartz17a.pdf">MLR</a>, <a href="https://arxiv.org/pdf/1703.07950.pdf">arXiv</a></li>
+    </ul>
+  </li>
+  <li>Zero Shot Learning formalization</li>
+</ul>
+
+<p><img src="20170928/zsl.jpg" alt="alt text" title="Frame" /></p>
+
+<h3 id="applications">APPLICATIONS</h3>
+
+<ul>
+  <li>
+    <p>Use a critic to pin point top out of top-5</p>
+  </li>
+  <li>
+    <p>Train with GridCorpus, fine tune with Obama using Critic/Assessor and get better accuracy!</p>
+  </li>
+  <li>
+    <p>Classical unsupervised domain adaptation - to find out distribution</p>
+  </li>
+  <li>
+    <p>Self-training (Learner to improve learning over time)</p>
+  </li>
+  <li>
+    <p>Use cases - assistive, closed captions, security</p>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="2017-09-16">2017-09-16</h2>
+
+<h3 id="self-learning-on-gridcorpus">Self-Learning on GRIDcorpus</h3>
+
+<p><img src="20170916/SSL.png" alt="alt text" title="Frame" /></p>
+
+<p>Figure 1: Comparison of Apparent accuracy, True accuracy, Val accuracy, Speaker-independent accuracy among training with:</p>
+
+<ul>
+  <li>
+    <blue> only lipreader at 99% confidence, with finetuning (and not remodelling)
+
+</blue>
+  </li>
+  <li>
+    <green> only lipreader at 99% confidence, with remodelling
+
+</green>
+  </li>
+  <li>
+    <red> lipreader at 95% confidence + critic at 10% confidence, with finetuning (and not remodelling)
+
+</red>
+  </li>
+  <li>
+    <black> lipreader at 95% confidence + critic at 10% confidence, with finetuning (and not remodelling)
+
+</black>
+  </li>
+</ul>
+<h4 id="conclusion">CONCLUSION</h4>
+
+<ul>
+  <li>
+    <p>LR + Critic works marginally better/faster</p>
+  </li>
+  <li>
+    <p>Finetuning works better/faster than remodelling</p>
+  </li>
+</ul>
+
+<p><img src="20170916/SSLPc.png" alt="alt text" title="Frame" /></p>
+
+<p>Figure 2: Comparison of Apparent accuracy, True accuracy, Val accuracy, Speaker-independent accuracy among training with:</p>
+
+<ul>
+  <li>
+    <blue> starting at 10% of training data, only lipreader, at 95% confidence, with finetuning
+
+</blue>
+  </li>
+  <li>
+    <green> starting at 10% of training data, lipreader at 95% confidence + critic at 10% confidence, with finetuning
+
+</green>
+  </li>
+  <li>
+    <red> starting at 20% of training data, only lipreader, at 99% confidence, with finetuning
+
+</red>
+  </li>
+  <li>
+    <black> starting at 20% of training data, lipreader at 95% confidence + critic at 10% confidence, with finetuning
+
+
+
+</black>
+  </li>
+</ul>
+<hr />
+
+<h2 id="2017-09-02">2017-09-02</h2>
+
+<h3 id="lip-reader">Lip Reader</h3>
+
+<ul>
+  <li>Lip Reader with Masking and Reverse-Sequence of frames input to LSTM: Train - 92%, Val - 85%, SI - 24%</li>
+</ul>
+
+<h3 id="critic">Critic</h3>
+
+<ul>
+  <li>
+    <p>Critic - taking only video input and a predicted word</p>
+  </li>
+  <li>
+    <p>Training with top-3 predicted words from best lip reader</p>
+  </li>
+  <li>
+    <p>Accuracies: Train - 64.4%, Val - 64.5%, SI - 66.7%</p>
+  </li>
+  <li>
+    <p>ROC curve and Precision-Recall curve:</p>
+  </li>
+</ul>
+
+<p><img src="20170902/C3DCritic-l1f4-l2f4-l3f4-fc1n4-vid16-OHWord51-OHWordFc16-out64-Adam-1e-03-GRIDcorpus-s0107-09-ROC-PR-epoch016.png" alt="alt text" title="Frame" /></p>
+
+<p>Figure 1: ROC curve and precision-recall curve for one set of weights of critic (at epoch number 16). The ‘X’ marks are at the values for threshold=0.5.</p>
+
+<ul>
+  <li>Accuracies vs Threshold:</li>
+</ul>
+
+<p><img src="20170902/C3DCritic-l1f4-l2f4-l3f4-fc1n4-vid16-OHWord51-OHWordFc16-out64-Adam-1e-03-GRIDcorpus-s0107-09-ROC-PR-acc-epoch016.png" alt="alt text" title="Frame" /></p>
+
+<p>Figure 2: Accuracy of Critic with different values of threshold over the critic’s scores.</p>
+
+<h3 id="combining-critic-and-lipreader">Combining Critic and LipReader</h3>
+
+<ul>
+  <li>
+    <p>Take Top-5 predictions of lipreader, find out critic’s scores for them, multiply with lipreader’s scores, find accuracy of lipreader (No. of correct predictions/total)</p>
+  </li>
+  <li>
+    <p>On a very good lipreader (above - epoch 79):</p>
+
+    <ul>
+      <li>
+        <p>Train: Only LipReader - 91.51%, LipReader x Critic - 91.49%</p>
+      </li>
+      <li>
+        <p>Val: Only LipReader - 91.8%, only critic - 50.6%, LipReader x Critic - 91.4%</p>
+      </li>
+      <li>
+        <p>SI: Only LipReader - 24.3%, only critic - 20.5%, LipReader x Critic - 25.5%</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>On an average lipreader (epoch 35):</p>
+
+    <ul>
+      <li>
+        <p>Train: Only LipReader - 82.5%, only critic - 46.7%, LipReader x Critic - 81.3%</p>
+      </li>
+      <li>
+        <p>Val: Only LipReader - 82.9%, only critic - 46.5%, LipReader x Critic - 81.4%</p>
+      </li>
+      <li>
+        <p>SI: Only LipReader - 22.6%, only critic - 19.7%, LipReader x Critic - 23.9%</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>On a very bad lipreader (epoch 0):</p>
+
+    <ul>
+      <li>
+        <p>Train: Only LipReader - 13.4%, only critic - 22.8%, LipReader x Critic - 24.7%</p>
+      </li>
+      <li>
+        <p>Val: Only LipReader - 13.7%, only critic - 22.2%, LipReader x Critic - 24.3%</p>
+      </li>
+      <li>
+        <p>SI: Only LipReader - 9.7%, only critic - 13.3%, LipReader x Critic - 15.2%</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>CONCLUSION - critic doesn’t offer much when the LR is awesome, but when the LR is bad the critic can improve accuracy</p>
+  </li>
+</ul>
+
+<h2 id="experimental-results">EXPERIMENTAL RESULTS</h2>
+
+<h3 id="lip-reader-1">Lip Reader</h3>
+
+<p><img src="20170902/LSTMLipReader-revSeq-Mask-LSTMh256-LSTMactivtanh-depth2-enc64-encodedActivrelu-Adam-1e-03-GRIDcorpus-s0107-09-tMouth-valMouth-NOmeanSub-plots.png" alt="alt text" title="Frame" /></p>
+
+<p>Figure 1: Loss and accuracy for training data, validation data and speaker-independent data, for Lip Reader using LSTM, with Masking at input and reverse sequence of frame input</p>
+
+<h3 id="critic-1">Critic</h3>
+
+<p><img src="20170902/C3DCritic-l1f4-l2f4-l3f4-fc1n4-vid16-OHWord51-OHWordFc16-out64-Adam-1e-03-GRIDcorpus-s0107-09-Plots.png" alt="alt text" title="Frame" /></p>
+
+<p>Figure 2: Loss and accuracy for training data, validation data and speaker-independent data, for Critic taking only video sequence and predicted word as input. Training data consisted of video input and top-3 predicted words by lipreader.</p>
+
+<ul>
+  <li>I chose the weights at epoch 16 (val and speaker-independent loss almost equal).</li>
+</ul>
+
+<h2 id="discussion">DISCUSSION</h2>
+
+<ul>
+  <li>
+    <p>Baseline Accuracy vs Threshold from softmax scores of LR</p>
+  </li>
+  <li>
+    <p>Only use critic in a region - when LR is dicey. If LR is very sure, ignore critic.</p>
+  </li>
+  <li>
+    <p>Additional information to Critic - fraction of scaling up or down the mouth image</p>
+  </li>
+  <li>
+    <p>Use case: self-learning?</p>
+  </li>
+  <li>
+    <p>Use LR x Critic on very few data</p>
+  </li>
+  <li>
+    <p>Train fusion</p>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="2017-08-26">2017-08-26</h2>
+
+<ul>
+  <li>Changed output to only softmax of words vocabulary
+    <ul>
+      <li>Accuracy is now calculated as word-accuracy</li>
+    </ul>
+  </li>
+  <li>Accuracies in paper: <a href="https://arxiv.org/pdf/1601.08188.pdf">LIPREADING WITH LONG SHORT-TERM MEMORY</a>:
+    <ul>
+      <li>Speaker-dependent accuracy - 79.4%; Speaker-independent accuracy - 79.6%</li>
+    </ul>
+  </li>
+  <li>Using LipReader “LSTM-noPadResults-h256-depth2-LSTMactivtanh-enc64-encodedActivsigmoid-Adam-1e-03-GRIDcorpus-s0107-s0909-tMouth-vMouth-NOmeanSub-epoch078-tl0.4438-ta0.8596-vl0.6344-va0.8103-sil3.2989-sia0.3186.hdf5”
+    <ul>
+      <li>Speaker-dependent: Training accuracy - 86%, Validation accuracy - 81%; Speaker-independent accuracy - 32%</li>
+    </ul>
+  </li>
+  <li>Using Critic “C3DCritic-LRnoPadResults-l1f8-l2f16-l3f32-fc1n64-vid64-enc64-oneHotWord52-out64-Adam-5e-04-GRIDcorpus-s0107-s0909-tMouth-vMouth-NOmeanSub-epoch002-tl0.2837-ta0.8783-vl0.4017-va0.8255-sil1.4835-sia0.3520.hdf5”
+    <ul>
+      <li>Without taking critic into account, trainAccuracy = 87%, valAccuracy = 81%, speakerIndependentAccuracy = 32%</li>
+      <li>Only considering those critic said right, trainAccuracy - 89% , valAccuracy - 83% , speakerIndependentAccuracy - 32.5%</li>
+      <li>
+        <p>Among those critic said wrong, % actually wrong: train 54% , val 68% , speakerIndependent 89%</p>
+
+        <p>-Train: tP=36119, fP=837, fN=4309, tN=975</p>
+
+        <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>              Critic | Actually True | Actually False
+              ---------------------- | ------------- | -------------
+              Critic predicted True |     36119     | 837
+              Critic predicted False |     4309      | 975
+</code></pre></div>        </div>
+
+        <ul>
+          <li>
+            <p>Val: tP=3676, fP=61, fN=743, tN=128</p>
+
+            <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>          Critic | Actually True | Actually False   ---------------------- | ------------- | -------------    Critic predicted True |      3676     | 61   Critic predicted False |      743      | 128
+</code></pre></div>            </div>
+          </li>
+          <li>
+            <p>Speaker-independent: tP=13306, fP=150, fN=27587, tN=1197</p>
+
+            <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>          Critic | Actually True | Actually False   ---------------------- | ------------- | -------------    Critic predicted True |     13306     | 150   Critic predicted False |     27587     | 1197
+</code></pre></div>            </div>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="lipreader-training">LipReader training</h3>
+
+<p>Figure 1a. Training, validation, and speaker-independent word-accuracies of lipReader while training</p>
+
+<p><img src="20170826/LSTM-noPadResults-h256-depth2-LSTMactivtanh-enc64-encodedActivsigmoid-Adam-1e-03-GRIDcorpus-s0107-s0909-tMouth-vMouth-NOmeanSub-plotAcc.png" alt="alt text" title="Frame" /></p>
+
+<p>Figure 1b. Training, validation, and speaker-independent losses of lipReader while training</p>
+
+<p><img src="20170826/LSTM-noPadResults-h256-depth2-LSTMactivtanh-enc64-encodedActivsigmoid-Adam-1e-03-GRIDcorpus-s0107-s0909-tMouth-vMouth-NOmeanSub-plotLosses.png" alt="alt text" title="Frame" /></p>
+
+<h3 id="critic-training">Critic Training</h3>
+
+<p>Figure 2a. Training, validation, and speaker-independent accuracies of critic while training</p>
+
+<p><img src="20170826/C3DCritic-LRnoPadResults-l1f8-l2f16-l3f32-fc1n64-vid64-enc64-oneHotWord52-out64-Adam-5e-04-GRIDcorpus-s0107-s0909-tMouth-vMouth-NOmeanSub-plotAcc.png" alt="alt text" title="Frame" /></p>
+
+<p>Figure 2b. Training, validation, and speaker-independent losses of critic while training</p>
+
+<p><img src="20170826/C3DCritic-LRnoPadResults-l1f8-l2f16-l3f32-fc1n64-vid64-enc64-oneHotWord52-out64-Adam-5e-04-GRIDcorpus-s0107-s0909-tMouth-vMouth-NOmeanSub-plotLosses.png" alt="alt text" title="Frame" /></p>
+
+<h3 id="discussion-1">Discussion</h3>
+
+<ul>
+  <li><a href="https://arxiv.org/pdf/1708.01565.pdf">Improving Speaker-Independent Lipreading with Domain-Adversarial Training - IDSIA</a>
+    <ul>
+      <li>Baseline accuracies correspond with our current results</li>
+    </ul>
+  </li>
+  <li>
+    <p>What can the assessor do?</p>
+  </li>
+  <li>Motivation for Assessor/Critic:
+    <ul>
+      <li>What makes the critic better than the lipReader itself?</li>
+      <li>Eg. If Critic has access to Natural Language Model, THAT will help it perform better than the lipReader</li>
+    </ul>
+  </li>
+  <li>
+    <p>Reject class in deep learning</p>
+  </li>
+  <li>Speech recognition vs Lip Reading - where does lip reading supercede speech recognition? What does a “noisy” environment mean?</li>
+</ul>
+
+<hr />
+
+<h2 id="2017-08-24">2017-08-24</h2>
+
+<ul>
+  <li>Realized output having padding gives awesome accuracies but does not reflect actual word-classification accuracy
+    <ul>
+      <li>Accuracies are for output with padding, so, cannot be trusted</li>
+    </ul>
+  </li>
+  <li>Accuracies in paper: <a href="https://arxiv.org/pdf/1601.08188.pdf">LIPREADING WITH LONG SHORT-TERM MEMORY</a>:
+    <ul>
+      <li>Speaker-dependent accuracy - 79.4%</li>
+      <li>Speaker-independent accuracy - 79.6%</li>
+    </ul>
+  </li>
+  <li>Using LipReader “LSTM-h256-depth2-LSTMactivtanh-enc64-encodedActivsigmoid-Adam-1e-03-GRIDcorpus-s0107-s0909-tMouth-vMouth-NOmeanSub-epoch099-tl0.3307-ta0.8417-vl0.3782-va0.8304.hdf5”
+    <ul>
+      <li>Speaker-dependent: Training accuracy - 84.17%, Validation accuracy - 83.04%</li>
+      <li>Speaker-independent accuracy - 73.86%</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="comparison-of-lstmseq2seq-lstmd2-lstmd3-lstmd2enc-with-padding">Comparison of LSTMSeq2Seq, LSTMd2, LSTMd3, LSTMd2enc (with padding)</h3>
+
+<p><img src="20170824/20to23-acc-lipReader-Seq2Seq-d2-d3-d2enc.png" alt="alt text" title="Frame" /></p>
+
+<p>Figure 1a. Comparison of accuracies of LSTMSeq2Seq, LSTMd2, LSTMd3, LSTMd2enc (with padding in output)</p>
+
+<p><img src="20170824/20to23-losses-lipReader-Seq2Seq-d2-d3-d2enc.png" alt="alt text" title="Frame" /></p>
+
+<p>Figure 1b. Comparison of losses of LSTMSeq2Seq, LSTMd2, LSTMd3, LSTMd2enc (with padding in output)</p>
+
+<h3 id="comparison-of-different-architectures-with-padding">Comparison of different architectures (with padding)</h3>
+
+<p><img src="20170824/35ato41a-acc-onlyLRPreds-word-enc-OHW-OHWhid-encOHW-encHidOHWHid-predWordDis.png" alt="alt text" title="Frame" /></p>
+
+<p>Figure 2a. Comparison of training, validation and speaker-independent accuracies for different architectures</p>
+
+<p><img src="20170824/35ato41a-losses-onlyLRPreds-word-enc-OHW-OHWhid-encOHW-encHidOHWHid-predWordDis.png" alt="alt text" title="Frame" /></p>
+
+<p>Figure 2b. Comparison of training, validation and speaker-independent losses for different architectures</p>
+
+<ul>
+  <li>It can be seen that Enc-OHWord is the best architecture overall</li>
+</ul>
+
+<hr />
+
+<h2 id="2017-08-19">2017-08-19</h2>
+
+<ul>
+  <li>Accuracies in paper: <a href="https://arxiv.org/pdf/1601.08188.pdf">LIPREADING WITH LONG SHORT-TERM MEMORY</a>:
+    <ul>
+      <li>Speaker-dependent accuracy - 79.4%</li>
+      <li>Speaker-independent accuracy - 79.6%</li>
+    </ul>
+  </li>
+  <li>Using LipReader “LSTM-h256-depth2-LSTMactivtanh-enc64-encodedActivsigmoid-Adam-1e-03-GRIDcorpus-s0107-s0909-tMouth-vMouth-NOmeanSub-epoch099-tl0.3307-ta0.8417-vl0.3782-va0.8304.hdf5”
+    <ul>
+      <li>Speaker-dependent: Training accuracy - 84.17%, Validation accuracy - 83.04%</li>
+      <li>Speaker-independent accuracy - 62%</li>
+    </ul>
+  </li>
+  <li>Read <a href="https://www.robots.ox.ac.uk/~vgg/publications/2012/Jammalamadaka12a/jammalamadaka12a.pdf">Has My Algorithm Succeeded?
+An Evaluator for Human Pose Estimators</a> for reference on Evaluators/Critics/Assessors</li>
+</ul>
+
+<h3 id="comparing-1-or-2-word-layers--1-or-2-output-layers">Comparing 1 or 2 word layers &amp; 1 or 2 output layers</h3>
+
+<p><img src="20170819/29to32-losses-1to2enc-1to2outHidden.png" alt="alt text" title="Frame" /></p>
+
+<ul>
+  <li>As can be seen, it is better to have a layer right after inputting the encoded word from lipReader, before concatenating with video features</li>
+</ul>
+
+<h3 id="comparing-enc-word-one-hot-word-one-hot-word--fc10-enc--one-hot-word">Comparing enc, word, one-hot word, one-hot word + fc10, enc + one-hot word</h3>
+
+<ul>
+  <li>For this experiment, no negative samples were generated; only the predictions (positive or negative) from the LipReader were considered.</li>
+</ul>
+
+<p><img src="20170819/35to39-losses-onlyLRPreds-enc-word-OHW-OHWhid-encOHW-encHidOHWHid.png" alt="alt text" title="Frame" /></p>
+
+<ul>
+  <li>
+    <p>Inputting one-hot encoded word is better than the word itself</p>
+  </li>
+  <li>
+    <p>Inputting intermediate layer vector from LipReader + one-hot encoded predicted word seems to work the best</p>
+  </li>
+</ul>
+
+<h3 id="precision-recall">Precision, Recall</h3>
+
+<ul>
+  <li>Considering the best LipReader and Critic (so far):
+    <ul>
+      <li>LSTMLipReaderModel.load_weights(os.path.join(saveDir, “LSTM-h256-depth2-LSTMactivtanh-enc64-encodedActivsigmoid-Adam-1e-03-GRIDcorpus-s0107-s0909-tMouth-vMouth-NOmeanSub-epoch099-tl0.3307-ta0.8417-vl0.3782-va0.8304.hdf5”))</li>
+      <li>criticModelWithWordFeatures.load_weights(os.path.join(saveDir, “C3DCritic-l1f8-l2f16-l3f32-fc1n64-vid64-enc64-oHn64-Adam-1e-04-GRIDcorpus-s0107-s0909-tMouth-vMouth-NOmeanSub-epoch007-tl0.3004-ta0.8631-vl0.4015-va0.8022.hdf5”))</li>
+    </ul>
+  </li>
+  <li>
+    <p>trainPrecision: Precision of the critic on the training data, i.e. among its results on the training data, in how many cases is the critic able to correctly tell if the output of the LipReader is correct or not</p>
+  </li>
+  <li>
+    <p>totalTrainPrecision = 0.859839499319, meanTrainPrecision = 0.55379656487 (Better to take a weighted mean instead?)</p>
+  </li>
+  <li>
+    <p>totalTrainRecall = 0.579317849492, meanTrainRecall = 0.334912278473</p>
+  </li>
+  <li>
+    <p>totalValPrecision = 0.833484986351, meanValPrecision = 0.901960784314</p>
+  </li>
+  <li>totalValRecall = 0.581402729292, meanValRecall = 0.980392156863</li>
+</ul>
+
+<h3 id="full-results">Full Results</h3>
+
+<ul>
+  <li>
+    <p>trainPrecisionPerWord = [ 0.1538  0.9335  0.6378  0.3026  0.8336  0.8729  0.9042  0.6364  0.      0.
+0.7455  0.2857  0.8235  0.8687  0.4762  0.8826  0.2     0.      0.7377
+0.6939  0.4     0.      0.925   0.3846  0.      0.5912  0.9177  0.3684
+0.7807  0.1795  0.9336  0.9705  0.4286  0.      0.7869  0.      0.8554
+0.7605  0.8428  0.9759  0.1429  0.8437  0.7615  0.5625  0.4571  0.8529
+0.9452  0.      0.5573  0.1333  0.8973]</p>
+  </li>
+  <li>
+    <p>meanTrainPrecision = 0.55379656487</p>
+  </li>
+  <li>
+    <p>totalTrainPrecision = 0.859839499319</p>
+  </li>
+  <li>
+    <p>trainRecallPerWord = [ 0.0139  0.6781  0.193   0.3382  0.7616  0.8589  0.5037  0.0642  0.      0.
+0.2087  0.0185  0.3986  0.3879  0.1064  0.8074  0.0641  0.      0.2961
+0.2636  0.0421  0.      0.6498  0.0347  0.      0.2287  0.5673  0.0534
+0.8695  0.4118  0.8336  0.7455  0.0517  0.      0.5675  0.      0.8085
+0.3759  0.3777  0.721   0.0213  0.5849  0.2115  0.0796  0.1046  0.8516
+0.5301  0.      0.6404  0.0889  0.6661]</p>
+  </li>
+  <li>
+    <p>meanTrainRecall = 0.334912278473</p>
+  </li>
+  <li>
+    <p>totalTrainRecall = 0.579317849492</p>
+  </li>
+  <li>
+    <p>valPrecisionPerWord = [ 0.      0.9231  0.6667  0.0556  0.8209  0.8704  0.9121     nan  0.      0.
+0.8462     nan  0.7273  0.9032     nan  0.8358  0.      0.      0.8824
+0.5     0.1667  0.      0.875   0.25    0.      0.55    0.8879  0.3333
+0.7292  0.0909  0.8816  0.9621  0.      0.      0.7835     nan  0.8
+0.8333  0.7586  0.9708     nan  0.7959  0.75    0.3333  0.25    0.7871
+0.9759  0.      0.6154  0.    ]</p>
+  </li>
+  <li>
+    <p>meanValPrecision = 0.901960784314</p>
+  </li>
+  <li>
+    <p>totalValPrecision = 0.833484986351</p>
+  </li>
+  <li>
+    <p>valRecallPerWord = [ 0.      0.6593  0.1692  0.25    0.7534  0.8443  0.5188  0.      0.
+   nan  0.275   0.      0.3265  0.3836  0.      0.8235  0.      0.
+0.3629  0.1     0.1429  0.      0.6087  0.0385  0.      0.2292  0.5938
+0.0714  0.875   1.      0.8428  0.7744  0.      0.      0.6179  0.
+0.8333  0.5     0.3014  0.7348  0.      0.661   0.2045  0.1     0.1111
+0.8133  0.4821  0.      0.7273  0.    ]</p>
+  </li>
+  <li>
+    <p>meanValRecall = 0.980392156863</p>
+  </li>
+  <li>
+    <p>totalValRecall = 0.581402729292</p>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="2017-08-11">2017-08-11</h2>
+
+<ul>
+  <li>Accuracies in paper: <a href="https://arxiv.org/pdf/1601.08188.pdf">LIPREADING WITH LONG SHORT-TERM MEMORY</a>:
+    <ul>
+      <li>Speaker-dependent accuracy - 79.4%</li>
+      <li>Speaker-independent accuracy - 79.6%</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="completed">COMPLETED</h3>
+
+<ul>
+  <li>Re-trained LSTM models (instead of SimpleSeq2Seq by farizrahman4u)</li>
+</ul>
+
+<h4 id="1-lstm-models">1. LSTM MODELS</h4>
+
+<ul>
+  <li>Tried:
+    <ul>
+      <li>LSTM -&gt; word prediction
+        <ul>
+          <li>depth = 2</li>
+          <li>depth = 3</li>
+        </ul>
+      </li>
+      <li>LSTM -&gt; encoding into (64) dimensions -&gt; word prediction</li>
+      <li>LSTM -&gt; encoding -&gt; decoding via LSTM -&gt; word prediction (similar to SimpleSeq2Seq)</li>
+    </ul>
+  </li>
+  <li>Reached up to 90% training accuracy, up to 85% validation accuracy, and 62% speaker-independent accuracy</li>
+</ul>
+
+<h4 id="2-critic">2. CRITIC</h4>
+
+<ul>
+  <li>
+    <p>Trained Critic using:
+  1) predicted word,
+  2) 64-dim encoded value</p>
+  </li>
+  <li>
+    <p>Critic using predicted word from LSTMLipReader - each video was trained by giving as input:
+  1) correct words,
+  2) predicted words (80% accuracy),
+  3) wrong words</p>
+  </li>
+  <li>
+    <p>Critic using encoded value from LSTMLipReader - each video was trained by giving as input:
+          1) predicted words (80% accuracy),
+          2) wrong words</p>
+  </li>
+  <li>
+    <p>Using encoded values instead of predicted words does seem to offer some advantage</p>
+  </li>
+</ul>
+
+<h4 id="3-fine-tuning-lipreader-to-hindi">3. FINE-TUNING LipReader to HINDI</h4>
+
+<ul>
+  <li>
+    <p>Retained LSTM weights, replaced the last layer of LipReader models with Dense layers to match the Hindi vocabulary considered</p>
+  </li>
+  <li>
+    <p>Tried with:
+  1) LSTM -&gt; word prediction,
+  2) LSTM -&gt; encoding into (64) dimensions -&gt; word prediction</p>
+  </li>
+  <li>
+    <p>Need to find out if graphs are good for progress</p>
+  </li>
+</ul>
+
+<h2 id="experiments">EXPERIMENTS</h2>
+
+<h3 id="lstm-models">LSTM MODELS</h3>
+
+<h4 id="1-lstm-model-with-hiddendim256-depth2">1. LSTM Model with hiddenDim=256, depth=2</h4>
+
+<ul>
+  <li>
+    <p>Speaker-dependent training accuracy - 91.61%, validation accuracy - 84.82%</p>
+  </li>
+  <li>
+    <p>Speaker-independent validation accuracy - 61.73%</p>
+  </li>
+</ul>
+
+<p><img src="20170811/LSTM-h256-depth2-Adam-1e-03-GRIDcorpus-s0107-s0909-tMouth-vMouth-NOmeanSub-plotAcc.png" alt="alt text" title="Frame" /></p>
+
+<ul>
+  <li>Figure 1: Training accuracy, Validation accuracy vs Epoch, for model with LSTM of hiddenDim=256, depth=2</li>
+</ul>
+
+<p><img src="20170811/LSTM-h256-depth2-Adam-1e-03-GRIDcorpus-s0107-s0909-tMouth-vMouth-NOmeanSub-plotLosses.png" alt="alt text" title="Frame" /></p>
+
+<ul>
+  <li>Figure 2: Training loss, Validation loss vs Epoch, for model with LSTM of hiddenDim=256, depth=2</li>
+</ul>
+
+<h4 id="2-lstm-model-with-hiddendim256-depth3">2. LSTM Model with hiddenDim=256, depth=3</h4>
+
+<ul>
+  <li>
+    <p>Speaker-dependent training accuracy - 90.03%, validation accuracy - 84.85%</p>
+  </li>
+  <li>
+    <p>Speaker-independent validation accuracy - 61.17%</p>
+  </li>
+</ul>
+
+<p><img src="20170811/LSTM-h256-depth3-Adam-1e-03-GRIDcorpus-s0107-s0909-tMouth-vMouth-NOmeanSub-plotAcc.png" alt="alt text" title="Frame" /></p>
+
+<ul>
+  <li>Figure 3: Training accuracy, Validation accuracy vs Epoch, for model with LSTM of hiddenDim=256, depth=3</li>
+</ul>
+
+<p><img src="20170811/LSTM-h256-depth3-Adam-1e-03-GRIDcorpus-s0107-s0909-tMouth-vMouth-NOmeanSub-plotLosses.png" alt="alt text" title="Frame" /></p>
+
+<ul>
+  <li>Figure 4: Training loss, Validation loss vs Epoch, for model with LSTM of hiddenDim=256, depth=3</li>
+</ul>
+
+<h4 id="3-lstm-model-with-hiddendim256-depth2-encoded-into-64-dimensions">3. LSTM Model with hiddenDim=256, depth=2, encoded into 64 dimensions*</h4>
+
+<ul>
+  <li>
+    <p>Speaker-dependent training accuracy - 84.17%, validation accuracy - 83.04%</p>
+  </li>
+  <li>
+    <p>Speaker-independent validation accuracy - 62.02%</p>
+  </li>
+</ul>
+
+<p><img src="20170811/LSTM-h256-depth2-LSTMactivtanh-enc64-encodedActivsigmoid-Adam-1e-03-GRIDcorpus-s0107-s0909-tMouth-vMouth-NOmeanSub-plotAcc.png" alt="alt text" title="Frame" /></p>
+
+<ul>
+  <li>Figure 5: Training accuracy, Validation accuracy vs Epoch, for model with LSTM of hiddenDim=256, depth=2, and an encoding Dense layer of dim=64</li>
+</ul>
+
+<p><img src="20170811/LSTM-h256-depth2-LSTMactivtanh-enc64-encodedActivsigmoid-Adam-1e-03-GRIDcorpus-s0107-s0909-tMouth-vMouth-NOmeanSub-plotLosses.png" alt="alt text" title="Frame" /></p>
+
+<ul>
+  <li>Figure 6: Training loss, Validation loss vs Epoch, for model with LSTM of hiddenDim=256, depth=2, and an encoding Dense layer of dim=64</li>
+</ul>
+
+<p><em>**</em>Only ran for 100 epochs, can proceed further!!</p>
+
+<h4 id="4-seq2seq-lstm-model-with-hiddendim256-depth2-similar-to-what-we-were-using-before">4. Seq2Seq LSTM Model with hiddenDim=256, depth=2 (Similar to what we were using before)</h4>
+
+<ul>
+  <li>
+    <p>Speaker-dependent training accuracy - 90.10%, validation accuracy - 78.90%</p>
+  </li>
+  <li>
+    <p>Speaker-independent validation accuracy - 58.19%</p>
+  </li>
+</ul>
+
+<p><img src="20170811/LSTMSeq2Seq-h256-depth2-Adam-1e-03-GRIDcorpus-s0107-s0909-tMouth-vMouth-NOmeanSub-plotAcc.png" alt="alt text" title="Frame" /></p>
+
+<ul>
+  <li>Figure 7: Training accuracy, Validation accuracy vs Epoch, for model with Seq2Seq model of hiddenDim=256, depth=2</li>
+</ul>
+
+<p><img src="20170811/LSTMSeq2Seq-h256-depth2-Adam-1e-03-GRIDcorpus-s0107-s0909-tMouth-vMouth-NOmeanSub-plotLosses.png" alt="alt text" title="Frame" /></p>
+
+<ul>
+  <li>Figure 8: Training loss, Validation loss vs Epoch, for model with Seq2Seq model of hiddenDim=256, depth=2</li>
+</ul>
+
+<h3 id="critic-2">CRITIC</h3>
+
+<h4 id="1-critic-using-predicted-word-from-lstmlipreader">1. Critic using predicted word from LSTMLipReader</h4>
+
+<p><img src="20170811/C3DCritic-l1f4-l2f4-l3f8-fc1n8-vid8-word-oHn16-Adam-1e-04-GRIDcorpus-s0107-s0909-tMouth-vMouth-NOmeanSub-plotAcc.png" alt="alt text" title="Frame" /></p>
+
+<ul>
+  <li>Figure 9: Training accuracy, Validation accuracy vs Epoch, for Critic using predicted word from LSTMLipReader</li>
+</ul>
+
+<p><img src="20170811/C3DCritic-l1f4-l2f4-l3f8-fc1n8-vid8-word-oHn16-Adam-1e-04-GRIDcorpus-s0107-s0909-tMouth-vMouth-NOmeanSub-plotLosses.png" alt="alt text" title="Frame" /></p>
+
+<ul>
+  <li>Figure 10: Training loss, Validation loss vs Epoch, for Critic using predicted word from LSTMLipReader</li>
+</ul>
+
+<h4 id="2-critic-using-64-dimensional-encoded-value-from-lstmlipreader">2. Critic using 64-dimensional encoded value from LSTMLipReader</h4>
+
+<p><img src="20170811/C3DCritic-l1f4-l2f4-l3f8-fc1n8-vid8-enc64-oHn16-Adam-1e-04-GRIDcorpus-s0107-s0909-tMouth-vMouth-NOmeanSub-plotAcc.png" alt="alt text" title="Frame" /></p>
+
+<ul>
+  <li>Figure 11: Training accuracy, Validation accuracy vs Epoch, for Critic using 64-dimensional encoded value from LSTMLipReader</li>
+</ul>
+
+<p><img src="20170811/C3DCritic-l1f4-l2f4-l3f8-fc1n8-vid8-enc64-oHn16-Adam-1e-04-GRIDcorpus-s0107-s0909-tMouth-vMouth-NOmeanSub-plotLosses.png" alt="alt text" title="Frame" /></p>
+
+<ul>
+  <li>Figure 12: Training loss, Validation loss vs Epoch, for Critic using 64-dimensional encoded value from LSTMLipReader</li>
+</ul>
+
+<h3 id="fine-tuning---gridcorpus-to-hindi">FINE-TUNING - GRIDcorpus to HINDI</h3>
+
+<h4 id="1-fine-tuning-lstm-model-with-hiddendim256-depth3-to-hindi-lstmlipreader">1. Fine-tuning LSTM Model with hiddenDim=256, depth=3 to Hindi-LSTMLipReader</h4>
+
+<p><img src="20170811/Hindi-LSTM-h256-depth3-Adam-2e-04-plotAcc.png" alt="alt text" title="Frame" /></p>
+
+<ul>
+  <li>Figure 13: Training accuracy, Validation accuracy vs Epoch, for LSTMLipReader with hiddenDim=256, depth=3 fine-tuned to Hindi-LSTMLipReader</li>
+</ul>
+
+<p><img src="20170811/Hindi-LSTM-h256-depth3-Adam-2e-04-plotLosses.png" alt="alt text" title="Frame" /></p>
+
+<ul>
+  <li>Figure 14: Training loss, Validation loss vs Epoch, for LSTMLipReader with hiddenDim=256, depth=3 fine-tuned to Hindi-LSTMLipReader</li>
+</ul>
+
+<h4 id="2-fine-tuning-lstm-model-with-hiddendim256-depth2-encoded-into-64-dimensions-to-hindi-lstmlipreader">2. Fine-tuning LSTM Model with hiddenDim=256, depth=2, encoded into 64 dimensions to Hindi-LSTMLipReader</h4>
+
+<p><img src="20170811/Hindi-LSTM-h256-depth2-LSTMactivtanh-enc64-encodedActivsigmoid-Adam-2e-04-plotAcc.png" alt="alt text" title="Frame" /></p>
+
+<ul>
+  <li>Figure 15: Training accuracy, Validation accuracy vs Epoch, for LSTMLipReader with hiddenDim=256, depth=3 fine-tuned to Hindi-LSTMLipReader</li>
+</ul>
+
+<p><img src="20170811/Hindi-LSTM-h256-depth2-LSTMactivtanh-enc64-encodedActivsigmoid-Adam-2e-04-plotLosses.png" alt="alt text" title="Frame" /></p>
+
+<ul>
+  <li>Figure 16: Training loss, Validation loss vs Epoch, for LSTMLipReader with hiddenDim=256, depth=3 fine-tuned to Hindi-LSTMLipReader</li>
+</ul>
+
+<h3 id="to-do-2">TO DO</h3>
+
+<ul>
+  <li>
+    <p>Applications of Critic: improving precision of lip reader, semi-supervised setting, to pin-point top out of top-5 predictions</p>
+  </li>
+  <li>Read papers on critic-based methods
+    <ul>
+      <li>Dhanraj - Has my algorithm succeeded? ECCV 2012</li>
+      <li>Deric Hoyem - ICCV 2013</li>
+    </ul>
+  </li>
+  <li>Sanskrit phonemes for Indic language lip reading</li>
+</ul>
+
+<hr />
+
+<h2 id="2017-08-05">2017-08-05</h2>
+
+<ul>
+  <li>Accuracies in paper: <a href="https://arxiv.org/pdf/1601.08188.pdf">LIPREADING WITH LONG SHORT-TERM MEMORY</a>:
+    <ul>
+      <li>Speaker-dependent accuracy - 79.4%</li>
+      <li>Speaker-independent accuracy - 79.6%</li>
+    </ul>
+  </li>
+  <li>For model trained by me, comparison of change in training and validation accuracies with epoch:</li>
+</ul>
+
+<p><img src="20170805/Un-vs-Aligned-TrainAccuracy.png" alt="alt text" title="Frame" /></p>
+
+<ul>
+  <li>Figure 1: Training accuracy vs Epoch, for models trained on a) unaligned faces, b) aligned faces, c) unaligned faces subtracted by mean image, d) aligned faces subtracted by mean image</li>
+</ul>
+
+<p><img src="20170805/Un-vs-Aligned-ValAccuracy.png" alt="alt text" title="Frame" /></p>
+
+<ul>
+  <li>Figure 2: Validation accuracy vs Epoch, for models trained on a) unaligned faces, b) aligned faces, c) unaligned faces subtracted by mean image, d) aligned faces subtracted by mean image</li>
+</ul>
+
+<h3 id="speaker-dependent-validation-accuracies">Speaker-dependent validation accuracies</h3>
+
+<h4 id="no-mean-subtraction">NO mean subtraction</h4>
+
+<ul>
+  <li>Trained with unaligned, validating on unaligned - 85.13%</li>
+  <li>Trained with unaligned, validating on aligned - 83.43%</li>
+  <li>Trained with aligned, validating on unaligned - 78.58%</li>
+  <li>Trained with aligned, validating on aligned - 83.72%</li>
+</ul>
+
+<h4 id="with-mean-subtraction">With mean subtraction</h4>
+
+<ul>
+  <li>Trained with unaligned, validating on unaligned - 86.94%</li>
+  <li>Trained with unaligned, validating on aligned - 84.65%</li>
+  <li>Trained with aligned, validating on unaligned - 78.44%</li>
+  <li>Trained with aligned, validating on aligned - 87.46%</li>
+</ul>
+
+<h3 id="speaker-independent-validation-accuracies">Speaker-independent validation accuracies</h3>
+
+<h4 id="no-mean-subtraction-1">NO mean subtraction</h4>
+
+<ul>
+  <li>Trained with unaligned, validating on unaligned - 62.73%</li>
+  <li>Trained with unaligned, validating on aligned - 65.22%</li>
+  <li>Trained with aligned, validating on unaligned - 61.30%</li>
+  <li>Trained with aligned, validating on aligned - 64.69%</li>
+</ul>
+
+<h4 id="with-mean-subtraction-1">With mean subtraction</h4>
+
+<ul>
+  <li>Trained with unaligned, validating on unaligned - 58.47%</li>
+  <li>Trained with unaligned, validating on aligned - 60.24%</li>
+  <li>Trained with aligned, validating on unaligned - 56.2%</li>
+  <li>Trained with aligned, validating on aligned - 57.59%</li>
+</ul>
+
+<h3 id="observations">OBSERVATIONS</h3>
+
+<ul>
+  <li>
+    <p>In both speaker-dependent and speaker-independent cases, validation accuracy does not change much with/without face alignment.</p>
+  </li>
+  <li>
+    <p>Training on unaligned images gives best accuracies in all cases.</p>
+  </li>
+  <li>
+    <p>Mean subtraction gives better results for speaker-dependent tasks, but worse results for speaker-independent tasks</p>
+  </li>
+</ul>
+
+<h3 id="conclusion-1">CONCLUSION</h3>
+
+<ul>
+  <li>
+    <p>It is advisable to not align face, i.e. to not use pose information while training for lipreading</p>
+  </li>
+  <li>
+    <p>It is also advisable to not subtract mean image of training images, since using the same mean image on speaker-independent tasks leads to worse accuracies, although for speaker-dependent tasks, it leads to better accuracies.</p>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="2017-08-01">2017-08-01</h2>
+
+<h3 id="experiments-with-mouth-alignment">Experiments with Mouth Alignment</h3>
+
+<ul>
+  <li>
+    <p>GRIDcorpus with/without mouth alignment</p>
+  </li>
+  <li>
+    <p>GRIDcorpus with/without mean subtraction</p>
+  </li>
+  <li>
+    <p>GRIDcorpus critic for LipReader</p>
+  </li>
+</ul>
+
+<p>1) GRIDcorpus with mouth alignment and with mean subtraction : 1-SimpleSeq2Seq-h256-depth2-Adam-5e-04-GRIDcorpus-s0107-ss0909-meanSub-tAlign-vAlign-epoch031-tl0.1218-ta0.9174-vl0.3024-va0.8788</p>
+
+<p><img src="20170801/SimpleSeq2Seq-h256-depth2-Adam-5e-04-GRIDcorpus-s0107-ss0909-meanSub-tAlign-vAlignplotAcc.png" alt="alt text" title="Frame" />
+<img src="20170801/SimpleSeq2Seq-h256-depth2-Adam-5e-04-GRIDcorpus-s0107-ss0909-meanSub-tAlign-vAlignplotLosses.png" alt="alt text" title="Frame" /></p>
+
+<p>2) GRIDcorpus without mouth alignment and with mean subtraction : 2-SimpleSeq2Seq-h256-depth2-Adam-5e-04-GRIDcorpus-s0107-s0909-meanSub-tMouth-vMouth-epoch066-tl0.1344-ta0.9269-vl0.3941-va0.8688</p>
+
+<p><img src="20170801/SimpleSeq2Seq-h256-depth2-Adam-5e-04-GRIDcorpus-s0107-s0909-meanSub-tMouth-vMouth-plotAcc.png" alt="alt text" title="Frame" />
+<img src="20170801/SimpleSeq2Seq-h256-depth2-Adam-5e-04-GRIDcorpus-s0107-s0909-meanSub-tMouth-vMouth-plotLosses.png" alt="alt text" title="Frame" /></p>
+
+<p>3) GRIDcorpus with mouth alignment and with mean subtraction : 7-SimpleSeq2Seq-h256-depth2-Adam-5e-04-GRIDcorpus-s0107-s0909-NOmeanSub-tAlign-vAlign-epoch044-tl0.1238-ta0.9002-vl0.3443-va0.8547</p>
+
+<p><img src="20170801/SimpleSeq2Seq-h256-depth2-Adam-5e-04-GRIDcorpus-s0107-ss0909-meanSub-tAlign-vAlignplotAcc.png" alt="alt text" title="Frame" />
+<img src="20170801/SimpleSeq2Seq-h256-depth2-Adam-5e-04-GRIDcorpus-s0107-ss0909-meanSub-tAlign-vAlignplotLosses.png" alt="alt text" title="Frame" /></p>
+
+<p>4) GRIDcorpus without mouth alignment and with mean subtraction : 6-SimpleSeq2Seq-h256-depth2-Adam-5e-04-GRIDcorpus-s0107-s0909-NOmeanSub-tMouth-vMouth-epoch045-tl0.1856-ta0.8806-vl0.4035-va0.8271.hdf5</p>
+
+<p><img src="20170801/SimpleSeq2Seq-h256-depth2-Adam-5e-04-GRIDcorpus-s0107-s0909-meanSub-tMouth-vMouth-plotAcc.png" alt="alt text" title="Frame" />
+<img src="20170801/SimpleSeq2Seq-h256-depth2-Adam-5e-04-GRIDcorpus-s0107-s0909-meanSub-tMouth-vMouth-plotLosses.png" alt="alt text" title="Frame" /></p>
+
+<h3 id="experiments-with-critic">Experiments with Critic</h3>
+
+<ul>
+  <li>Used Conv3D, with Slow fusion for video (14 frames per word)</li>
+  <li>Concatenated word as 1 feature, to x-dimensional video feature</li>
+</ul>
+
+<p>1) 5-C3DCritic-l1f4-l2f4-l3f8-fc1n8-vid8-oHn16-Adam-1e-04-GRIDcorpus-s0107-s0909-meanSub-tMouth-vMouth</p>
+
+<p><img src="20170801/C3DCritic-l1f4-l2f4-l3f8-fc1n8-vid8-oHn16-Adam-1e-04-GRIDcorpus-s0107-s0909-meanSub-tMouth-vMouth-plotAcc.png" alt="alt text" title="Frame" />
+<img src="20170801/C3DCritic-l1f4-l2f4-l3f8-fc1n8-vid8-oHn16-Adam-1e-04-GRIDcorpus-s0107-s0909-meanSub-tMouth-vMouth-plotLosses.png" alt="alt text" title="Frame" /></p>
+
+<p>2) 8-C3DCritic-l1f4-l2f4-l3f4-fc1n4-vid4-oHn4-Adam-1e-04-GRIDcorpus-s0107-s0909-NOmeanSub-tAlign-vAlign</p>
+
+<p><img src="20170801/C3DCritic-l1f4-l2f4-l3f4-fc1n4-vid4-oHn4-Adam-1e-04-GRIDcorpus-s0107-s0909-NOmeanSub-tAlign-vAlign-plotAcc.png" alt="alt text" title="Frame" />
+<img src="20170801/C3DCritic-l1f4-l2f4-l3f4-fc1n4-vid4-oHn4-Adam-1e-04-GRIDcorpus-s0107-s0909-NOmeanSub-tAlign-vAlign-plotLosses.png" alt="alt text" title="Frame" /></p>
+
+<h3 id="wrong-experiments">WRONG Experiments</h3>
+
+<ul>
+  <li>Spent lot of time taking input erroneously</li>
+</ul>
+
+<p>1) Example of wrong dataset input (conducted 21 experiments with varying model)</p>
+
+<p><img src="20170801/plotAcc.png" alt="alt text" title="Frame" />
+<img src="20170801/plotLosses.png" alt="alt text" title="Frame" /></p>
+
+<hr />
+
+<h2 id="2017-07-08">2017-07-08</h2>
+
+<h3 id="discussion-2">Discussion</h3>
+
+<ul>
+  <li>
+    <p>Check if pose is a good addition</p>
+  </li>
+  <li>RNN-evaluator = actor-critic, RNN chooses, critic says if you chose wrong
+    <ul>
+      <li>RNN with actor-critic: Towards diverse and natural image descriptions via conditional Gan - to evaluate captions - Raquel</li>
+    </ul>
+  </li>
+  <li>RNN - beam search
+    <ul>
+      <li>Dhruv - Diverse Beam Search (on arxiv, not published). But not with structured loss</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="2017-07-01">2017-07-01</h2>
+
+<h3 id="completed-1">Completed</h3>
+
+<ul>
+  <li>
+    <p>Got permission for LRW dataset</p>
+  </li>
+  <li>
+    <p>Require ~2TB of storage for TV shows, etc.</p>
+  </li>
+  <li>
+    <p>Theory of LSTMs</p>
+  </li>
+  <li>
+    <p>Read <a href="https://arxiv.org/pdf/1601.08188.pdf">LIPREADING WITH LONG SHORT-TERM MEMORY</a> (Michael Wand)</p>
+  </li>
+  <li>
+    <p>Coded preprocessing steps in full to extract 40x40 mouth</p>
+    <ul>
+      <li>Multiple (erroneous) faces detection (took the one with max width)</li>
+      <li>Non-mouth area erroneously detected as mouth (constrained face area in which to detect mouth)</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Frame extracted from video:<img src="20170701/bbij1nFrame72.jpg" alt="alt text" title="Frame" /></p>
+
+<p>Face extracted from Frame:<img src="20170701/bbij1nFace72.jpg" alt="alt text" title="Face" /></p>
+
+<p>Mouth extracted from Face:<img src="20170701/bbij1nMouth72.jpg" alt="alt text" title="Mouth" /></p>
+
+<ul>
+  <li>Computed face pose (yaw, pitch, roll) using <a href="https://github.com/severin-lemaignan/gazr">gazr</a></li>
+</ul>
+
+<p>Above Head pose: (0.018895, 0.0636381, 0.65107)</p>
+
+<ul>
+  <li>Extracted Facial Landmarks and aligned face using <a href="https://github.com/jrosebr1/imutils">imutils</a> (python)</li>
+</ul>
+
+<p>Aligned Face extracted from Frame:<img src="20170701/bbij1nAlignedFace72.jpg" alt="alt text" title="Aligned Face" /></p>
+
+<p>Aligned Mouth extracted from Aligned Face:<img src="20170701/bbij1nAlignedMouth72.jpg" alt="alt text" title="Aligned Mouth" /></p>
+
+<h3 id="discussion-3">Discussion</h3>
+
+<ul>
+  <li>
+    <p>Face Alignment?</p>
+  </li>
+  <li>
+    <p>One-to-one LSTM?</p>
+  </li>
+</ul>
+
+<h3 id="to-do-3">TO DO</h3>
+
+<ul>
+  <li>
+    <p>Compare with Abhishek’s face images</p>
+  </li>
+  <li>
+    <p>Compare Pose estimation papers (talk to Isha)</p>
+  </li>
+  <li>
+    <p>Read <a href="https://arxiv.org/pdf/1506.02025.pdf">Spatial Transformer Networks</a> (Zisserman)</p>
+  </li>
+  <li>
+    <p>Run LSTM on GRIDcorpus (copying all files into Atom is time-consuming)</p>
+  </li>
+  <li>
+    <p>Run network on LRW</p>
+  </li>
+</ul>
+
+<h3 id="misc">MISC</h3>
+
+<ul>
+  <li>
+    <p>Nose/mouth fiducials</p>
+  </li>
+  <li>
+    <p><a href="https://researchweb.iiit.ac.in/~pramod_sankar/papers/Pramod10Nearest.pdf">Nearest Neighbor based Collection OCR</a></p>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="2017-06-24">2017-06-24</h2>
+
+<h3 id="completed-2">Completed</h3>
+
+<ul>
+  <li>Read papers:
+    <ul>
+      <li><a href="http://www.cv-foundation.org/openaccess/content_iccv_2015_workshops/w12/papers/Koller_Deep_Learning_of_ICCV_2015_paper.pdf">Deep Learning of Mouth Shapes for Sign Language</a></li>
+      <li>TIMIT Database - <a href="https://www.intechopen.com/books/speech-technologies/phoneme-recognition-on-the-timit-database">39 (folded) phones</a> (Table 3); http://laotzu.bit.uni-bonn.de/ipec_presentation/speaker0.pdf] + 1 garbage</li>
+      <li><a href="https://link.springer.com/content/pdf/10.1007%2Fs11042-012-1128-7.pdf">Clustering Persian viseme using phoneme subspace for developing visual speech application</a> (need IIIT server)</li>
+      <li><a href="http://delivery.acm.org/10.1145/60000/57170/p19-petajan.pdf?ip=14.139.82.6&amp;id=57170&amp;acc=ACTIVE%20SERVICE&amp;key=045416EF4DDA69D9%2E1E2B3508530718A8%2E4D4702B0C3E38B35%2E4D4702B0C3E38B35&amp;CFID=941095463&amp;CFTOKEN=15453391&amp;__acm__=1498134384_9aaadfc1a2b78e0006e00d48dd5d00b9">AN IMPROVED AUTOMATIC LIPREADING SYSTEM TO ENHANCE SPEECH RECOGNITION - E. Petajan</a> (need IIIT server)</li>
+      <li><a href="https://arxiv.org/pdf/1705.02966.pdf">You said that? - Zisserman</a>, <a href="https://www.youtube.com/watch?v=lXhkxjSJ6p8&amp;feature=youtu.be">video</a></li>
+      <li><a href="https://arxiv.org/pdf/1409.4842.pdf">Going deeper with convolutions</a></li>
+      <li><a href="https://arxiv.org/pdf/1512.00567.pdf">Rethinking the Inception Architecture for Computer Vision</a></li>
+      <li><a href="https://github.com/fchollet/deep-learning-models">Keras implementation</a></li>
+    </ul>
+  </li>
+  <li>Found other datasets online
+    <ul>
+      <li><a href="http://spandh.dcs.shef.ac.uk/gridcorpus/">GRIDcorpus</a></li>
+      <li><a href="http://www.ee.surrey.ac.uk/Projects/LILiR/datasets.html">LILiR (Language-Independent Lip Reading)</a></li>
+      <li><a href="https://www-i6.informatik.rwth-aachen.de/~forster/database-rwth-phoenix.php">RWTH-PHOENIXWeathercorpus</a></li>
+      <li>LipNet - “Lipreading datasets (AVICar, AVLetters, AVLetters2, BBC TV, CUAVE, OuluVS1, OuluVS2) are plentiful (Zhou et al., 2014; Chung &amp; Zisserman, 2016a), but most only contain single words or are too small. One exception is the GRID corpus (Cooke et al., 2006)”</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="discussion-4">Discussion</h3>
+
+<ul>
+  <li>
+    <p>“Deep Learning of Mouth Shapes for Sign Language” trained mouth shapes without the need of mouth features (mouth landmarks, SICAAM, etc.) and achieved better accuracy</p>
+  </li>
+  <li>
+    <p>“LipNet” said “Lipreading with LSTM” and “Lip Reading Sentences in the Wild” are end-to-end trainable</p>
+  </li>
+  <li>
+    <p>LipNet (Nando de Freitas) achieves better accuracy than both, without mouth features or visemes</p>
+  </li>
+  <li>
+    <p>Do we want to improve LipNet instead?</p>
+  </li>
+  <li>
+    <p>“You said that?” (Zisserman) does one-shot learning to generate lip movement on face image live</p>
+  </li>
+</ul>
+
+<h3 id="to-do-4">TO DO</h3>
+
+<ul>
+  <li>
+    <p>Size of dataset</p>
+  </li>
+  <li>
+    <p>Pose estimation</p>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="2017-06-17">2017-06-17</h2>
+
+<h3 id="completed-3">Completed</h3>
+
+<ul>
+  <li>Acquired videos and subtitles for:</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: right">Sl</th>
+      <th style="text-align: left">Name</th>
+      <th style="text-align: right">Hours</th>
+      <th style="text-align: right">Words</th>
+      <th style="text-align: left">Accent</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: right">1</td>
+      <td style="text-align: left">Arrested Development</td>
+      <td style="text-align: right">25</td>
+      <td style="text-align: right">270593</td>
+      <td style="text-align: left">American</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">2</td>
+      <td style="text-align: left">Big Bang Theory</td>
+      <td style="text-align: right">81</td>
+      <td style="text-align: right">600410</td>
+      <td style="text-align: left">American</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">3</td>
+      <td style="text-align: left">Blackadder</td>
+      <td style="text-align: right">11</td>
+      <td style="text-align: right">89264</td>
+      <td style="text-align: left">British</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">4</td>
+      <td style="text-align: left">Black Mirror</td>
+      <td style="text-align: right">5</td>
+      <td style="text-align: right">28726</td>
+      <td style="text-align: left">British</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">5</td>
+      <td style="text-align: left">Breaking bad</td>
+      <td style="text-align: right">48</td>
+      <td style="text-align: right">208152</td>
+      <td style="text-align: left">American</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">6</td>
+      <td style="text-align: left">Community</td>
+      <td style="text-align: right">38</td>
+      <td style="text-align: right">332828</td>
+      <td style="text-align: left">American</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">7</td>
+      <td style="text-align: left">Coupling</td>
+      <td style="text-align: right">14</td>
+      <td style="text-align: right">89559</td>
+      <td style="text-align: left">British</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">8</td>
+      <td style="text-align: left">Daredevil</td>
+      <td style="text-align: right">26</td>
+      <td style="text-align: right">118013</td>
+      <td style="text-align: left">American</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">9</td>
+      <td style="text-align: left">Dexter</td>
+      <td style="text-align: right">96</td>
+      <td style="text-align: right">480590</td>
+      <td style="text-align: left">American</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">10</td>
+      <td style="text-align: left">Doctor Who</td>
+      <td style="text-align: right">98</td>
+      <td style="text-align: right">652497</td>
+      <td style="text-align: left">British</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">11</td>
+      <td style="text-align: left">F.R.I.E.N.D.S</td>
+      <td style="text-align: right">78</td>
+      <td style="text-align: right">567046</td>
+      <td style="text-align: left">American</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">12</td>
+      <td style="text-align: left">Game of Thrones</td>
+      <td style="text-align: right">60</td>
+      <td style="text-align: right">261992</td>
+      <td style="text-align: left">British</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">13</td>
+      <td style="text-align: left">House M.D.</td>
+      <td style="text-align: right">130</td>
+      <td style="text-align: right">876822</td>
+      <td style="text-align: left">American</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">14</td>
+      <td style="text-align: left">House of Cards</td>
+      <td style="text-align: right">51</td>
+      <td style="text-align: right">283397</td>
+      <td style="text-align: left">American</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">15</td>
+      <td style="text-align: left">How I Met Your Mother</td>
+      <td style="text-align: right">72</td>
+      <td style="text-align: right">599478</td>
+      <td style="text-align: left">American</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">16</td>
+      <td style="text-align: left">Jeeves &amp; Wooster</td>
+      <td style="text-align: right">20</td>
+      <td style="text-align: right">115564</td>
+      <td style="text-align: left">British</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">17</td>
+      <td style="text-align: left">Modern Family</td>
+      <td style="text-align: right">70</td>
+      <td style="text-align: right">681871</td>
+      <td style="text-align: left">American</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">18</td>
+      <td style="text-align: left">Sherlock Holmes (old)</td>
+      <td style="text-align: right">37</td>
+      <td style="text-align: right">196394</td>
+      <td style="text-align: left">British</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">19</td>
+      <td style="text-align: left">Suits</td>
+      <td style="text-align: right">64</td>
+      <td style="text-align: right">283397</td>
+      <td style="text-align: left">American</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">20</td>
+      <td style="text-align: left">Two And Half Men</td>
+      <td style="text-align: right">86</td>
+      <td style="text-align: right">625624</td>
+      <td style="text-align: left">American</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Total number of hours collected: 1110  
+Total number of words in subtitles: ~7,362,000
+</code></pre></div></div>
+
+<ul>
+  <li>Read papers and watched videos on Weak Supervision
+    <ul>
+      <li><a href="https://www.youtube.com/watch?v=HzwpHf7O8IA">003. Learning Object Detectors From Weakly Supervised Image Data - Kate Saenko</a></li>
+      <li><a href="https://www.ijcai.org/Proceedings/16/Papers/523.pdf">Weakly-Supervised Deep Learning for Customer Review Sentiment Classification</a></li>
+      <li><a href="http://www.cv-foundation.org/openaccess/content_cvpr_2016/papers/Durand_WELDON_Weakly_Supervised_CVPR_2016_paper.pdf">WELDON: Weakly Supervised Learning of Deep Convolutional Neural Networks</a></li>
+      <li><a href="https://pdfs.semanticscholar.org/8db1/cb761adb114fb0e1c722dff3179c496dc760.pdf?_ga=2.43365861.1570143410.1497644619-1496838668.1497644619">Read My Lips: Continuous Signer Independent Weakly Supervised Viseme Recognition</a></li>
+      <li><a href="http://www.cv-foundation.org/openaccess/content_iccv_2015_workshops/w12/papers/Koller_Deep_Learning_of_ICCV_2015_paper.pdf">Deep Learning of Mouth Shapes for Sign Language</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="discussion-5">Discussion</h3>
+
+<ul>
+  <li>Workflow:
+    <ol>
+      <li>Subtitle -&gt; Viseme (CNN?)</li>
+      <li>Detect face(s) -&gt; Detect mouth (SICAAM) landmarks -&gt; CNN -&gt; Viseme</li>
+      <li>Viseme -&gt; Subtitle (HMM? RNN?)</li>
+    </ol>
+  </li>
+  <li>
+    <p>Weak supervision in the problem?</p>
+  </li>
+  <li>
+    <p>Kyunyun Cho - end-to-end alignment &amp; translation: <a href="https://arxiv.org/pdf/1409.0473.pdf">NEURAL MACHINE TRANSLATION BY JOINTLY LEARNING TO ALIGN AND TRANSLATE</a></p>
+  </li>
+  <li>Mouth pose - use as an additional feature on Abhishek’s problem</li>
+</ul>
+
+<h3 id="to-be-done">To be done</h3>
+
+<ul>
+  <li>To acquire more data?</li>
+  <li>
+    <p>To figure out Weak Supervision (by reading papers)</p>
+  </li>
+  <li>To read:
+    <ul>
+      <li><a href="https://arxiv.org/pdf/1704.06913.pdf">Learning weakly supervised multimodal phoneme embeddings</a></li>
+      <li><a href="https://arxiv.org/pdf/1506.03648.pdf">Constrained Convolutional Neural Networks for Weakly Supervised Segmentation</a></li>
+      <li><a href="https://arxiv.org/pdf/1703.04105.pdf">Combining Residual Networks with LSTMs for Lipreading</a></li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="2017-06-10">2017-06-10</h2>
+
+<h3 id="completed-4">Completed</h3>
+
+<ul>
+  <li>Acquired videos and subtitles for:</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: right">Sl</th>
+      <th style="text-align: left">Name</th>
+      <th style="text-align: right">Hours</th>
+      <th style="text-align: right">Words</th>
+      <th style="text-align: left">Accent</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: right">1</td>
+      <td style="text-align: left">Arrested Development</td>
+      <td style="text-align: right">25</td>
+      <td style="text-align: right">270593</td>
+      <td style="text-align: left">American</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">2</td>
+      <td style="text-align: left">Big Bang Theory</td>
+      <td style="text-align: right">81</td>
+      <td style="text-align: right">600410</td>
+      <td style="text-align: left">American</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">3</td>
+      <td style="text-align: left">Blackadder</td>
+      <td style="text-align: right">11</td>
+      <td style="text-align: right">89264</td>
+      <td style="text-align: left">British</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">4</td>
+      <td style="text-align: left">Black Mirror</td>
+      <td style="text-align: right">5</td>
+      <td style="text-align: right">28726</td>
+      <td style="text-align: left">British</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">5</td>
+      <td style="text-align: left">Breaking bad</td>
+      <td style="text-align: right">48</td>
+      <td style="text-align: right">208152</td>
+      <td style="text-align: left">American</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">6</td>
+      <td style="text-align: left">Community</td>
+      <td style="text-align: right">38</td>
+      <td style="text-align: right">332828</td>
+      <td style="text-align: left">American</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">7</td>
+      <td style="text-align: left">Coupling</td>
+      <td style="text-align: right">14</td>
+      <td style="text-align: right">89559</td>
+      <td style="text-align: left">British</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">8</td>
+      <td style="text-align: left">Daredevil</td>
+      <td style="text-align: right">26</td>
+      <td style="text-align: right">118013</td>
+      <td style="text-align: left">American</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">9</td>
+      <td style="text-align: left">Dexter</td>
+      <td style="text-align: right">96</td>
+      <td style="text-align: right">480590</td>
+      <td style="text-align: left">American</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">10</td>
+      <td style="text-align: left">Doctor Who</td>
+      <td style="text-align: right">98</td>
+      <td style="text-align: right">652497</td>
+      <td style="text-align: left">British</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">11</td>
+      <td style="text-align: left">F.R.I.E.N.D.S</td>
+      <td style="text-align: right">78</td>
+      <td style="text-align: right">567046</td>
+      <td style="text-align: left">American</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">12</td>
+      <td style="text-align: left">House M.D.</td>
+      <td style="text-align: right">130</td>
+      <td style="text-align: right">876822</td>
+      <td style="text-align: left">American</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">13</td>
+      <td style="text-align: left">How I Met Your Mother</td>
+      <td style="text-align: right">72</td>
+      <td style="text-align: right">599478</td>
+      <td style="text-align: left">American</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">14</td>
+      <td style="text-align: left">Jeeves &amp; Wooster</td>
+      <td style="text-align: right">20</td>
+      <td style="text-align: right">115564</td>
+      <td style="text-align: left">British</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">15</td>
+      <td style="text-align: left">Modern Family</td>
+      <td style="text-align: right">70</td>
+      <td style="text-align: right">681871</td>
+      <td style="text-align: left">American</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">16</td>
+      <td style="text-align: left">Sherlock Holmes (old)</td>
+      <td style="text-align: right">37</td>
+      <td style="text-align: right">196394</td>
+      <td style="text-align: left">British</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Total number of hours collected: 849</p>
+
+<p>Total number of words in subtitles: ~5,907,000</p>
+
+<p>Target number of hours = More than 1000</p>
+
+<ul>
+  <li>Read papers and watched videos on Weak Supervision
+    <ul>
+      <li><a href="https://www.cs.toronto.edu/~urtasun/publications/xu_etal_cvpr15.pdf">Learning to Segment Under Various Forms of Weak Supervision</a></li>
+      <li><a href="http://thoth.inrialpes.fr/workshop/thoth2016/slides/cord.pdf">Presentation: Deep learning and weak supervision for image classification</a></li>
+      <li><a href="https://www.youtube.com/watch?v=XcFM9tMjePw">Hannaneh Hajishirzi - Learning with Weak Supervision</a></li>
+      <li><a href="https://www.youtube.com/watch?v=HzwpHf7O8IA">Learning Object Detectors From Weakly Supervised Image Data - Kate Saenko</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="to-be-done-1">To be done</h3>
+
+<ul>
+  <li>
+    <p>To acquire more data - at least 1000 hours</p>
+  </li>
+  <li>
+    <p>To figure out Weak Supervision (by reading papers)</p>
+  </li>
+  <li>
+    <p>To read:</p>
+    <ul>
+      <li><a href="https://arxiv.org/pdf/1506.03648.pdf">Constrained Convolutional Neural Networks for Weakly Supervised Segmentation</a></li>
+      <li><a href="https://arxiv.org/pdf/1703.04105.pdf">Combining Residual Networks with LSTMs for Lipreading</a></li>
+      <li><a href="http://www.cv-foundation.org/openaccess/content_cvpr_2016/papers/Durand_WELDON_Weakly_Supervised_CVPR_2016_paper.pdf">WELDON: Weakly Supervised Learning of Deep Convolutional Neural Networks</a></li>
+      <li><a href="https://www.ijcai.org/Proceedings/16/Papers/523.pdf">Weakly-Supervised Deep Learning for Customer Review Sentiment Classification</a></li>
+      <li><a href="https://arxiv.org/pdf/1704.08803.pdf">Neural Ranking Models with Weak Supervision</a></li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="previously-read">PREVIOUSLY READ</h2>
+
+<h3 id="lip-reading">Lip Reading</h3>
+<ul>
+  <li><a href="https://www.robots.ox.ac.uk/~vgg/publications/2016/Chung16/chung16.pdf">Lip Reading in the Wild</a></li>
+  <li><a href="https://arxiv.org/pdf/1611.05358.pdf">Lip Reading Sentences in the Wild</a></li>
+</ul>
+
+<h3 id="weak-supervision">Weak Supervision</h3>
+<ul>
+  <li><a href="https://arxiv.org/pdf/1505.06027.pdf">Weakly-Supervised Alignment of Video With Text</a></li>
+</ul>
+
+<h3 id="others">Others</h3>
+<ul>
+  <li><a href="http://karpathy.github.io/2015/05/21/rnn-effectiveness/">The Unreasonable Effectiveness of Recurrent Neural Networks</a></li>
+  <li><a href="http://preon.iiit.ac.in/summerschool/lab3.html">IIIT Summer school 2016 Lab</a></li>
+</ul>

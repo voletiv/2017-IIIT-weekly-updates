@@ -1,0 +1,61 @@
+<link rel="stylesheet" href="../css/weeklyUpdates.css">
+
+<h2 id="20170902">2017-09-02</h2>
+
+<hr />
+
+<h3 id="lipreader">Lip Reader</h3>
+
+<ul>
+<li>Lip Reader with Masking and Reverse-Sequence of frames input to LSTM: Train - 92%, Val - 85%, SI - 24%</li>
+</ul>
+
+<a href="20170902_training.html">Training graphs</a>
+
+<hr />
+
+<h3 id="critic">Critic</h3>
+
+<ul>
+<li><p>Critic - taking only video input and a predicted word</p></li>
+
+<li><p>Training with top-3 predicted words from best lip reader</p></li>
+
+<li><p>Accuracies: Train - 64.4%, Val - 64.5%, SI - 66.7%</p></li>
+
+<a href="20170902_training.html">Training graphs</a>
+
+<li><p>ROC curve and Precision-Recall curve:</p></li>
+</ul>
+
+<p><img src="20170902/C3DCritic-l1f4-l2f4-l3f4-fc1n4-vid16-OHWord51-OHWordFc16-out64-Adam-1e-03-GRIDcorpus-s0107-09-ROC-PR-epoch016.png" alt="alt text" title="Frame" /></p>
+
+<p class="fig">Figure 1: ROC curve and precision-recall curve for one set of weights of critic (at epoch number 16). The 'X' marks are at the values for threshold=0.5.</p>
+
+<ul>
+<li>Accuracies vs Threshold:</li>
+</ul>
+
+<p><img src="20170902/C3DCritic-l1f4-l2f4-l3f4-fc1n4-vid16-OHWord51-OHWordFc16-out64-Adam-1e-03-GRIDcorpus-s0107-09-ROC-PR-acc-epoch016.png" alt="alt text" title="Frame" /></p>
+
+<p>Figure 2: Accuracy of Critic with different values of threshold over the critic's scores.</p>
+
+<hr />
+
+<h3 id="discussion">DISCUSSION</h3>
+
+<ul>
+<li><p>Baseline Accuracy vs Threshold from softmax scores of LR</p></li>
+
+<li><p>Only use critic in a region - when LR is dicey. If LR is very sure, ignore critic.</p></li>
+
+<li><p>Additional information to Critic - fraction of scaling up or down the mouth image</p></li>
+
+<li><p>Use case: self-learning?</p></li>
+
+<li><p>Use LR x Critic on very few data</p></li>
+
+<li><p>Train fusion</p></li>
+</ul>
+
+<hr />

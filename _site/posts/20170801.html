@@ -1,0 +1,64 @@
+<link rel="stylesheet" href="../css/weeklyUpdates.css">
+
+<h2 id="20170801">2017-08-01</h2>
+
+<h3 id="experimentswithmouthalignment">Experiments with Mouth Alignment</h3>
+
+<ul>
+<li><p>GRIDcorpus with/without mouth alignment</p></li>
+
+<li><p>GRIDcorpus with/without mean subtraction</p></li>
+
+<li><p>GRIDcorpus critic for LipReader</p></li>
+</ul>
+
+<p>1) GRIDcorpus with mouth alignment and with mean subtraction : 1-SimpleSeq2Seq-h256-depth2-Adam-5e-04-GRIDcorpus-s0107-ss0909-meanSub-tAlign-vAlign-epoch031-tl0.1218-ta0.9174-vl0.3024-va0.8788</p>
+
+<p><img src="20170801/SimpleSeq2Seq-h256-depth2-Adam-5e-04-GRIDcorpus-s0107-ss0909-meanSub-tAlign-vAlignplotAcc.png" alt="alt text" title="Frame" />
+<img src="20170801/SimpleSeq2Seq-h256-depth2-Adam-5e-04-GRIDcorpus-s0107-ss0909-meanSub-tAlign-vAlignplotLosses.png" alt="alt text" title="Frame" /></p>
+
+<p>2) GRIDcorpus without mouth alignment and with mean subtraction : 2-SimpleSeq2Seq-h256-depth2-Adam-5e-04-GRIDcorpus-s0107-s0909-meanSub-tMouth-vMouth-epoch066-tl0.1344-ta0.9269-vl0.3941-va0.8688</p>
+
+<p><img src="20170801/SimpleSeq2Seq-h256-depth2-Adam-5e-04-GRIDcorpus-s0107-s0909-meanSub-tMouth-vMouth-plotAcc.png" alt="alt text" title="Frame" />
+<img src="20170801/SimpleSeq2Seq-h256-depth2-Adam-5e-04-GRIDcorpus-s0107-s0909-meanSub-tMouth-vMouth-plotLosses.png" alt="alt text" title="Frame" /></p>
+
+<p>3) GRIDcorpus with mouth alignment and with mean subtraction : 7-SimpleSeq2Seq-h256-depth2-Adam-5e-04-GRIDcorpus-s0107-s0909-NOmeanSub-tAlign-vAlign-epoch044-tl0.1238-ta0.9002-vl0.3443-va0.8547</p>
+
+<p><img src="20170801/SimpleSeq2Seq-h256-depth2-Adam-5e-04-GRIDcorpus-s0107-ss0909-meanSub-tAlign-vAlignplotAcc.png" alt="alt text" title="Frame" />
+<img src="20170801/SimpleSeq2Seq-h256-depth2-Adam-5e-04-GRIDcorpus-s0107-ss0909-meanSub-tAlign-vAlignplotLosses.png" alt="alt text" title="Frame" /></p>
+
+<p>4) GRIDcorpus without mouth alignment and with mean subtraction : 6-SimpleSeq2Seq-h256-depth2-Adam-5e-04-GRIDcorpus-s0107-s0909-NOmeanSub-tMouth-vMouth-epoch045-tl0.1856-ta0.8806-vl0.4035-va0.8271.hdf5</p>
+
+<p><img src="20170801/SimpleSeq2Seq-h256-depth2-Adam-5e-04-GRIDcorpus-s0107-s0909-meanSub-tMouth-vMouth-plotAcc.png" alt="alt text" title="Frame" />
+<img src="20170801/SimpleSeq2Seq-h256-depth2-Adam-5e-04-GRIDcorpus-s0107-s0909-meanSub-tMouth-vMouth-plotLosses.png" alt="alt text" title="Frame" /></p>
+
+<h3 id="experimentswithcritic">Experiments with Critic</h3>
+
+<ul>
+<li>Used Conv3D, with Slow fusion for video (14 frames per word)</li>
+
+<li>Concatenated word as 1 feature, to x-dimensional video feature</li>
+</ul>
+
+<p>1) 5-C3DCritic-l1f4-l2f4-l3f8-fc1n8-vid8-oHn16-Adam-1e-04-GRIDcorpus-s0107-s0909-meanSub-tMouth-vMouth</p>
+
+<p><img src="20170801/C3DCritic-l1f4-l2f4-l3f8-fc1n8-vid8-oHn16-Adam-1e-04-GRIDcorpus-s0107-s0909-meanSub-tMouth-vMouth-plotAcc.png" alt="alt text" title="Frame" />
+<img src="20170801/C3DCritic-l1f4-l2f4-l3f8-fc1n8-vid8-oHn16-Adam-1e-04-GRIDcorpus-s0107-s0909-meanSub-tMouth-vMouth-plotLosses.png" alt="alt text" title="Frame" /></p>
+
+<p>2) 8-C3DCritic-l1f4-l2f4-l3f4-fc1n4-vid4-oHn4-Adam-1e-04-GRIDcorpus-s0107-s0909-NOmeanSub-tAlign-vAlign</p>
+
+<p><img src="20170801/C3DCritic-l1f4-l2f4-l3f4-fc1n4-vid4-oHn4-Adam-1e-04-GRIDcorpus-s0107-s0909-NOmeanSub-tAlign-vAlign-plotAcc.png" alt="alt text" title="Frame" />
+<img src="20170801/C3DCritic-l1f4-l2f4-l3f4-fc1n4-vid4-oHn4-Adam-1e-04-GRIDcorpus-s0107-s0909-NOmeanSub-tAlign-vAlign-plotLosses.png" alt="alt text" title="Frame" /></p>
+
+<h3 id="wrongexperiments">WRONG Experiments</h3>
+
+<ul>
+<li>Spent lot of time taking input erroneously</li>
+</ul>
+
+<p>1) Example of wrong dataset input (conducted 21 experiments with varying model)</p>
+
+<p><img src="20170801/plotAcc.png" alt="alt text" title="Frame" />
+<img src="20170801/plotLosses.png" alt="alt text" title="Frame" /></p>
+
+<hr />

@@ -1,0 +1,170 @@
+<link rel="stylesheet" href="../css/weeklyUpdates.css">
+
+<h2 id="20170805">2017-08-05</h2>
+
+<hr />
+
+<h3 id="observations">OBSERVATIONS</h3>
+
+<ul>
+<li><p>In both speaker-dependent and speaker-independent cases, validation accuracy does not change much with/without face alignment.</p></li>
+
+<li><p>Training on unaligned images gives best accuracies in all cases.</p></li>
+
+<li><p>Mean subtraction gives better results for speaker-dependent tasks, but worse results for speaker-independent tasks</p></li>
+</ul>
+
+<h3 id="conclusion-1">CONCLUSION</h3>
+
+<ul>
+<li><p>It is advisable to not align face, i.e. to not use pose information while training for lipreading</p></li>
+
+<li><p>It is also advisable to not subtract mean image of training images, since using the same mean image on speaker-independent tasks leads to worse accuracies, although for speaker-dependent tasks, it leads to better accuracies.</p></li>
+</ul>
+
+<hr />
+
+<h3>Comparison of accuracies with mean-subtraction and mouth alignment</h3>
+
+<h4 id="speakerdependentvalidationaccuracies">Speaker-dependent test accuracies</h4>
+
+<ul>
+<li><p>Accuracies in paper: <a href="https://arxiv.org/pdf/1601.08188.pdf">LIPREADING WITH LONG SHORT-TERM MEMORY</a>:</p>
+
+<ul>
+<li>Speaker-dependent accuracy - 79.4%, Speaker-independent accuracy - 79.6%</li></ul></li>
+</ul>
+
+<table>
+  <tr style="font-weight: bold">
+    <th>Mean subtraction</th>
+    <th>Train</th>
+    <th>Test</th>
+    <th>Accuracy</th>
+  </tr>
+  <tr>
+    <td style="font-weight: bold">NO</td>
+    <td>unaligned</td>
+    <td>unaligned</td>
+    <td>85.13%</td>
+  </tr>
+  <tr>
+    <td style="font-weight: bold"></td>
+    <td>unaligned</td>
+    <td>aligned</td>
+    <td>83.43%</td>
+  </tr>
+  <tr>
+    <td style="font-weight: bold"></td>
+    <td>aligned</td>
+    <td>unaligned</td>
+    <td>78.58%</td>
+  </tr>
+  <tr>
+    <td style="font-weight: bold"></td>
+    <td>aligned</td>
+    <td>aligned</td>
+    <td>83.72%</td>
+  </tr>
+  <tr>
+    <td style="font-weight: bold">YES</td>
+    <td>unaligned</td>
+    <td>unaligned</td>
+    <td>86.94%</td>
+  </tr>
+  <tr>
+    <td style="font-weight: bold"></td>
+    <td>unaligned</td>
+    <td>aligned</td>
+    <td>84.65%</td>
+  </tr>
+  <tr>
+    <td style="font-weight: bold"></td>
+    <td>aligned</td>
+    <td>unaligned</td>
+    <td>78.44%</td>
+  </tr>
+  <tr>
+    <td style="font-weight: bold"></td>
+    <td>aligned</td>
+    <td>aligned</td>
+    <td>87.46%</td>
+  </tr>
+</table>
+
+<h4 id="speakerindependentvalidationaccuracies">Speaker-independent test accuracies</h4>
+
+<table>
+  <tr style="font-weight: bold">
+    <th>Mean subtraction</th>
+    <th>Train</th>
+    <th>Test</th>
+    <th>Accuracy</th>
+  </tr>
+  <tr>
+    <td style="font-weight: bold">NO</td>
+    <td>unaligned</td>
+    <td>unaligned</td>
+    <td>62.73%</td>
+  </tr>
+  <tr>
+    <td style="font-weight: bold"></td>
+    <td>unaligned</td>
+    <td>aligned</td>
+    <td>65.22%</td>
+  </tr>
+  <tr>
+    <td style="font-weight: bold"></td>
+    <td>aligned</td>
+    <td>unaligned</td>
+    <td>61.30%</td>
+  </tr>
+  <tr>
+    <td style="font-weight: bold"></td>
+    <td>aligned</td>
+    <td>aligned</td>
+    <td>64.69%</td>
+  </tr>
+  <tr>
+    <td style="font-weight: bold">YES</td>
+    <td>unaligned</td>
+    <td>unaligned</td>
+    <td>58.47%</td>
+  </tr>
+  <tr>
+    <td style="font-weight: bold"></td>
+    <td>unaligned</td>
+    <td>aligned</td>
+    <td>60.24%</td>
+  </tr>
+  <tr>
+    <td style="font-weight: bold"></td>
+    <td>aligned</td>
+    <td>unaligned</td>
+    <td>56.2%</td>
+  </tr>
+  <tr>
+    <td style="font-weight: bold"></td>
+    <td>aligned</td>
+    <td>aligned</td>
+    <td>57.59%</td>
+  </tr>
+</table>
+
+<hr />
+
+<h3 id="speakerdependentvalidationaccuracies">Graphs</h3>
+
+<p><img src="20170805/Un-vs-Aligned-TrainAccuracy.png" alt="alt text" title="Frame" /></p>
+
+<ul>
+<li>Figure 1: Training accuracy vs Epoch, for models trained on a) unaligned faces, b) aligned faces, c) unaligned faces subtracted by mean image, d) aligned faces subtracted by mean image</li>
+</ul>
+
+<p><img src="20170805/Un-vs-Aligned-ValAccuracy.png" alt="alt text" title="Frame" /></p>
+
+<ul>
+<li>Figure 2: Validation accuracy vs Epoch, for models trained on a) unaligned faces, b) aligned faces, c) unaligned faces subtracted by mean image, d) aligned faces subtracted by mean image</li>
+</ul>
+
+<hr />

@@ -1,0 +1,97 @@
+<link rel="stylesheet" href="../css/weeklyUpdates.css">
+
+<h2 id="20170826">2017-08-26</h2>
+
+<ul>
+
+<li><p>Changed output to only softmax of words vocabulary</p>
+<ul><li>Accuracy is now calculated as word-accuracy</li></ul>
+</li>
+
+<li>
+<p>Accuracies in paper: <a href="https://arxiv.org/pdf/1601.08188.pdf">LIPREADING WITH LONG SHORT-TERM MEMORY</a>:</p>
+<ul>
+    <li>Speaker-dependent accuracy - 79.4%; Speaker-independent accuracy - 79.6%</li>
+</ul>
+</li>
+</ul>
+
+<ul>
+<li><p>Without taking critic into account, trainAccuracy = 87%, valAccuracy = 81%, speakerIndependentAccuracy = 32%</p></li>
+
+<li><p>Only considering those critic said right, trainAccuracy - 89% , valAccuracy - 83% , speakerIndependentAccuracy - 32.5%</p></li>
+
+<li><p>Among those critic said wrong, % actually wrong: train 54% , val 68% , speakerIndependent 89%</p>
+
+<ul>
+<li><p>Train: tP=36119, fP=837, fN=4309, tN=975</p>
+
+<table>
+  <tr style="font-weight: bold">
+    <th>CRITIC</th>
+    <th>Actually true</th>
+    <th>Actually false</th>
+  </tr>
+  <tr>
+    <td style="font-weight: bold">Critic predicted true</td>
+    <td>36119</td>
+    <td>837</td>
+  </tr>
+  <tr>
+    <td style="font-weight: bold">Critic predicted false</td>
+    <td>4309</td>
+    <td>975</td>
+  </tr>
+</table>
+
+</li>
+<li><p>Val: tP=3676, fP=61, fN=743, tN=128</p>
+
+<table>
+  <tr style="font-weight: bold">
+    <th>CRITIC</th>
+    <th>Actually true</th>
+    <th>Actually false</th>
+  </tr>
+  <tr>
+    <td style="font-weight: bold">Critic predicted true</td>
+    <td>3676</td>
+    <td>61</td>
+  </tr>
+  <tr>
+    <td style="font-weight: bold">Critic predicted false</td>
+    <td>743</td>
+    <td>1197</td>
+  </tr>
+</table>
+
+</li>
+</ul>
+</li>
+</ul>
+
+<hr />
+
+<h3 id="discussion-1">Discussion</h3>
+
+<ul>
+<li><p><a href="https://arxiv.org/pdf/1708.01565.pdf">Improving Speaker-Independent Lipreading with Domain-Adversarial Training - IDSIA</a></p>
+
+<ul>
+<li>Baseline accuracies correspond with our current results</li></ul></li>
+
+<li><p>What can the assessor do?</p></li>
+
+<li><p>Motivation for Assessor/Critic:</p>
+
+<ul>
+<li>What makes the critic better than the lipReader itself?</li>
+
+<li>Eg. If Critic has access to Natural Language Model, THAT will help it perform better than the lipReader</li></ul></li>
+
+<li><p>Reject class in deep learning</p></li>
+
+<li><p>Speech recognition vs Lip Reading - where does lip reading supercede speech recognition? What does a "noisy" environment mean?</p></li>
+</ul>
+
+<hr />

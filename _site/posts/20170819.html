@@ -1,0 +1,81 @@
+<link rel="stylesheet" href="../css/weeklyUpdates.css">
+
+<h2 id="20170819">2017-08-19</h2>
+
+<hr />
+
+<h3 id="comparing1or2wordlayers1or2outputlayers">Comparing 1 or 2 word layers &amp; 1 or 2 output layers</h3>
+
+<p><img src="20170819/29to32-losses-1to2enc-1to2outHidden.png" alt="alt text" title="Frame" /></p>
+
+<p class="fig">Figure 1. Comparing 1 or 2 word layers</p>
+
+<ul>
+<li>As can be seen, it is better to have a layer right after inputting the encoded word from lipReader, before concatenating with video features</li>
+</ul>
+
+<hr />
+
+<h3 id="comparingencwordonehotwordonehotwordfc10enconehotword">Comparing enc, word, one-hot word, one-hot word + fc10, enc + one-hot word</h3>
+
+<ul>
+<li>For this experiment, no negative samples were generated; only the predictions (positive or negative) from the LipReader were considered.</li>
+</ul>
+
+<p><img src="20170819/35to39-losses-onlyLRPreds-enc-word-OHW-OHWhid-encOHW-encHidOHWHid.png" alt="alt text" title="Frame" /></p>
+
+<p class="fig">Figure 2. Comparing enc, word, one-hot word, one-hot word + fc10, enc + one-hot word</p>
+
+<ul>
+<li><p>Inputting one-hot encoded word is better than the word itself</p></li>
+
+<li><p>Inputting intermediate layer vector from LipReader + one-hot encoded predicted word seems to work the best</p></li>
+</ul>
+
+<hr />
+
+<h3 id="precisionrecall">Precision, Recall</h3>
+
+<ul>
+<li><p>Considering the best LipReader and Critic (so far):</p>
+
+<ul>
+<li>LSTMLipReaderModel.load_weights(os.path.join(saveDir, "LSTM-h256-depth2-LSTMactivtanh-enc64-encodedActivsigmoid-Adam-1e-03-GRIDcorpus-s0107-s0909-tMouth-vMouth-NOmeanSub-epoch099-tl0.3307-ta0.8417-vl0.3782-va0.8304.hdf5"))</li>
+
+<li>criticModelWithWordFeatures.load_weights(os.path.join(saveDir, "C3DCritic-l1f8-l2f16-l3f32-fc1n64-vid64-enc64-oHn64-Adam-1e-04-GRIDcorpus-s0107-s0909-tMouth-vMouth-NOmeanSub-epoch007-tl0.3004-ta0.8631-vl0.4015-va0.8022.hdf5"))</li></ul></li>
+
+<li><p>trainPrecision: Precision of the critic on the training data, i.e. among its results on the training data, in how many cases is the critic able to correctly tell if the output of the LipReader is correct or not</p></li>
+
+<li><p>totalTrainPrecision = 0.86, meanTrainPrecision = 0.55 (Better to take a weighted mean instead?)</p></li>
+
+<li><p>totalTrainRecall = 0.58, meanTrainRecall = 0.33</p></li>
+
+<li><p>totalValPrecision = 0.83, meanValPrecision = 0.90</p></li>
+
+<li><p>totalValRecall = 0.58, meanValRecall = 0.98</p></li>
+</ul>
+
+<hr />
+
+<h3 id="summary">SUMMARY</h3>
+
+<ul>
+<li><p>Accuracies in paper: <a href="https://arxiv.org/pdf/1601.08188.pdf">LIPREADING WITH LONG SHORT-TERM MEMORY</a>:</p>
+
+<ul>
+<li>Speaker-dependent accuracy - 79.4%</li>
+
+<li>Speaker-independent accuracy - 79.6%</li></ul></li>
+
+<li><p>Using LipReader "LSTM-h256-depth2-LSTMactivtanh-enc64-encodedActivsigmoid-Adam-1e-03-GRIDcorpus-s0107-s0909-tMouth-vMouth-NOmeanSub-epoch099-tl0.3307-ta0.8417-vl0.3782-va0.8304.hdf5"</p>
+
+<ul>
+<li>Speaker-dependent: Training accuracy - 84.17%, Validation accuracy - 83.04%</li>
+
+<li>Speaker-independent accuracy - 62%</li></ul></li>
+
+<li><p>Read <a href="https://www.robots.ox.ac.uk/~vgg/publications/2012/Jammalamadaka12a/jammalamadaka12a.pdf">Has My Algorithm Succeeded?
+An Evaluator for Human Pose Estimators</a> for reference on Evaluators/Critics/Assessors</p></li>
+</ul>
+
+<hr />

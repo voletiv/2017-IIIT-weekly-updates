@@ -1,0 +1,63 @@
+<link rel="stylesheet" href="../css/weeklyUpdates.css">
+
+<h2 id="20170805">2017-11-24</h2>
+
+<hr />
+
+<h3 id="observations">2. EXPERIMENTS WITH LSTM_ASSESSOR</h3>
+
+&nbsp
+
+<p><a href="20171117/LSTM_Assessor.png"><img src="20171117/LSTM_Assessor.png" alt="NOT FOUND" title="Frame"/></a></p>
+
+<p class='fig'>Figure 2: Architecture of LSTM_Assessor, with inputs - mouth images, head poses, number of frames, lipreader dense output, lipreader softmax output</p>
+
+&nbsp
+
+<p><a href="20171117/CNN_in_LSTM_Assessor.png"><img src="20171124/CNN_in_LSTM_Assessor.png" alt="NOT FOUND" title="Frame"/></a></p>
+
+<p class='fig'>Figure 3: Architecture of CNN in LSTM_Assessor</p>
+
+&nbsp
+
+<p class='fig'>Table 2: LSTM_Assessor</p>
+
+<table>
+  <tr style="font-weight: bold">
+    <th>#</th>
+    <th>Configuration</th>
+    <th>Loss, Accuuracy</th>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td width="300">conv32_conv64_conv128_mouth512_lstm32_fc128_fc64_denseNOTreg_adam</td>
+    <td height="300" width="500"><a href="2_assessor_classweighted_cnn_1conv32_2conv64_3conv128_mouth512_lstm32_1fc512_2fc128_denseNOTreg_adam_plots_loss_acc.png"><img src="20171124/2_assessor_classweighted_cnn_1conv32_2conv64_3conv128_mouth512_lstm32_1fc512_2fc128_denseNOTreg_adam_plots_loss_acc.png" alt="NOT FOUND" title="Frame"/></a></td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>(increasing fc nodes)<br/><br/>conv32_conv64_conv128_mouth512_lstm32_fc512_fc128_denseNOTreg_adam</td>
+    <td height="300"><a href="20171124/3_assessor_cnn_1conv32_2conv64_3conv128_mouth512_lstm32_1fc512_2fc128_denseNOTreg_adam_plots_loss_acc.png"><img src="20171124/3_assessor_cnn_1conv32_2conv64_3conv128_mouth512_lstm32_1fc512_2fc128_denseNOTreg_adam_plots_loss_acc.png" alt="NOT FOUND" title="Frame"/></a></td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>(Same fc nodes as 2, with kernel_reg)<br/><br/>conv32_conv64_conv128_mouth512_lstm32_fc128_fc64_adam</td>
+    <td height="300"><a href="20171124/4_assessor_cnn_1conv32_2conv64_3conv128_mouth512_lstm32_1fc128_2fc64_adam_plots_loss_acc.png"><img src="20171124/4_assessor_cnn_1conv32_2conv64_3conv128_mouth512_lstm32_1fc128_2fc64_adam_plots_loss_acc.png" alt="NOT FOUND" title="Frame"/></a></td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>(decreasing CNN filters)<br/><br/>conv16_conv32_conv64_mouth512_lstm32_fc128_fc64_adam</td>
+    <td height="300"><a href="20171124/5_assessor_cnn_1conv16_2conv32_3conv64_mouth512_lstm32_1fc128_2fc64_adam_plots_loss_acc.png"><img src="20171124/5_assessor_cnn_1conv16_2conv32_3conv64_mouth512_lstm32_1fc128_2fc64_adam_plots_loss_acc.png" alt="NOT FOUND" title="Frame"/></a></td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td>(decreasing fc nodes)<br/><br/>conv16_conv32_conv64_mouth512_lstm32_fc64_fc16_adam</td>
+    <td height="300"><a href="20171124/6_assessor_cnn_1conv16_2conv32_3conv64_mouth512_lstm32_1fc64_2fc16_adam_plots_loss_acc.png"><img src="20171124/6_assessor_cnn_1conv16_2conv32_3conv64_mouth512_lstm32_1fc64_2fc16_adam_plots_loss_acc.png" alt="NOT FOUND" title="Frame"/></a></td>
+  </tr>
+</table>
+
+&nbsp
+
+<ul>
+<li>Heavily overfitting</li>
+<li>Not able to train well when decreasing parameters</li>
+</ul>

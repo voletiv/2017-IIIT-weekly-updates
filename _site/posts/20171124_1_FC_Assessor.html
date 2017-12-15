@@ -1,0 +1,55 @@
+<link rel="stylesheet" href="../css/weeklyUpdates.css">
+
+<h2 id="20170805">2017-11-24</h2>
+
+<hr />
+
+<h3 id="observations">1. EXPERIMENTS WITH FC_ASSESSOR</h3>
+
+&nbsp
+
+<p><a href="20171124/FC_Assessor.png"><img src="20171124/FC_Assessor.png" alt="NOT FOUND" title="Frame"/></a></p>
+
+<p class='fig'>Figure 1: Architecture of FC_Assessor, with inputs - number of frames, lipreader dense output, lipreader softmax output</p>
+
+&nbsp
+
+<p class='fig'>Table 1: FC_Assessor</p>
+
+<table>
+  <tr style="font-weight: bold">
+    <th>#</th>
+    <th>Configuration</th>
+    <th>Loss, Accuuracy</th>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td width="300">fc64_bn_dp0.2_fc32_bn_dp0.2_adam</td>
+    <td height="300" width="500"><a href="20171124/11_assessor_equalClasses_1fc64_bn_dp0.2_2fc32_bn_dp0.2_adam_plots_loss_acc.png"><img src="20171124/11_assessor_equalClasses_1fc64_bn_dp0.2_2fc32_bn_dp0.2_adam_plots_loss_acc.png" alt="NOT FOUND" title="Frame"/></a></td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>(decreasing fc nodes, increasing dropout)<br/><br/>fc32_bn_dp0.5_fc16_bn_dp0.5_adam</td>
+    <td height="300"><a href="20171124/12_assessor_equalClasses_1fc32_bn_dp0.5_2fc16_bn_dp0.5_adam_plots_loss_acc.png"><img src="20171124/12_assessor_equalClasses_1fc32_bn_dp0.5_2fc16_bn_dp0.5_adam_plots_loss_acc.png" alt="NOT FOUND" title="Frame"/></a></td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>(decreasing fc nodes)<br/><br/>fc16_bn_dp0.5_fc16_bn_dp0.5_adam</td>
+    <td height="300"><a href="20171124/14_assessor_equalClasses_1fc16_bn_dp0.5_2fc16_bn_dp0.5_adam_plots_loss_acc.png"><img src="20171124/14_assessor_equalClasses_1fc16_bn_dp0.5_2fc16_bn_dp0.5_adam_plots_loss_acc.png" alt="NOT FOUND" title="Frame"/></a></td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>(decreasing fc nodes)<br/><br/>fc16_bn_dp0.5_fc8_bn_dp0.5_adam</td>
+    <td height="300"><a href="20171124/15_assessor_equalClasses_1fc16_bn_dp0.5_2fc8_bn_dp0.5_adam_plots_loss_acc.png"><img src="20171124/15_assessor_equalClasses_1fc16_bn_dp0.5_2fc8_bn_dp0.5_adam_plots_loss_acc.png" alt="NOT FOUND" title="Frame"/></a></td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td>(Same fc nodes as 3, using SGD instead of Adam)<br/><br/>fc16_bn_dp0.5_fc16_bn_dp0.5_sgd</td>
+    <td height="300"><a href="20171124/17_assessor_equalClasses_1fc16_bn_dp0.5_2fc16_bn_dp0.5_sgd_plots_loss_acc.png"><img src="20171124/17_assessor_equalClasses_1fc16_bn_dp0.5_2fc16_bn_dp0.5_sgd_plots_loss_acc.png" alt="NOT FOUND" title="Frame"/></a></td>
+  </tr>
+</table>
+
+&nbsp
+
+<hr />
+

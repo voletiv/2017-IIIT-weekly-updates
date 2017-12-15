@@ -1,0 +1,98 @@
+<link rel="stylesheet" href="../css/weeklyUpdates.css">
+
+<h2 id="20170811">2017-08-11</h2>
+
+<hr />
+
+<a href="20170811_experiments.html">Experiments with Lipreader architectures</a>
+
+<hr />
+
+<h2 id="summary">SUMMARY</h2>
+
+<ul>
+<li>Accuracies in paper: <a href="https://arxiv.org/pdf/1601.08188.pdf">LIPREADING WITH LONG SHORT-TERM MEMORY</a>:
+
+<ul>
+<li>Speaker-dependent accuracy - 79.4%</li>
+<li>Speaker-independent accuracy - 79.6%</li></ul>
+</li>
+</ul>
+
+<h3 id="completed">COMPLETED</h3>
+
+<ul>
+<li>Re-trained LSTM models (instead of SimpleSeq2Seq by farizrahman4u)</li>
+</ul>
+
+<h4 id="1lstmmodels">1. LSTM MODELS</h4>
+
+<ul>
+<li><p>Tried:</p>
+
+<ul>
+<li>LSTM -> word prediction
+
+
+<ul>
+<li>depth = 2</li>
+
+<li>depth = 3</li></ul>
+</li>
+
+<li>LSTM -> encoding into (64) dimensions -> word prediction</li>
+
+<li>LSTM -> encoding -> decoding via LSTM -> word prediction (similar to SimpleSeq2Seq)</li></ul></li>
+
+<li><p>Reached up to 90% training accuracy, up to 85% validation accuracy, and 62% speaker-independent accuracy</p></li>
+</ul>
+
+<h4 id="2critic">2. CRITIC</h4>
+
+<ul>
+<li><p>Trained Critic using:
+1) predicted word,
+2) 64-dim encoded value</p></li>
+
+<li><p>Critic using predicted word from LSTMLipReader - each video was trained by giving as input:
+1) correct words,
+2) predicted words (80% accuracy),
+3) wrong words</p></li>
+
+<li><p>Critic using encoded value from LSTMLipReader - each video was trained by giving as input:
+        1) predicted words (80% accuracy),
+        2) wrong words</p></li>
+
+<li><p>Using encoded values instead of predicted words does seem to offer some advantage</p></li>
+</ul>
+
+<h4 id="3finetuninglipreadertohindi">3. FINE-TUNING LipReader to HINDI</h4>
+
+<ul>
+<li><p>Retained LSTM weights, replaced the last layer of LipReader models with Dense layers to match the Hindi vocabulary considered</p></li>
+
+<li><p>Tried with:
+1) LSTM -> word prediction,
+2) LSTM -> encoding into (64) dimensions -> word prediction</p></li>
+
+<li><p>Need to find out if graphs are good for progress</p></li>
+</ul>
+
+<hr />
+
+<h3 id="todo-3">TO DO</h3>
+
+<ul>
+<li><p>Applications of Critic: improving precision of lip reader, semi-supervised setting, to pin-point top out of top-5 predictions</p></li>
+
+<li><p>Read papers on critic-based methods</p>
+
+<ul>
+<li>Dhanraj - Has my algorithm succeeded? ECCV 2012</li>
+
+<li>Deric Hoyem - ICCV 2013</li></ul></li>
+
+<li><p>Sanskrit phonemes for Indic language lip reading</p></li>
+</ul>
+
+<hr />

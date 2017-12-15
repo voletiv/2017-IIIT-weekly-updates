@@ -1,0 +1,44 @@
+<link rel="stylesheet" href="../css/weeklyUpdates.css">
+
+<title>20171117</title>
+
+<hr />
+
+<h2 id="20171117">2017-11-17</h2>
+
+<h3 id="lstmassessor">LSTM Assessor</h3>
+
+<p><a href="20171117/LSTM_Assessor.png"><img src="20171117/LSTM_Assessor.png" alt="NOT FOUND" title="Frame" /></a></p>
+
+<p class='fig'>Figure 1: Architecture of LSTM_Assessor, with inputs - mouth images, head pose, number of frames, lipreader dense output, lipreader softmax output</p>
+
+<h3 id="preliminary">Preliminary result</h3>
+
+<p><a href="20171117/1_assessor_cnn_adam_PR_curve_LRW_val.png"><img src="20171117/1_assessor_cnn_adam_PR_curve_LRW_val.png" alt="NOT FOUND" title="Frame" /></a></p>
+
+<p class='fig'>Figure 2: Comparison of P@K vs R@K till K=50, averaged across words</p>
+
+<h3 id="todo">TO DO:</h3>
+
+<ul>
+<li><p>Try different configurations of CNN, LSTM, FC units</li></p>
+
+<li><p>Compare P@K and R@K of lipreader preds and those filtered by LSTM assessor</li></p>
+</ul>
+
+<hr />
+
+<h3 id="summary">SUMMARY</h3>
+
+<ul>
+<li><p>Designed and setup LSTM assessor</p>
+
+<ul>
+<li>Incorporated inputs: mouth images, head pose, number of frames, lipreader dense output, lipreader softmax output</li>
+
+<li>Assessor: using CNN or resnet</li>
+
+<li>Set up generator for training</li></ul></li>
+
+<li><p>Attended t-hub Hackathon - won SMS classification challenge with Tarun Kalluri</p></li>
+</ul>
