@@ -1,0 +1,158 @@
+<link rel="stylesheet" href="../css/weeklyUpdates.css">
+
+<h2 id="20170805">2017-12-23</h2>
+
+<hr />
+
+<h3 id="observations">1. EXPERIMENTS WITH SYNCNET_ASSESSOR</h3>
+
+&nbsp
+
+<p><a href="20171202/SyncNet_Assessor.png"><img src="20171202/SyncNet_Assessor.png" alt="NOT FOUND" title="Frame"/></a></p>
+
+<p class='fig'>Figure 1: Assessor using Syncnet to make features out of mouth videos</p>
+
+&nbsp
+
+<h4>Best results using Syncnet_Assessor:</h4>
+
+<p>
+<a href="20171223/36_assessor_equalClasses_syncnetPreds_headPose_lstm4_nOfFrames_LRdense_fc4_LRsoftmax_fc4_LRsoftmaxRatios_1fc8_bn_dp0.5_2fc4_bn_dp0.5_adam_lr0.001_lrDecay0.001_P@K_vs_R@K_LRW_test_thresh0.5.png"><img src="20171223/36_assessor_equalClasses_syncnetPreds_headPose_lstm4_nOfFrames_LRdense_fc4_LRsoftmax_fc4_LRsoftmaxRatios_1fc8_bn_dp0.5_2fc4_bn_dp0.5_adam_lr0.001_lrDecay0.001_P@K_vs_R@K_LRW_test_thresh0.5.png" alt="IMAGE NOT FOUND!" title="Frame" /></a>
+<a href="20171223/36_assessor_equalClasses_syncnetPreds_headPose_lstm4_nOfFrames_LRdense_fc4_LRsoftmax_fc4_LRsoftmaxRatios_1fc8_bn_dp0.5_2fc4_bn_dp0.5_adam_lr0.001_lrDecay0.001_ROC_thresh0.5.png"><img src="20171223/36_assessor_equalClasses_syncnetPreds_headPose_lstm4_nOfFrames_LRdense_fc4_LRsoftmax_fc4_LRsoftmaxRatios_1fc8_bn_dp0.5_2fc4_bn_dp0.5_adam_lr0.001_lrDecay0.001_ROC_thresh0.5.png" alt="IMAGE NOT FOUND!" title="Frame" /></a>
+</p>
+
+
+<ul>
+<li><p><em>Inputs</em>: predictions from syncnet, head pose, number of frames, lipreader_middle_layer_output, lipreader_softmax_output, ratio of softmaxs</p></li>
+<li><p>Training on 50 samples per word in LRW_val, testing on 50 samples per word in LRW_test</p></li>
+</ul>
+
+&nbsp
+
+<p class='fig'>Table 1: LSTM_Assessor</p>
+
+<table>
+
+  <tr style="font-weight: bold">
+    <th>#</th>
+    <th>Configuration</th>
+    <th>Architecture</th>
+    <th>Loss, Accuracy</th>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td width="100"><textarea cols="50" wrap="hard">syncnetPreds_headPose_lstm8_nOfFrames_LRdense_fc8_LRsoftmax_fc8_LRsoftmaxRatios_1fc8_bn_dp0.5_2fc8_bn_dp0.5</textarea></td>
+    <td width="300"><a href="20171223/33_assessor_equalClasses_syncnetPreds_headPose_lstm8_nOfFrames_LRdense_fc8_LRsoftmax_fc8_LRsoftmaxRatios_1fc8_bn_dp0.5_2fc8_bn_dp0.5_adam_lr0.0005_lrDecay0.001.png"><img src="20171223/33_assessor_equalClasses_syncnetPreds_headPose_lstm8_nOfFrames_LRdense_fc8_LRsoftmax_fc8_LRsoftmaxRatios_1fc8_bn_dp0.5_2fc8_bn_dp0.5_adam_lr0.0005_lrDecay0.001.png" alt="NOT FOUND" title="Frame"/></a></td>
+    <td height="300" width="500"><a href="20171223/33_assessor_equalClasses_syncnetPreds_headPose_lstm8_nOfFrames_LRdense_fc8_LRsoftmax_fc8_LRsoftmaxRatios_1fc8_bn_dp0.5_2fc8_bn_dp0.5_adam_lr0.0005_lrDecay0.001_plots_loss_acc.png"><img src="20171223/33_assessor_equalClasses_syncnetPreds_headPose_lstm8_nOfFrames_LRdense_fc8_LRsoftmax_fc8_LRsoftmaxRatios_1fc8_bn_dp0.5_2fc8_bn_dp0.5_adam_lr0.0005_lrDecay0.001_plots_loss_acc.png" alt="NOT FOUND" title="Frame"/></a></td>
+  </tr>
+  <tr>
+    <td>1.1</td>
+    <td width="100">FINETUNE</td>
+    <td width="300"></td>
+    <td height="300" width="500"><a href="20171223/33_assessor_FINETUNE_equalClasses_syncnetPreds_headPose_lstm8_nOfFrames_LRdense_fc8_LRsoftmax_fc8_LRsoftmaxRatios_1fc8_bn_dp0.5_2fc8_bn_dp0.5_adam_lr0.0001_lrDecay0.01_plots_loss_acc.png"><img src="20171223/33_assessor_FINETUNE_equalClasses_syncnetPreds_headPose_lstm8_nOfFrames_LRdense_fc8_LRsoftmax_fc8_LRsoftmaxRatios_1fc8_bn_dp0.5_2fc8_bn_dp0.5_adam_lr0.0001_lrDecay0.01_plots_loss_acc.png" alt="NOT FOUND" title="Frame"/></a></td>
+  </tr>
+
+  <tr>
+    <td>2</td>
+    <td width="100">+ Residual connection, not trainable at first</td>
+    <td width="300"><a href="20171223/35_assessor_equalClasses_syncnetPreds_headPose_lstm8_nOfFrames_LRdense_fc8_LRsoftmax_fc8_LRsoftmaxRatios_1fc8_bn_dp0.5_2fc4_bn_dp0.5_adam_lr0.001_lrDecay0.001.png"><img src="20171223/35_assessor_equalClasses_syncnetPreds_headPose_lstm8_nOfFrames_LRdense_fc8_LRsoftmax_fc8_LRsoftmaxRatios_1fc8_bn_dp0.5_2fc4_bn_dp0.5_adam_lr0.001_lrDecay0.001.png" alt="NOT FOUND" title="Frame"/></a></td>
+    <td height="300" width="500"><a href="20171223/35_assessor_equalClasses_syncnetPreds_headPose_lstm8_nOfFrames_LRdense_fc8_LRsoftmax_fc8_LRsoftmaxRatios_1fc8_bn_dp0.5_2fc4_bn_dp0.5_adam_lr0.001_lrDecay0.001_plots_loss_acc.png"><img src="20171223/35_assessor_equalClasses_syncnetPreds_headPose_lstm8_nOfFrames_LRdense_fc8_LRsoftmax_fc8_LRsoftmaxRatios_1fc8_bn_dp0.5_2fc4_bn_dp0.5_adam_lr0.001_lrDecay0.001_plots_loss_acc.png" alt="NOT FOUND" title="Frame"/></a></td>
+  </tr>
+  <tr>
+    <td>2.1</td>
+    <td width="100">FINETUNE - training with residual</td>
+    <td width="300"></td>
+    <td height="300" width="500"><a href="20171223/35_assessor_FINETUNE_equalClasses_syncnetPreds_headPose_lstm8_nOfFrames_LRdense_fc8_LRsoftmax_fc8_LRsoftmaxRatios_1fc8_bn_dp0.5_2fc4_bn_dp0.5_adam_lr1e-07_lrDecay0.001_plots_loss_acc.png"><img src="20171223/35_assessor_FINETUNE_equalClasses_syncnetPreds_headPose_lstm8_nOfFrames_LRdense_fc8_LRsoftmax_fc8_LRsoftmaxRatios_1fc8_bn_dp0.5_2fc4_bn_dp0.5_adam_lr1e-07_lrDecay0.001_plots_loss_acc.png" alt="NOT FOUND" title="Frame"/></a></td>
+  </tr>
+
+  <tr>
+    <td>3</td>
+    <td width="100">Lesser params, without residual part</td>
+    <td width="300"><a href="20171223/36_assessor_equalClasses_syncnetPreds_headPose_lstm4_nOfFrames_LRdense_fc4_LRsoftmax_fc4_LRsoftmaxRatios_1fc8_bn_dp0.5_2fc4_bn_dp0.5_adam_lr0.001_lrDecay0.001.png"><img src="20171223/36_assessor_equalClasses_syncnetPreds_headPose_lstm4_nOfFrames_LRdense_fc4_LRsoftmax_fc4_LRsoftmaxRatios_1fc8_bn_dp0.5_2fc4_bn_dp0.5_adam_lr0.001_lrDecay0.001.png" alt="NOT FOUND" title="Frame"/></a></td>
+    <td height="300" width="500"><a href="20171223/36_assessor_equalClasses_syncnetPreds_headPose_lstm4_nOfFrames_LRdense_fc4_LRsoftmax_fc4_LRsoftmaxRatios_1fc8_bn_dp0.5_2fc4_bn_dp0.5_adam_lr0.001_lrDecay0.001_plots_loss_acc.png"><img src="20171223/36_assessor_equalClasses_syncnetPreds_headPose_lstm4_nOfFrames_LRdense_fc4_LRsoftmax_fc4_LRsoftmaxRatios_1fc8_bn_dp0.5_2fc4_bn_dp0.5_adam_lr0.001_lrDecay0.001_plots_loss_acc.png" alt="NOT FOUND" title="Frame"/></a></td>
+  </tr>
+
+  <tr>
+    <td>4</td>
+    <td width="100">Lesser LR, more decay</td>
+    <td width="300"><a href="20171223/40_assessor_equalClasses_syncnetPreds_headPose_lstm4_nOfFrames_LRdense_fc4_LRsoftmax_fc4_LRsoftmaxRatios_1fc8_bn_dp0.5_2fc4_bn_dp0.5_adam_lr0.001_lrDecay0.png"><img src="20171223/40_assessor_equalClasses_syncnetPreds_headPose_lstm4_nOfFrames_LRdense_fc4_LRsoftmax_fc4_LRsoftmaxRatios_1fc8_bn_dp0.5_2fc4_bn_dp0.5_adam_lr0.001_lrDecay0.png" alt="NOT FOUND" title="Frame"/></a></td>
+    <td height="300" width="500"><a href="20171223/40_assessor_equalClasses_syncnetPreds_headPose_lstm4_nOfFrames_LRdense_fc4_LRsoftmax_fc4_LRsoftmaxRatios_1fc8_bn_dp0.5_2fc4_bn_dp0.5_adam_lr0.001_lrDecay0_plots_loss_acc.png"><img src="20171223/40_assessor_equalClasses_syncnetPreds_headPose_lstm4_nOfFrames_LRdense_fc4_LRsoftmax_fc4_LRsoftmaxRatios_1fc8_bn_dp0.5_2fc4_bn_dp0.5_adam_lr0.001_lrDecay0_plots_loss_acc.png" alt="NOT FOUND" title="Frame"/></a></td>
+  </tr>
+
+  <tr>
+    <td>5</td>
+    <td width="100">Even Lesser params</td>
+    <td width="300"><a href="20171223/41_assessor_equalClasses_syncnetPreds_headPose_lstm2_nOfFrames_LRdense_fc2_LRsoftmax_fc2_LRsoftmaxRatios_1fc4_bn_dp0.5_2fc2_bn_dp0.5_adam_lr0.001_lrDecay0.png"><img src="20171223/41_assessor_equalClasses_syncnetPreds_headPose_lstm2_nOfFrames_LRdense_fc2_LRsoftmax_fc2_LRsoftmaxRatios_1fc4_bn_dp0.5_2fc2_bn_dp0.5_adam_lr0.001_lrDecay0.png" alt="NOT FOUND" title="Frame"/></a></td>
+    <td height="300" width="500"><a href="20171223/41_assessor_equalClasses_syncnetPreds_headPose_lstm2_nOfFrames_LRdense_fc2_LRsoftmax_fc2_LRsoftmaxRatios_1fc4_bn_dp0.5_2fc2_bn_dp0.5_adam_lr0.001_lrDecay0_plots_loss_acc.png"><img src="20171223/41_assessor_equalClasses_syncnetPreds_headPose_lstm2_nOfFrames_LRdense_fc2_LRsoftmax_fc2_LRsoftmaxRatios_1fc4_bn_dp0.5_2fc2_bn_dp0.5_adam_lr0.001_lrDecay0_plots_loss_acc.png" alt="NOT FOUND" title="Frame"/></a></td>
+  </tr>
+
+  <tr>
+    <td>6</td>
+    <td width="100">With end-to-end trainable residual</td>
+    <td width="300"><a href="20171223/43_assessor_equalClasses_syncnetPreds_headPose_lstm8_nOfFrames_LRdense_fc8_LRsoftmax_fc8_LRsoftmaxRatios_1fc8_bn_dp0.5_2fc4_bn_dp0.5_adam_lr0.001_lrDecay0.png"><img src="20171223/43_assessor_equalClasses_syncnetPreds_headPose_lstm8_nOfFrames_LRdense_fc8_LRsoftmax_fc8_LRsoftmaxRatios_1fc8_bn_dp0.5_2fc4_bn_dp0.5_adam_lr0.001_lrDecay0.png" alt="NOT FOUND" title="Frame"/></a></td>
+    <td height="300" width="500"><a href="20171223/43_assessor_equalClasses_syncnetPreds_headPose_lstm8_nOfFrames_LRdense_fc8_LRsoftmax_fc8_LRsoftmaxRatios_1fc8_bn_dp0.5_2fc4_bn_dp0.5_adam_lr0.001_lrDecay0_plots_loss_acc.png"><img src="20171223/43_assessor_equalClasses_syncnetPreds_headPose_lstm8_nOfFrames_LRdense_fc8_LRsoftmax_fc8_LRsoftmaxRatios_1fc8_bn_dp0.5_2fc4_bn_dp0.5_adam_lr0.001_lrDecay0_plots_loss_acc.png" alt="NOT FOUND" title="Frame"/></a></td>
+  </tr>
+
+  <tr>
+    <td>7</td>
+    <td width="100">Syncnet frozen, random_crop and random_flip images</td>
+    <td width="300"><a href="20171223/28_assessor_equalClasses_syncnetUntrainable_headPose_lstm8_nOfFrames_LRdense_fc8_LRsoftmax_fc8_LRsoftmaxRatios_1fc8_bn_dp0.2_2fc16_bn_dp0.2_adam_lr0.001_lrDecay0.001.png"><img src="20171223/28_assessor_equalClasses_syncnetUntrainable_headPose_lstm8_nOfFrames_LRdense_fc8_LRsoftmax_fc8_LRsoftmaxRatios_1fc8_bn_dp0.2_2fc16_bn_dp0.2_adam_lr0.001_lrDecay0.001.png" alt="NOT FOUND" title="Frame"/></a></td>
+    <td height="300" width="500"><a href="20171223/28_assessor_equalClasses_syncnetUntrainable_headPose_lstm8_nOfFrames_LRdense_fc8_LRsoftmax_fc8_LRsoftmaxRatios_1fc8_bn_dp0.2_2fc16_bn_dp0.2_adam_lr0.001_lrDecay0.001_plots_loss_acc.png"><img src="20171223/28_assessor_equalClasses_syncnetUntrainable_headPose_lstm8_nOfFrames_LRdense_fc8_LRsoftmax_fc8_LRsoftmaxRatios_1fc8_bn_dp0.2_2fc16_bn_dp0.2_adam_lr0.001_lrDecay0.001_plots_loss_acc.png" alt="NOT FOUND" title="Frame"/></a></td>
+  </tr>
+  <tr>
+    <td>7.1</td>
+    <td width="100">FINETUNE - unfreezing Syncnet, training with very low LR</td>
+    <td width="300"></td>
+    <td height="300" width="500"><a href="20171223/28_assessor_badFINETUNE_equalClasses_syncnetUntrainable_headPose_lstm8_nOfFrames_LRdense_fc8_LRsoftmax_fc8_LRsoftmaxRatios_1fc8_bn_dp0.2_2fc16_bn_dp0.2_adam_lr0.001_lrDecay0.001_plots_loss_acc.png"><img src="20171223/28_assessor_badFINETUNE_equalClasses_syncnetUntrainable_headPose_lstm8_nOfFrames_LRdense_fc8_LRsoftmax_fc8_LRsoftmaxRatios_1fc8_bn_dp0.2_2fc16_bn_dp0.2_adam_lr0.001_lrDecay0.001_plots_loss_acc.png" alt="NOT FOUND" title="Frame"/></a></td>
+  </tr>
+
+</table>
+
+&nbsp
+&nbsp
+
+<p>Tried using more samples in training by borrowing 50 samples per word from LRW_train (in addition to 50 samples per word in LRW_val for training); used 50 samples per word in LRW_test for testing</p>
+
+&nbsp
+
+<table>
+
+  <tr style="font-weight: bold">
+    <th>#</th>
+    <th>Configuration</th>
+    <th>Architecture</th>
+    <th>Loss, Accuracy</th>
+  </tr>
+  <tr>
+    <td>8</td>
+    <td width="100"><textarea cols="50" wrap="hard">syncnetPreds_lstm8_nOfFrames_LRdense_fc8_LRsoftmax_fc8_LRsoftmaxRatios_1fc8_bn_dp0.5_2fc4_bn_dp0.5_residual</textarea></td>
+    <td width="300"><a href="20171223/44_assessor_equalClasses_syncnetPreds_lstm8_nOfFrames_LRdense_fc8_LRsoftmax_fc8_LRsoftmaxRatios_1fc8_bn_dp0.5_2fc4_bn_dp0.5_residual_adam_lr0.001_lrDecay0.png"><img src="20171223/44_assessor_equalClasses_syncnetPreds_lstm8_nOfFrames_LRdense_fc8_LRsoftmax_fc8_LRsoftmaxRatios_1fc8_bn_dp0.5_2fc4_bn_dp0.5_residual_adam_lr0.001_lrDecay0.png" alt="NOT FOUND" title="Frame"/></a></td>
+    <td height="300" width="500"><a href="20171223/44_assessor_equalClasses_syncnetPreds_lstm8_nOfFrames_LRdense_fc8_LRsoftmax_fc8_LRsoftmaxRatios_1fc8_bn_dp0.5_2fc4_bn_dp0.5_residual_adam_lr0.001_lrDecay0_plots_loss_acc.png"><img src="20171223/44_assessor_equalClasses_syncnetPreds_lstm8_nOfFrames_LRdense_fc8_LRsoftmax_fc8_LRsoftmaxRatios_1fc8_bn_dp0.5_2fc4_bn_dp0.5_residual_adam_lr0.001_lrDecay0_plots_loss_acc.png" alt="NOT FOUND" title="Frame"/></a></td>
+  </tr>
+
+</table>
+
+&nbsp
+&nbsp
+
+<p> Tried using default samples (had been sampling equal number of samples of positive and negative classes)</p>
+
+&nbsp
+
+<table>
+
+  <tr style="font-weight: bold">
+    <th>#</th>
+    <th>Configuration</th>
+    <th>Architecture</th>
+    <th>Loss, Accuracy</th>
+  </tr>
+  <tr>
+    <td>9</td>
+    <td width="100"><textarea cols="50" wrap="hard">syncnetPreds_lstm8_nOfFrames_LRdense_fc8_LRsoftmax_fc8_LRsoftmaxRatios_1fc8_bn_dp0.5_2fc4_bn_dp0.5_residual</textarea></td>
+    <td width="300"><a href="20171223/45_assessor_syncnetPreds_lstm8_nOfFrames_LRdense_fc8_LRsoftmax_fc8_LRsoftmaxRatios_1fc8_bn_dp0.5_2fc4_bn_dp0.5_residual_adam_lr0.001_lrDecay0.png"><img src="20171223/45_assessor_syncnetPreds_lstm8_nOfFrames_LRdense_fc8_LRsoftmax_fc8_LRsoftmaxRatios_1fc8_bn_dp0.5_2fc4_bn_dp0.5_residual_adam_lr0.001_lrDecay0.png" alt="NOT FOUND" title="Frame"/></a></td>
+    <td height="300" width="500"><a href="20171223/45_assessor_syncnetPreds_lstm8_nOfFrames_LRdense_fc8_LRsoftmax_fc8_LRsoftmaxRatios_1fc8_bn_dp0.5_2fc4_bn_dp0.5_residual_adam_lr0.001_lrDecay0_plots_loss_acc.png"><img src="20171223/45_assessor_syncnetPreds_lstm8_nOfFrames_LRdense_fc8_LRsoftmax_fc8_LRsoftmaxRatios_1fc8_bn_dp0.5_2fc4_bn_dp0.5_residual_adam_lr0.001_lrDecay0_plots_loss_acc.png" alt="NOT FOUND" title="Frame"/></a></td>
+  </tr>
+
+
+

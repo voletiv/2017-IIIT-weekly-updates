@@ -1,0 +1,149 @@
+<link rel="stylesheet" href="../css/weeklyUpdates.css">
+
+<h2 id="20170805">2017-12-23</h2>
+
+<hr />
+
+<h3 id="observations">2. EXPERIMENTS WITH CLASSICAL METHODS</h3>
+
+&nbsp
+
+<h3>1. Best results using Random Forests:</h4>
+
+<ul>
+<li><p><em>Inputs</em>: predictions from syncnet, number of frames, lipreader_middle_layer_output, lipreader_softmax_output, ratio of softmaxs</p></li>
+<li><p>Training on mix of LRW_val and LRW_test, with 0.1 test split</p></li>
+</ul>
+
+<p>
+<a href="20171223/Best_RF/RF100_full_testSplit0.1_P@K_vs_R@K_LRW_test_thresh0.5.png"><img src="20171223/Best_RF/RF100_full_testSplit0.1_P@K_vs_R@K_LRW_test_thresh0.5.png" alt="IMAGE NOT FOUND!" title="Frame" /></a>
+<a href="20171223/Best_RF/ND_01_RF_full_testSplit0.1_estimators100_lipreader_avg_precision_test.gif"><img src="20171223/Best_RF/ND_01_RF_full_testSplit0.1_estimators100_lipreader_avg_precision_test.gif" alt="IMAGE NOT FOUND!" title="Frame" /></a>
+</p>
+
+
+<ul>
+<li><p><em>Inputs</em>: predictions from syncnet, head pose, number of frames, lipreader_middle_layer_output, lipreader_softmax_output, ratio of softmaxs</p></li>
+<li><p>Training on 50 samples per word in LRW_val, testing on 50 samples per word in LRW_test</p></li>
+</ul>
+
+&nbsp
+
+<h3>2. Next best results using Random Forests:</h4>
+
+<ul>
+<li><p><em>Inputs</em>: predictions from syncnet, number of frames, lipreader_middle_layer_output, lipreader_softmax_output, ratio of softmaxs</p></li>
+<li><p>Training on mix of LRW_val and LRW_test, with 0.5 test split</p></li>
+</ul>
+
+<p>
+<a href="20171223/Next_best_RF/RF_withSyncnetPreds_full_testSplit0.5_estimators100_P@K_vs_R@K_LRW_test_thresh0.5.png"><img src="20171223/Next_best_RF/RF_withSyncnetPreds_full_testSplit0.5_estimators100_P@K_vs_R@K_LRW_test_thresh0.5.png" alt="IMAGE NOT FOUND!" title="Frame" /></a>
+</p>
+
+
+&nbsp
+
+<p class='fig'>Table 1: Non deep learning methods - best (cheating)</p>
+
+<table>
+
+  <tr style="font-weight: bold">
+    <th>#</th>
+    <th>ML algorithm</th>
+    <th>Train - P@K vs R@K</th>
+    <th>Test - P@K vs R@K</th>
+    <th>PR curve</th>
+    <th>ROC</th>
+  </tr>
+
+  <tr>
+    <td>1</td>
+    <td width="100">Random Forests - best</td>
+    <td width="500"><a href="20171223/Best_RF/ND_01_RF_full_testSplit0.1_estimators100_P@K_vs_R@K_LRW_train_thresh0.5.png"><img src="20171223/Best_RF/ND_01_RF_full_testSplit0.1_estimators100_P@K_vs_R@K_LRW_train_thresh0.5.png" alt="NOT FOUND" title="Frame"/></a></td>
+    <td width="500"><a href="20171223/Best_RF/RF100_full_testSplit0.1_P@K_vs_R@K_LRW_test_thresh0.5.png"><img src="20171223/Best_RF/RF100_full_testSplit0.1_P@K_vs_R@K_LRW_test_thresh0.5.png" alt="NOT FOUND" title="Frame"/></a></td>
+    <td width="400"><a href="20171223/Best_RF/RF100_full_testSplit0.1_PR"><img src="20171223/Best_RF/RF100_full_testSplit0.1_PR.png" alt="NOT FOUND" title="Frame"/></a></td>
+    <td width="400"><a href="20171223/Best_RF/RF100_full_testSplit0.1_ROC_thresh0.5.png"><img src="20171223/Best_RF/RF100_full_testSplit0.1_ROC_thresh0.5.png" alt="NOT FOUND" title="Frame"/></a></td>
+  </tr>
+
+  <tr>
+    <td>2</td>
+    <td width="100">Random Forests - next best</td>
+    <td width="500"><a href="20171223/Next_best_RF/RF_withSyncnetPreds_full_testSplit0.5_estimators100_P@K_vs_R@K_LRW_val_thresh0.5.png"><img src="20171223/Next_best_RF/RF_withSyncnetPreds_full_testSplit0.5_estimators100_P@K_vs_R@K_LRW_val_thresh0.5.png" alt="NOT FOUND" title="Frame"/></a></td>
+    <td width="500"><a href="20171223/Next_best_RF/RF_withSyncnetPreds_full_testSplit0.5_estimators100_P@K_vs_R@K_LRW_test_thresh0.5.png"><img src="20171223/Next_best_RF/RF_withSyncnetPreds_full_testSplit0.5_estimators100_P@K_vs_R@K_LRW_test_thresh0.5.png" alt="NOT FOUND" title="Frame"/></a></td>
+    <td width="400"><a href="20171223/Next_best_RF/RF_withSyncnetPreds_full_testSplit0.5_estimators100_PR.png"><img src="20171223/Next_best_RF/RF_withSyncnetPreds_full_testSplit0.5_estimators100_PR.png" alt="NOT FOUND" title="Frame"/></a></td>
+    <td width="400"><a href="20171223/Next_best_RF/RF_withSyncnetPreds_full_testSplit0.5_estimators100_ROC_thresh0.5.png"><img src="20171223/Next_best_RF/RF_withSyncnetPreds_full_testSplit0.5_estimators100_ROC_thresh0.5.png" alt="NOT FOUND" title="Frame"/></a></td>
+  </tr>
+
+</table>
+
+&nbsp
+<p class='fig'>Table 2: Non deep learning methods</p>
+
+<ul>
+<li><p><em>Inputs</em>: predictions from syncnet, number of frames, lipreader_middle_layer_output, lipreader_softmax_output, ratio of softmaxs</p></li>
+<li><p>Training on LRW_val, testing on LRW_test</p></li>
+</ul>
+
+&nbsp
+
+<table>
+
+  <tr style="font-weight: bold">
+    <th>#</th>
+    <th>ML algorithm</th>
+    <th>Train - P@K vs R@K</th>
+    <th>Test - P@K vs R@K</th>
+    <th>PR curve</th>
+    <th>ROC</th>
+  </tr>
+
+  <tr>
+    <td>1</td>
+    <td width="100">Random Forests</td>
+    <td width="500"><a href="20171223/RF1/RF_defaultTrainTest_estimators100_P@K_vs_R@K_LRW_val_thresh0.5.png"><img src="20171223/RF1/RF_defaultTrainTest_estimators100_P@K_vs_R@K_LRW_val_thresh0.5.png" alt="NOT FOUND" title="Frame"/></a></td>
+    <td width="500"><a href="20171223/RF1/RF_defaultTrainTest_estimators100_P@K_vs_R@K_LRW_test_thresh0.5.png"><img src="20171223/RF1/RF_defaultTrainTest_estimators100_P@K_vs_R@K_LRW_test_thresh0.5.png" alt="NOT FOUND" title="Frame"/></a></td>
+    <td width="400"><a href="20171223/RF1/RF_defaultTrainTest_estimators100_PR.png"><img src="20171223/RF1/RF_defaultTrainTest_estimators100_PR.png" alt="NOT FOUND" title="Frame"/></a></td>
+    <td width="400"><a href="20171223/RF1/RF_defaultTrainTest_estimators100_ROC_thresh0.5.png"><img src="20171223/RF1/RF_defaultTrainTest_estimators100_ROC_thresh0.5.png" alt="NOT FOUND" title="Frame"/></a></td>
+
+  </tr>
+
+  <tr>
+    <td>2</td>
+    <td width="100">Linear Discriminant Analysis</td>
+    <td width="500"><a href="20171223/LDA/LDA_default_priors_P@K_vs_R@K_LRW_train_thresh0.5.png"><img src="20171223/LDA/LDA_default_priors_P@K_vs_R@K_LRW_train_thresh0.5.png" alt="NOT FOUND" title="Frame"/></a></td>
+    <td width="500"><a href="20171223/LDA/LDA_default_priors_P@K_vs_R@K_LRW_test_thresh0.5.png"><img src="20171223/LDA/LDA_default_priors_P@K_vs_R@K_LRW_test_thresh0.5.png" alt="NOT FOUND" title="Frame"/></a></td>
+    <td width="400"><a href="20171223/LDA/LDA_default_priors_PR.png"><img src="20171223/LDA/LDA_default_priors_PR.png" alt="NOT FOUND" title="Frame"/></a></td>
+    <td width="400"><a href="20171223/LDA/LDA_default_priors_ROC_thresh0.5.png"><img src="20171223/LDA/LDA_default_priors_ROC_thresh0.5.png" alt="NOT FOUND" title="Frame"/></a></td>
+  </tr>
+
+  <tr>
+    <td>3</td>
+    <td width="100">Quadratic Discriminant Analysis</td>
+    <td width="500"><a href="20171223/QDA/QDA_default_priors_P@K_vs_R@K_LRW_train_thresh0.5.png"><img src="20171223/QDA/QDA_default_priors_P@K_vs_R@K_LRW_train_thresh0.5.png" alt="NOT FOUND" title="Frame"/></a></td>
+    <td width="500"><a href="20171223/QDA/QDA_default_priors_P@K_vs_R@K_LRW_test_thresh0.5.png"><img src="20171223/QDA/QDA_default_priors_P@K_vs_R@K_LRW_test_thresh0.5.png" alt="NOT FOUND" title="Frame"/></a></td>
+    <td width="400"><a href="20171223/QDA/QDA_default_priors_PR.png"><img src="20171223/QDA/QDA_default_priors_PR.png" alt="NOT FOUND" title="Frame"/></a></td>
+    <td width="400"><a href="20171223/QDA/QDA_default_priors_ROC_thresh0.5.png"><img src="20171223/QDA/QDA_default_priors_ROC_thresh0.5.png" alt="NOT FOUND" title="Frame"/></a></td>
+  </tr>
+
+  <tr>
+    <td>4</td>
+    <td width="100">Gradient boosted trees (XGBoost)</td>
+    <td width="500"><a href="20171223/XGBOOST/XGBOOST_full_testSplit0.1_P@K_vs_R@K_LRW_val_thresh0.5.png"><img src="20171223/XGBOOST/XGBOOST_full_testSplit0.1_P@K_vs_R@K_LRW_val_thresh0.5.png" alt="NOT FOUND" title="Frame"/></a></td>
+    <td width="500"><a href="20171223/XGBOOST/XGBOOST_full_testSplit0.1_P@K_vs_R@K_LRW_test_thresh0.5.png"><img src="20171223/XGBOOST/XGBOOST_full_testSplit0.1_P@K_vs_R@K_LRW_test_thresh0.5.png" alt="NOT FOUND" title="Frame"/></a></td>
+    <td width="400"><a href="20171223/XGBOOST/XGBOOST_full_testSplit0.1_PR.png"><img src="20171223/XGBOOST/XGBOOST_full_testSplit0.1_PR.png" alt="NOT FOUND" title="Frame"/></a></td>
+    <td width="400"><a href="20171223/XGBOOST/XGBOOST_full_testSplit0.1_ROC_thresh0.5.png"><img src="20171223/XGBOOST/XGBOOST_full_testSplit0.1_ROC_thresh0.5.png" alt="NOT FOUND" title="Frame"/></a></td>
+  </tr>
+
+  <tr>
+    <td>5</td>
+    <td width="100">Ensemble of random forests</td>
+    <td width="500"><a href="20171223/RF_ensemble/ENSEMBLE_P@K_vs_R@K_LRW_train_thresh0.5.png"><img src="20171223/RF_ensemble/ENSEMBLE_P@K_vs_R@K_LRW_train_thresh0.5.png" alt="NOT FOUND" title="Frame"/></a></td>
+    <td width="500"><a href="20171223/RF_ensemble/ENSEMBLE_P@K_vs_R@K_LRW_test_thresh0.5.png"><img src="20171223/RF_ensemble/ENSEMBLE_P@K_vs_R@K_LRW_test_thresh0.5.png" alt="NOT FOUND" title="Frame"/></a></td>
+    <td width="400"><a href="20171223/RF_ensemble/ENSEMBLE_PR.png"><img src="20171223/RF_ensemble/ENSEMBLE_PR.png" alt="NOT FOUND" title="Frame"/></a></td>
+    <td width="400"><a href="20171223/RF_ensemble/ENSEMBLE_ROC_thresh0.5.png"><img src="20171223/RF_ensemble/ENSEMBLE_ROC_thresh0.5.png" alt="NOT FOUND" title="Frame"/></a></td>
+  </tr>
+
+
+</table>
+
+&nbsp
+
