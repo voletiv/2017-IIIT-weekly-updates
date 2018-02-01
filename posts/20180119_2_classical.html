@@ -1,0 +1,89 @@
+<link rel="stylesheet" href="../css/weeklyUpdates.css">
+
+<h2 id="20170805">2018-01-19</h2>
+
+<hr />
+
+<h3 id="observations">2. EXPERIMENTS WITH CLASSICAL METHODS</h3>
+
+&nbsp
+
+<p class='fig'>Table 1: RF trained on LRW_train+LRW_val, with correct Syncnet features</p>
+
+<ul>
+<li><p><em>Inputs</em>: features from syncnet, number of frames, lipreader_middle_layer_output, lipreader_softmax_output, ratio of softmaxs</p></li>
+<li><p>Training on LRW_train+LRW_val, testing on LRW_test</p></li>
+</ul>
+
+<table>
+
+  <tr style="font-weight: bold">
+    <th>#</th>
+    <th>ML algorithm</th>
+    <th>Train - P@K vs R@K</th>
+    <th>Test - P@K vs R@K</th>
+    <th>PR curve</th>
+    <th>ROC</th>
+  </tr>
+
+  <tr>
+    <td>1</td>
+    <td width="100">Random Forests - 0.5</td>
+    <td width="500"><a href="20180119/RF_200_all/RF_with200trainSamples_thresh0.5_P@K_vs_R@K_LRW_train_thresh0.5.png"><img src="20180119/RF_200_all/RF_with200trainSamples_thresh0.5_P@K_vs_R@K_LRW_train_thresh0.5.png" alt="NOT FOUND" title="Frame"/></a></td>
+    <td width="500"><a href="20180119/RF_200_all/RF_with200trainSamples_thresh0.5_P@K_vs_R@K_LRW_test_thresh0.5.png"><img src="20180119/RF_200_all/RF_with200trainSamples_thresh0.5_P@K_vs_R@K_LRW_test_thresh0.5.png" alt="NOT FOUND" title="Frame"/></a></td>
+    <td width="400"><a href="20180119/RF_200_all/RF_with200trainSamples_thresh0.5_PR.png"><img src="20180119/RF_200_all/RF_with200trainSamples_thresh0.5_PR.png" alt="NOT FOUND" title="Frame"/></a></td>
+    <td width="400"><a href="20180119/RF_200_all/RF_with200trainSamples_thresh0.5_ROC_thresh0.5.png"><img src="20180119/RF_200_all/RF_with200trainSamples_thresh0.5_ROC_thresh0.5.png" alt="NOT FOUND" title="Frame"/></a></td>
+  </tr>
+
+  <tr>
+    <td>2</td>
+    <td width="100">Random Forests - 0.7</td>
+    <td width="500"><a href="20180119/RF_200_all/RF_with200trainSamples_thresh0.7_P@K_vs_R@K_LRW_train_thresh0.7.png"><img src="20180119/RF_200_all/RF_with200trainSamples_thresh0.7_P@K_vs_R@K_LRW_train_thresh0.7.png" alt="NOT FOUND" title="Frame"/></a></td>
+    <td width="500"><a href="20180119/RF_200_all/RF_with200trainSamples_thresh0.7_P@K_vs_R@K_LRW_test_thresh0.7.png"><img src="20180119/RF_200_all/RF_with200trainSamples_thresh0.7_P@K_vs_R@K_LRW_test_thresh0.7.png" alt="NOT FOUND" title="Frame"/></a></td>
+    <td width="400"><a href="20180119/RF_200_all/RF_with200trainSamples_thresh0.7_PR.png"><img src="20180119/RF_200_all/RF_with200trainSamples_thresh0.7_PR.png" alt="NOT FOUND" title="Frame"/></a></td>
+    <td width="400"><a href="20180119/RF_200_all/RF_with200trainSamples_thresh0.7_ROC_thresh0.7.png"><img src="20180119/RF_200_all/RF_with200trainSamples_thresh0.7_ROC_thresh0.7.png" alt="NOT FOUND" title="Frame"/></a></td>
+  </tr>
+
+  <tr>
+    <td>3</td>
+    <td width="100">Random Forests - 0.8</td>
+    <td width="500"><a href="20180119/RF_200_all/RF_with200trainSamples_thresh0.8_P@K_vs_R@K_LRW_train_thresh0.8.png"><img src="20180119/RF_200_all/RF_with200trainSamples_thresh0.8_P@K_vs_R@K_LRW_train_thresh0.8.png" alt="NOT FOUND" title="Frame"/></a></td>
+    <td width="500"><a href="20180119/RF_200_all/RF_with200trainSamples_thresh0.8_P@K_vs_R@K_LRW_test_thresh0.8.png"><img src="20180119/RF_200_all/RF_with200trainSamples_thresh0.8_P@K_vs_R@K_LRW_test_thresh0.8.png" alt="NOT FOUND" title="Frame"/></a></td>
+    <td width="400"><a href="20180119/RF_200_all/RF_with200trainSamples_thresh0.8_PR.png"><img src="20180119/RF_200_all/RF_with200trainSamples_thresh0.8_PR.png" alt="NOT FOUND" title="Frame"/></a></td>
+    <td width="400"><a href="20180119/RF_200_all/RF_with200trainSamples_thresh0.8_ROC_thresh0.8.png"><img src="20180119/RF_200_all/RF_with200trainSamples_thresh0.8_ROC_thresh0.8.png" alt="NOT FOUND" title="Frame"/></a></td>
+  </tr>
+
+</table>
+
+&nbsp
+
+&nbsp
+
+<p class='fig'>Table 2: RF trained on LRW_val, with correct Syncnet features</p>
+
+<ul>
+<li><p><em>Inputs</em>: features from syncnet, number of frames, lipreader_middle_layer_output, lipreader_softmax_output, ratio of softmaxs</p></li>
+<li><p>Training on LRW_val, testing on LRW_test</p></li>
+</ul>
+
+<table>
+
+  <tr>
+    <td>1</td>
+    <td width="100">Random Forests - 0.7</td>
+    <td width="500"><a href="20180119/RF_withCorrectSyncnet_withoutLRWtrain_estimators100/RF_withCorrectSyncnet_withoutLRWtrain_estimators100_P@K_vs_R@K_LRW_train_thresh0.7.png"><img src="20180119/RF_withCorrectSyncnet_withoutLRWtrain_estimators100/RF_withCorrectSyncnet_withoutLRWtrain_estimators100_P@K_vs_R@K_LRW_train_thresh0.7.png" alt="NOT FOUND" title="Frame"/></a></td>
+    <td width="500"><a href="20180119/RF_withCorrectSyncnet_withoutLRWtrain_estimators100/RF_withCorrectSyncnet_withoutLRWtrain_estimators100_P@K_vs_R@K_LRW_test_thresh0.7.png"><img src="20180119/RF_withCorrectSyncnet_withoutLRWtrain_estimators100/RF_withCorrectSyncnet_withoutLRWtrain_estimators100_P@K_vs_R@K_LRW_test_thresh0.7.png" alt="NOT FOUND" title="Frame"/></a></td>
+    <td width="400"><a href="20180119/RF_withCorrectSyncnet_withoutLRWtrain_estimators100/RF_withCorrectSyncnet_withoutLRWtrain_estimators100_PR.png"><img src="20180119/RF_withCorrectSyncnet_withoutLRWtrain_estimators100/RF_withCorrectSyncnet_withoutLRWtrain_estimators100_PR.png" alt="NOT FOUND" title="Frame"/></a></td>
+    <td width="400"><a href="20180119/RF_withCorrectSyncnet_withoutLRWtrain_estimators100/RF_withCorrectSyncnet_withoutLRWtrain_estimators100_ROC_thresh0.7.png"><img src="20180119/RF_withCorrectSyncnet_withoutLRWtrain_estimators100/RF_withCorrectSyncnet_withoutLRWtrain_estimators100_ROC_thresh0.7.png" alt="NOT FOUND" title="Frame"/></a></td>
+  </tr>
+
+</table>
+
+&nbsp
+
+&nbsp
+
+
+&nbsp
+&nbsp
+
