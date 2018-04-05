@@ -1,0 +1,75 @@
+<link rel="stylesheet" href="../css/weeklyUpdates.css">
+
+<h2 id="20170315">2018-03-15</h2>
+
+<hr />
+
+<p><a href="20180223/Movie_Translation.png"><img src="20180223/Movie_Translation.png" alt="NOT FOUND" title="Frame"/></a></p>
+
+<ul>
+<li> Dataset [<a href="https://drive.google.com/open?id=1NGMqzicU0JsCsmErCtr4DrnaV4rKgyRU">structure</a>]: Collected videos of dialogues for English, Hindi, Telugu - 2-6 seconds per video, 150-200 videos per actor, 2-3 actors per language [<a href="https://drive.google.com/open?id=1_plJTx3GsW4sw7SHXTfjCcpX7GX2yTwN">txt</a>]</li>
+</ul>
+
+<hr />
+
+<h3> Mahesh Babu </h3>
+
+Using <a href=https://github.com/voletiv/DeepLearningImplementations>this</a> Pix2Pix.
+
+<table>
+
+  <tr style="font-weight: bold">
+    <th>#</th>
+    <th>Experiment</th>
+    <th>Val output</th>
+    <th>Losses</th>
+  </tr>
+
+  <tr>
+    <td>1</td>
+    <td width="100"><textarea cols="50" wrap="hard">batch_size = 2</textarea></td>
+    <td height="300" width="500"><a href="20180315/Exp1/1520525495_Mahesh_Babu_black_mouth_polygons_current_batch_validation.png"><img src="20180315/Exp1/1520525495_Mahesh_Babu_black_mouth_polygons_current_batch_validation.png" alt="NOT FOUND" title="Frame"/></a></td>  
+    <td height="300" width="500"><a href="20180315/Exp1/1520525495_Mahesh_Babu_black_mouth_polygons_losses.png"><img src="20180315/Exp1/1520525495_Mahesh_Babu_black_mouth_polygons_losses.png" alt="NOT FOUND" title="Frame"/></a></td>
+  </tr>
+
+  <tr>
+    <td>2</td>
+    <td width="100"><textarea cols="50" wrap="hard">batch_size = 8</textarea></td>
+    <td height="300" width="500"><a href="20180315/Exp2/20180313_193233_Mahesh_Babu_black_mouth_polygons_current_batch_validation.png"><img src="20180315/Exp2/20180313_193233_Mahesh_Babu_black_mouth_polygons_current_batch_validation.png" alt="NOT FOUND" title="Frame"/></a></td>  
+    <td height="300" width="500"><a href="20180315/Exp2/20180313_193233_Mahesh_Babu_black_mouth_polygons_losses.png"><img src="20180315/Exp2/20180313_193233_Mahesh_Babu_black_mouth_polygons_losses.png" alt="NOT FOUND" title="Frame"/></a></td>
+  </tr>
+
+  <tr>
+    <td>3</td>
+    <td width="100"><textarea cols="50" wrap="hard">batch_size = 8, weighted_reconstruction_loss, label_smoothing, random_label_flipping (0.1), Minibatch Discrimination</textarea></td>
+    <td height="300" width="500"><a href="20180315/Exp3/20180314_152941_Mahesh_Babu_black_mouth_polygons_current_batch_validation.png"><img src="20180315/Exp3/20180314_152941_Mahesh_Babu_black_mouth_polygons_current_batch_validation.png" alt="NOT FOUND" title="Frame"/></a></td>  
+    <td height="300" width="500"><a href="20180315/Exp3/20180314_152941_Mahesh_Babu_black_mouth_polygons_losses.png"><img src="20180315/Exp3/20180314_152941_Mahesh_Babu_black_mouth_polygons_losses.png" alt="NOT FOUND" title="Frame"/></a></td>
+  </tr>
+
+</table>
+
+
+<hr />
+
+<ul>
+
+<li>Idea: Train on LRW, fine-tune on Indian_Movie_Translation dataset</li>
+
+</ul>
+
+<hr />
+
+<h4> Dataset Collection - automated pipeline: (put on hold) </h4>
+
+<p><a href="20180223/Data_collection_pipeline.png"><img src="20180223/Data_collection_pipeline.png" alt="NOT FOUND" title="Frame"/></a></p>
+
+<ul>
+<li>Extract audio, isolate voice/speech using Audacity [<a href="http://www.audacityteam.org/">GitHub</a>]</li>
+<li>Perform Voice Activity Detection using WebRTC [<a href="https://github.com/wiseman/py-webrtcvad">GitHub</a>]</li>
+<li>Check for speaker through audio features, or facial features via [<a href="https://github.com/rcmalli/keras-vggface">VGG Face</a>]</li>
+<li>Annotate dialogues in ITRANS (possible use of <a href="liv.ai">liv.ai</a>)</li>
+</ul>
+
+
+
+

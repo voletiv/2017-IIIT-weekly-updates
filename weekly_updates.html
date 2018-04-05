@@ -13,21 +13,24 @@
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
 
 <style>
-html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", "Helvetica", sans-serif;}
+html,body,h1,h2,h3,h4,h5,h6,p,ul {font-family: "Roboto", "Helvetica", sans-serif;}
 body {
   padding: 1em;
 }
 ul li {
+    font-family: "Arial", "Helvetica";
     margin-top: 2em;
     margin-bottom: 0em;
 }
 ul li.sub {
+    font-family: "Helvetica";
     margin-top: 0.5em;
     margin-bottom: 0.5em;
 }
 a {
-  font-weight: bold;
-  color:DodgerBlue;
+    font-family: "Helvetica";
+    font-weight: bold;
+    color:DodgerBlue;
 }
 </style>
 
@@ -40,6 +43,7 @@ a {
 <h4 style="font-weight: bold; text-transform: uppercase">Movie Translation, Towards weakly supervised lipreading</b></h3>
 
 <!-- <h3 id="lipreader-critic">Lip Reader - Critic</h3> -->
+<p><img src="posts/Movie_Translation_aim.png" alt="IMAGE NOT FOUND!!" title="Frame" /></p>
 <p><img src="posts/LR_Critic.png" alt="IMAGE NOT FOUND!!" title="Frame" /></p>
 <!-- <p class="fig">Lipreader - Critic framework</p> -->
 
@@ -51,9 +55,31 @@ a {
 
 <ul>
 
+<li><a id="mar232018" href="posts/20180323.html">March 23, 2018</a></li>
+<ul>
+  <li class='sub'>Used LS3W-D to extract 3D landmarks, tried to work on changing head pose using them</li>
+  <li class='sub'>Used homography to change head pose and then detect 3D landmarks</li>
+  <li class='sub'>Initial result for Andrew Ng -> Telugu English</li>
+</ul>
+
+<li><a id="mar152018" href="posts/20180315.html">March 15, 2018</a></li>
+<ul>
+  <li class='sub'>Mahesh Babu: good results from Pix2Pix on generating lips from landmarks</li>
+</ul>
+
+<li><a id="mar092018" href="posts/20180309.html">March 09, 2018</a></li>
+<ul>
+  <li class='sub'>Mahesh Babu: training Pix2Pix network on 11k (noisy) Mahesh_Babu frames</li>
+</ul>
+
+<li><a id="feb232018" href="posts/20180223.html">February 23, 2018</a></li>
+<ul>
+  <li class='sub'>Collected more data, clipped, detecting landmarks</li>
+</ul>
+
 <li><a id="feb162018" href="posts/20180216_Sharwanand.html">February 16, 2018</a></li>
 <ul>
-  <li class='sub'>Movie Translation: Clipping videos for dialouges, writing dialogues in ITRANS, extracting facial landmarks</a></li>
+  <li class='sub'>Movie Translation: Clipping videos for dialouges, writing dialogues in ITRANS, extracting facial landmarks</li>
 </ul>
 
 <li>February 02, 2018</li>

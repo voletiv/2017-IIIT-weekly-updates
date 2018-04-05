@@ -1,0 +1,38 @@
+<link rel="stylesheet" href="../css/weeklyUpdates.css">
+
+<h2 id="20170805">2018-02-23</h2>
+
+<hr />
+
+<p><a href="20180223/Movie_Translation.png"><img src="20180223/Movie_Translation.png" alt="NOT FOUND" title="Frame"/></a></p>
+
+<ul>
+<li> Dataset [<a href="https://drive.google.com/open?id=1NGMqzicU0JsCsmErCtr4DrnaV4rKgyRU">structure</a>]: Collected videos of dialogues for English, Hindi, Telugu - 2-6 seconds per video,150-200 videos per actor, 2-3 actors per language [<a href="https://drive.google.com/open?id=1_plJTx3GsW4sw7SHXTfjCcpX7GX2yTwN">txt</a>]</li>
+    <ul>
+    <li> ffmpeg did not clip videos correctly - only looked for keypoints instead of frames while seeking!</li>
+    <li> Fixed it by specifying video and audio codec of output file</li>
+    </ul>
+<li> Extracting facial landmarks using <a href="http://dlib.net/">dlib</a>, cropping face [<a href="https://drive.google.com/open?id=1h7Y77R2Vil47wekV4wf59R17uahPwgdT">video</a>]</li>
+    <ul>
+    <li> Looking for face in middle frame, checking for same face in other frames using [<a href="https://github.com/rcmalli/keras-vggface">VGG Face</a>]</li>
+    <li> To take user input in identifying face in case of multiple faces in frame</li>
+    </ul>
+<li> Training Pix2Pix  network according to <a href="http://ritheshkumar.com/obamanet/">ObamaNet</a></li>
+</ul>
+
+<hr />
+
+<h4> Dataset Collection - automated pipeline: (put on hold) </h4>
+
+<p><a href="20180223/Data_collection_pipeline.png"><img src="20180223/Data_collection_pipeline.png" alt="NOT FOUND" title="Frame"/></a></p>
+
+<ul>
+<li>Extract audio, isolate voice/speech using Audacity [<a href="http://www.audacityteam.org/">GitHub</a>]</li>
+<li>Perform Voice Activity Detection using WebRTC [<a href="https://github.com/wiseman/py-webrtcvad">GitHub</a>]</li>
+<li>Check for speaker through audio features, or facial features via [<a href="https://github.com/rcmalli/keras-vggface">VGG Face</a>]</li>
+<li>Annotate dialogues in ITRANS (possible use of <a href="liv.ai">liv.ai</a>)</li>
+</ul>
+
+
+
+
