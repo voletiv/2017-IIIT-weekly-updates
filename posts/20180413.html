@@ -1,0 +1,87 @@
+<link rel="stylesheet" href="../css/weeklyUpdates.css">
+
+<h2 id="20180413">2018-04-13</h2>
+
+<h2>ANDREW NG -> Indian English</h2>
+
+<hr/>
+
+<h3><a href="https://drive.google.com/drive/folders/1ysYdBSRduJGrBrXTcu0joUzLXSJGpPm4" target="_blank">RESULTS</a> using Dynamic Programming</h3>
+
+Results include:
+
+<ul>
+<li>Slightly low quality video, Coursera [<a href="https://drive.google.com/open?id=1SJWfjYL-sgDxWJLVDIzphk1j26xV7aJX" target="_blank">link</a>]</li>
+<li>7-second video with Indian accent, deeplearning.ai [<a href="https://drive.google.com/open?id=10RfvCg-qzi6HUAHrEThYgt8hiEhyTcl6" target="_blank">link</a>]</li>
+<li>7-second video with French accent, deeplearning.ai [<a href="https://drive.google.com/open?id=14-eFDi57LNbkC5MICNB_Onwxan2neQmx" target="_blank">link</a>]</li>
+<li>20-second video, deeplearning.ai [<a href="https://drive.google.com/open?id=1z2tUTpEjAldU-to_lW6VYAcRIyjxJGSp" target="_blank">link</a>]</li>
+<li>26-second video, deeplearning.ai [<a href="https://drive.google.com/open?id=17CBTqZ8G5AAxCwE0kTfJdTqSkjSfUArN" target="_blank">link</a>]</li>
+<li>42-second video, deeplearning.ai [<a href="https://drive.google.com/open?id=1ku_wU0fQA-Cjkq1I1Aleix2C4_L-AaQg" target="_blank">link</a>]</li>
+<li>23-second video, talk [<a href="https://drive.google.com/open?id=1vskhsMV3O5qImL3mZsutD2RuxxY08gb2" target="_blank">link</a>]</li>
+</ul>
+
+CONCLUSION - similarly pitched voices seem to work better for Dynamic Programming.
+
+<br/>
+
+<br/>
+
+Method: <a href="20180406/Andrew_Ng/Andrew_Ng_video_translation.html" target="_blank">Jupyter notebook exported as HTML</a>; <a href="20180406/Andrew_Ng/Andrew_Ng_video_translation.ipynb" target="_blank">Jupyter notebook</a>
+
+<hr/>
+
+<h2>ANDREW NG Pix2Pix</h2>
+
+<ul>
+<li>Automatically extracted frames with Andrew Ng's face using face verification:
+<br/>
+    For every 10th frame:
+    <ul>
+    <li>Check for faces using dlib</li>
+    <li>Check if face is Andrew Ng's using dlib's face recognition model [<a href="http://dlib.net/face_recognition.py.html" target="_blank">tutorial</a>]</li>
+    <li>If it is, check in all 10 frames, extract faces, landmarks in each frame</li>
+    </ul>
+</li>
+<li>Manually filtered images with correct and wrong landmarks</li>
+<li>Got ~16000 frames</li>
+<li>TODO: Train Pix2Pix network on Andrew Ng</li>
+</ul>
+
+<br/>
+
+<p><a href="20180413/CV_12.C4W2L01_Why_look_at_case_studies__frame_00146_face_combined_andrew_ng.png"><img src="20180413/CV_12.C4W2L01_Why_look_at_case_studies__frame_00146_face_combined_andrew_ng.png" alt="NOT FOUND" title="Frame"/></a></p>
+
+<p class='fig'>Figure 1: Good landmarks detection</p>
+
+<br/>
+
+<p><a href="20180413/CV_03.C4W1L03_More_Edge_Detection_frame_00808_face_combined_andrew_ng.png"><img src="20180413/CV_03.C4W1L03_More_Edge_Detection_frame_00808_face_combined_andrew_ng.png" alt="NOT FOUND" title="Frame"/></a></p>
+
+<p class='fig'>Figure 2: Bad landmarks detection</p>
+
+<hr/>
+
+<h3>THIS WEEK</h3>
+
+<ul>
+<li>Tried using Dynamic Time Warping [<a href="https://librosa.github.io/librosa/generated/librosa.core.dtw.html#librosa.core.dtw" target="_blank">librosa</a>] with
+    <ul>
+    <li>MFCC features [<a href="https://librosa.github.io/librosa/generated/librosa.feature.mfcc.html#librosa.feature.mfcc" target="_blank">librosa</a>]</li>
+    <li>Chroma features [<a href="https://librosa.github.io/librosa/generated/librosa.feature.chroma_cens.html" target="_blank">librosa</a>]</li>
+    <li>Tonnetz features [<a href="https://librosa.github.io/librosa/generated/librosa.feature.tonnetz.html#librosa.feature.tonnetz" target="_blank">librosa</a>]</li>
+    </ul>
+</li>
+<li>DTW didn't work [<a href="20180413/Andrew_Ng_video_translation_DTW" target="_blank">Jupyter notebook</a>]</li>
+<li>Tried using DTW after changing the pitch, etc. using <a href="https://github.com/timmahrt/ProMo/blob/master/tutorials/tutorial1_2_pitch_manipulations.ipynb" target="_blank">Prosody Morph</a> - also didn't work</li>
+<li>Identified more videos and scripts for dubbing</li>
+<li>Got dubbing in Indian English from my mom, and in French accent from a friend</li>
+<li>Identified actionables for CVPR-W paper with Abhishek</li>
+<li>Automatically extracted frames with Andrew Ng's face using face verification</li>
+<li>TODO: Train Andrew_Ng_Pix2Pix</li>
+<li>TODO: Integrate with Audio->Landmarks pipeline</li>
+<li>TODO: Integrate Pix2Pix generated images with original video at inference time</li>
+<li>TODO: User-based study for English->Native English, and English->Other Language</li>
+</ul>
+
+
+
