@@ -1,0 +1,36 @@
+<link rel="stylesheet" href="../css/weeklyUpdates.css">
+
+<h2 id="20180504">2018-05-04</h2>
+
+<h2>ANDREW NG -> Other Language</h2>
+
+<hr/>
+
+<p><a href="20180504/ANDREW_NG_BMVC_Fig2.png"><img src="20180504/ANDREW_NG_BMVC_Fig2.png" alt="NOT FOUND" title="Frame"/></a></p>
+<p class='fig'>Figure 1: (a) Pipeline for training U-Net with frames from English video, (b) pipeline for training LSTM with Hindi speech and lip landmarks</p>
+
+<p><a href="https://drive.google.com/open?id=1FBs83YkGNcT8Q6dtTJ4xF24MDsPfNYKO">Results</a> of Hindi dialogues by Abhishek</p>
+
+<p><a href="https://www.overleaf.com/15682262vfxpfxvdvqdc#/59618906/">BMVC paper</a></p>
+
+<hr/>
+
+<h3>THIS WEEK</h3>
+
+<h4>Andrew Ng -> Other languages</h4>
+
+<ul>
+<li>Fixed mouth drift - by reading landmarks corresponding  to the right frames; and taking care of edge cases - no landmarks detected in frame, etc.
+<li>Fixed erroneous landmarks - Made a Pix2Pix  <a href="https://drive.google.com/open?id=1-NT2z8d9WoRk3Y_CIaS43MFFW8odTabB">model</a> using Andrew Ng’s faces after manual cleaning, using only 3095 images (U-Net is good with less data)</li>
+</ul>
+
+
+<h4>Syncnet</h4>
+
+<ul>
+<li>Tried imitating <a href="https://www.robots.ox.ac.uk/%7Evgg/publications/2016/Chung16a/chung16a.pdf">original Syncnet paper</a> and (frontal) <a href="http://www.robots.ox.ac.uk/%7Evgg/software/lipsync/">demo</a> in my <a href="https://github.com/voletiv/syncnet-in-keras">GitHub repo</a> (in Keras) - tried many <a href="https://github.com/voletiv/movie-translation-experiments/blob/master/syncnet/syncnet_on_andrew_ng.ipynb">experiments</a>, didn’t work…</li>
+<li>Tried using <a href="https://github.com/joonson/syncnet_python">Pytorch Syncnet</a> released only a few days ago by original  author</li>
+<li>Didn’t work - bad confidence (about frame delay) for our videos</li>
+<li>Raised <a href="https://github.com/joonson/syncnet_python/issues/2">issue</a> on interpreting results for our videos</li>
+</ul>
+
